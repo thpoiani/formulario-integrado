@@ -1,0 +1,74 @@
+#labels Phase-Requirements
+=Projeto: Formulário integrado ao Programa de Assistência Estudantil - IFSP São Carlos=
+==Cliente: Samira Nathalia Piza==
+
+*Envolvidos*
+Gislaine Ferreira Gonçalves
+Thiago Henrique Poiani
+Thiago Silva Barros
+
+*Introdução*
+Este documento especifica o projeto “Formulário integrado ao Programa de Assistência Estudantil - IFSP São Carlos”, fornecendo aos desenvolvedores as informações necessárias para o projeto e implementação, assim como para a realização dos testes e homologação do sistema.
+
+*Requisito do Cliente 01*: Área administrativa para gerenciamento de formulários do Programa.
+*Requisito do Cliente 02*: Plataforma para inscrição no Programa. 
+*Requisito do Cliente 03*: Confirmação de veracidade dos dados inseridos.
+
+*Requisito Funcional 01*: Autenticação para acesso à área administrativa.
+O usuário só poderá acessar o sistema caso seja administrador do sistema.
+
+*Requisito Funcional 02*: Gerenciamento de formulários dinâmicos.
+O administrador poderá criar, editar e remover formulários independentes, contendo categorias que possuem campos específicos.
+
+*Requisito Funcional 03*: Visualização de inscrições.
+O administrador poderá visualizar todos os dados dos participantes inscritos no Programa, podendo filtrá-los por Nome, RG, CPF, Prontuário e Turma.
+
+*Requisito Funcional 04*: Autenticação para acesso à área de inscrição.
+O usuário só poderá acessar o sistema com as credenciais de acesso do Moodle.
+
+*Requisito Funcional 05*: Inscrição no Programa.
+O usuário poderá se inscrever no Programa, preenchendo os campos dos formulários dinâmicos. Os dados inseridos poderão ser alterados.
+
+*Requisito Funcional 06*: Notificação de inscrição.
+O usuário receberá uma notificação por e-mail após a confirmação de envio da inscrição.
+
+*Requisito Funcional 07*: Recebimento de notificação após inscrição.
+O administrador receberá uma notificação por e-mail quando uma nova inscrição no Programa for feita.
+
+*Requisito Funcional 08*: Mural informativo.
+Uma área específica deverá ser reservada para publicação de editais e informações do Programa.
+
+*Requisito Funcional 09*: Divulgação dos resultados.
+Uma área específica deverá ser reservada para divulgação dos resultados do Programa. Os inscritos deverão receber notificações por e-mail informando a divulgação.
+
+*Requisito Não Funcional 01*: Impressão de formulários.
+O administrador poderá imprimir os formulários criados pelos inscritos.
+
+*Requisito Não Funcional 02*: Validação de dados.
+Validações devem ocorrer quando dados forem inseridos nos campos, a fim de evitar inconsistência.
+
+*Requisito Não Funcional 03*: Upload de arquivos.
+O usuário poderá submeter documentos junto à inscrição.
+
+*Premissas*
+O projeto contará de duas aplicações, sendo uma para a área administrativa e outra para acesso dos usuários.
+
+O banco de dados utilizado será MySQL e o mesmo schema deverá ser empregado para as duas aplicações.
+
+A aplicação para a área administrativa será Desktop, utilizando a linguagem Java.
+_Condições gerais_: 
+ * deve ser desenvolvido seguindo Design Patterns; 
+ * pode utilizar diferentes Look and Fell (sugerido [http://weblookandfeel.com WebLaF]);
+
+A aplicação para acessos dos usuários será Web, utilizando a linguagem PHP.
+_Condições gerais_: 
+ * deve ser crossbrowsing (IE8, IE9, Firefox, Google Chrome e Safari); 
+ * deve possuir URL Amigável (uso de rota desenvolvida por Thiago Henrique Poiani);
+
+Não será feito nenhuma versão mobile.
+
+*Cronograma:*
+|| Atividade || julho || agosto || setembro || outubro || novembro || dezembro ||
+|| Documentação || || x || x || || || ||
+|| Desenvolvimento || || || x || x || x || ||
+|| Homologação || || || || || x || x ||
