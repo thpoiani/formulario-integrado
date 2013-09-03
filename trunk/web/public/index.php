@@ -3,7 +3,6 @@
 /**
  * Definição de caminho para pasta public e application
  */
-define('PUBLIC', realpath(dirname(__FILE__)));
 define('APPLICATION', realpath(dirname(__FILE__) . '/../application'));
 
 /**
@@ -38,6 +37,7 @@ if (file_exists($controller)) {
 
 	if (class_exists($class)) {
 		// instanciar caso exista
+
 		$controlador = new $class();
 		$controlador->_view = null;
 
@@ -73,11 +73,17 @@ function getParams() {
 	// controller
 	if (empty($parametros[0])) {
 		$parametros[0] = 'index';
+	} else {
+		// converte para lowercase
+		$parametros[0] = strtolower($parametros[0]);
 	}
 
 	// action
 	if (empty($parametros[1])) {
 		$parametros[1] = 'index';
+	} else {
+		// converte para lowercase
+		$parametros[1] = strtolower($parametros[1]);
 	}
 
 	return $parametros;

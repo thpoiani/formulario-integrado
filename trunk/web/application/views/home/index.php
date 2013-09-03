@@ -8,7 +8,7 @@
 	<p><?php echo $this->var; ?></p>
 
 	<form id="formulario1" action="/home/salvar" method="POST">
-		<input type="text" id="nome" name="nome" placeholder="Nome">
+		<input type="text" id="nome1" name="nome" placeholder="Nome">
 		<input type="submit" value="Enviar">
 	</form>
 
@@ -16,7 +16,7 @@
 
 	<p>Exemplo de Formulário AJAX</p>
 	<form id="formulario2" onsubmit="return false;">
-		<input type="text" id="nome" name="nome" placeholder="Nome">
+		<input type="text" id="nome2" name="nome" placeholder="Nome">
 		<input type="submit" value="Enviar" onclick="enviar()">
 	</form>
 
