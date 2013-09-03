@@ -4,8 +4,14 @@ require_once('Controller.php');
 class HomeController extends Controller {
 
 	public function index() {
+		require_once(APPLICATION . '/models/Usuario.php');
+
+		$usuario = new Usuario();
+		$usuario->setNome("Thiago");
+
 		// retorno variável à view
-		$this->var = "Exemplo de Formulário POST";
+		// $this->var = "Exemplo de Formulário POST";
+		$this->var = $usuario->getNome();
 	}
 
 	public function salvar() {
