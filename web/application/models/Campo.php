@@ -1,12 +1,12 @@
 <?php
 
-class Formulario {
+class Campo {
 	private $id;
 	private $titulo;
-	private $cabecalho;
-	private $rodape;
+	private $maxlength;
+	private $regex;
+	private $tipo;
 	private $status;
-	private $aberto;
 	private $data;
 	private $id_categoria = array();
 
@@ -26,20 +26,28 @@ class Formulario {
 	    return $this->titulo = $titulo;
 	}
 
-	public function getCabecalho() {
-	    return $this->cabecalho;
+	public function getMaxlength() {
+	    return $this->maxlength;
 	}
 
-	public function setCabecalho($cabecalho) {
-	    return $this->cabecalho = $cabecalho;
+	public function setMaxlength($maxlength) {
+	    return $this->maxlength = $maxlength;
 	}
 
-	public function getRodape() {
-	    return $this->rodape;
+	public function getRegex() {
+	    return $this->regex;
 	}
 
-	public function setRodape($rodape) {
-	    return $this->rodape = $rodape;
+	public function setRegex($regex) {
+	    return $this->regex = $regex;
+	}
+
+	public function getTipo() {
+	    return $this->tipo;
+	}
+
+	public function setTipo($tipo) {
+	    return $this->tipo = $tipo;
 	}
 
 	public function getStatus() {
@@ -48,14 +56,6 @@ class Formulario {
 
 	public function setStatus($status) {
 	    return $this->status = $status;
-	}
-
-	public function getAberto() {
-	    return $this->aberto;
-	}
-
-	public function setAberto($aberto) {
-	    return $this->aberto = $aberto;
 	}
 
 	public function getData() {
