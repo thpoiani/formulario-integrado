@@ -2,9 +2,6 @@
 require_once('Controller.php');
 
 class IndexController extends Controller {
-	
-	public function salvar(){
-	
-	}
- 
+
+	public function index() {}
 }
