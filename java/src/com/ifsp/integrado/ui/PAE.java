@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package formulariointegrado;
+package com.ifsp.integrado.ui;
 
 /**
  *
  * @author Gislaine
  */
-public class FormularioIntegrado {
+public class PAE {
 
     /**
      * @param args the command line arguments
