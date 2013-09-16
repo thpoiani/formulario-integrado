@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package forms;
+package com.ifsp.integrado.ui;
 
 import java.awt.event.*;
 import javax.swing.*;
