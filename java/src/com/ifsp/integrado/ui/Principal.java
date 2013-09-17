@@ -4,6 +4,9 @@
  */
 package com.ifsp.integrado.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Gislaine
@@ -45,7 +48,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton2.setText("Abrir Formul√°rio");
+        jButton2.setText("Abrir Formul·rio");
 
         jButton4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton4.setText("Abrir Categoria");
@@ -53,7 +56,7 @@ public class Principal extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
 
         jButton5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton5.setText("Criar Formul√°rio");
+        jButton5.setText("Criar Formul·rio");
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -93,7 +96,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/forms/ifsp.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("ifsp.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +114,10 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        
+        jButton2.addActionListener(new AbriFormHandler());
+        jButton4.addActionListener(new CriarCategoriaHandler());
+        jButton5.addActionListener(new CriacaoFormularioHandler());
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -123,4 +130,34 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+    
+    private class AbriFormHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Abrir formul·rio");
+    		new AbrirForm().setVisible(true);
+//    		dispose();
+    	}
+    }
+    
+    private class CriarCategoriaHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Abrir categoria");
+    		new CriarCategoria().setVisible(true);
+//    		dispose();
+    	}
+    }
+    
+    private class CriacaoFormularioHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Criacao formul·rio");
+    		new CriacaoFormulario().setVisible(true);
+//    		dispose();
+    	}
+    }
 }
