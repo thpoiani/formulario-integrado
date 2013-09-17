@@ -15,6 +15,7 @@ public class InserirCampo extends javax.swing.JFrame {
      */
     public InserirCampo() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

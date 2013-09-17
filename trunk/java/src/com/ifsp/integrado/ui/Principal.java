@@ -7,6 +7,8 @@ package com.ifsp.integrado.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Gislaine
@@ -18,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +42,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PAE");
+        setTitle("Formulário Integrado - IFSP");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
@@ -136,7 +139,8 @@ public class Principal extends javax.swing.JFrame {
     	@Override
     	public void actionPerformed(ActionEvent arg0) {
     		System.out.println("Abrir formulário");
-    		new AbrirForm().setVisible(true);
+    		// JPanel não é instânciado dessa maneira!
+//    		new AbrirForm().setVisible(true);
 //    		dispose();
     	}
     }
@@ -147,6 +151,7 @@ public class Principal extends javax.swing.JFrame {
     	public void actionPerformed(ActionEvent arg0) {
     		System.out.println("Abrir categoria");
     		new CriarCategoria().setVisible(true);
+//    		setVisible(false);
 //    		dispose();
     	}
     }
@@ -157,6 +162,7 @@ public class Principal extends javax.swing.JFrame {
     	public void actionPerformed(ActionEvent arg0) {
     		System.out.println("Criacao formulário");
     		new CriacaoFormulario().setVisible(true);
+//    		setVisible(false);
 //    		dispose();
     	}
     }

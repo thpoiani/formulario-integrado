@@ -4,6 +4,9 @@
  */
 package com.ifsp.integrado.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Gislaine
@@ -15,6 +18,7 @@ public class CriacaoFormulario extends javax.swing.JFrame {
      */
     public CriacaoFormulario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -85,10 +89,10 @@ public class CriacaoFormulario extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton3.setText("Cancelar Formul√°rio");
-
+        
         jButton4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton4.setText("Salvar Formul√°rio");
-
+        
         jButton5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton5.setText("Limpar Formul√°rio");
 
@@ -186,6 +190,10 @@ public class CriacaoFormulario extends javax.swing.JFrame {
         );
 
         pack();
+        jButton2.addActionListener(new CriarCategoriaHandler());
+        jButton3.addActionListener(new FecharHandler());
+        jButton4.addActionListener(new SalvarHandler());
+        jButton5.addActionListener(new LimparHandler());
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -206,4 +214,38 @@ public class CriacaoFormulario extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    
+    private class CriarCategoriaHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Abrir formul·rio");
+    		new CriarCategoria().setVisible(true);
+    	}
+    }
+    
+    private class FecharHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Abrir formul·rio");
+    		dispose();
+    	}
+    }
+    
+    private class SalvarHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Salvar");
+    	}
+    }
+    
+    private class LimparHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Limpar");
+    	}
+    }
 }
