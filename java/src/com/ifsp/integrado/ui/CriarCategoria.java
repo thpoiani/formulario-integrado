@@ -4,6 +4,9 @@
  */
 package com.ifsp.integrado.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Gislaine
@@ -15,6 +18,7 @@ public class CriarCategoria extends javax.swing.JFrame {
      */
     public CriarCategoria() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -120,6 +124,8 @@ public class CriarCategoria extends javax.swing.JFrame {
         );
 
         pack();
+        jButton1.addActionListener(new FecharHandler());
+        jButton2.addActionListener(new SalvarHandler());
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -132,4 +138,21 @@ public class CriarCategoria extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    
+    private class FecharHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Fechar");
+    		dispose();
+    	}
+    }
+    
+    private class SalvarHandler implements ActionListener{
+
+    	@Override
+    	public void actionPerformed(ActionEvent arg0) {
+    		System.out.println("Salvar");
+    	}
+    }
 }

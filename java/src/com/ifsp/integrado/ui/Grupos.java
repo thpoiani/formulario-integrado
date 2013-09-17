@@ -15,6 +15,7 @@ public class Grupos extends javax.swing.JFrame {
      */
     public Grupos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
