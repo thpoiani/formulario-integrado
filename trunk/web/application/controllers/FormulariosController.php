@@ -1,7 +1,7 @@
 <?php
 require_once('Controller.php');
 
-class FormularioController extends Controller{
+class FormulariosController extends Controller{
 
 	public function index() {}
 }
