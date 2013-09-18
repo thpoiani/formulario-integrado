@@ -42,7 +42,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Formulário Integrado - IFSP");
+        setTitle("Formulï¿½rio Integrado - IFSP");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
@@ -51,7 +51,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton2.setText("Abrir Formulário");
+        jButton2.setText("Abrir FormulÃ¡rio");
 
         jButton4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton4.setText("Abrir Categoria");
@@ -59,7 +59,7 @@ public class Principal extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
 
         jButton5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton5.setText("Criar Formulário");
+        jButton5.setText("Criar FormulÃ¡rio");
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -138,8 +138,8 @@ public class Principal extends javax.swing.JFrame {
 
     	@Override
     	public void actionPerformed(ActionEvent arg0) {
-    		System.out.println("Abrir formulário");
-    		// JPanel não é instânciado dessa maneira!
+    		System.out.println("Abrir formulï¿½rio");
+    		// JPanel nï¿½o ï¿½ instï¿½nciado dessa maneira!
 //    		new AbrirForm().setVisible(true);
 //    		dispose();
     	}
@@ -160,7 +160,7 @@ public class Principal extends javax.swing.JFrame {
 
     	@Override
     	public void actionPerformed(ActionEvent arg0) {
-    		System.out.println("Criacao formulário");
+    		System.out.println("CriaÃ§Ã£o formulÃ¡rio");
     		new CriacaoFormulario().setVisible(true);
 //    		setVisible(false);
 //    		dispose();
