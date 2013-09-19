@@ -159,7 +159,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/forms/ifsp.png"/>
+          <Image iconType="3" name="/com/ifsp/integrado/ui/ifsp.png"/>
         </Property>
       </Properties>
     </Component>

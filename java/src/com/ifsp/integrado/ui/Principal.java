@@ -42,8 +42,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Formul�rio Integrado - IFSP");
-        setBackground(new java.awt.Color(255, 255, 255));
+        setTitle("Formulário Integrado - IFSP");        setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
@@ -99,7 +98,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("ifsp.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ifsp/integrado/ui/ifsp.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,10 +116,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
-        
-        jButton2.addActionListener(new AbriFormHandler());
-        jButton4.addActionListener(new CriarCategoriaHandler());
-        jButton5.addActionListener(new CriacaoFormularioHandler());
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -138,8 +133,7 @@ public class Principal extends javax.swing.JFrame {
 
     	@Override
     	public void actionPerformed(ActionEvent arg0) {
-    		System.out.println("Abrir formul�rio");
-    		// JPanel n�o � inst�nciado dessa maneira!
+    		// JPanel não é instânciado dessa maneira!
 //    		new AbrirForm().setVisible(true);
 //    		dispose();
     	}
@@ -160,8 +154,7 @@ public class Principal extends javax.swing.JFrame {
 
     	@Override
     	public void actionPerformed(ActionEvent arg0) {
-    		System.out.println("Criação formulário");
-    		new CriacaoFormulario().setVisible(true);
+    		System.out.println("Criacao formulário");    		new CriacaoFormulario().setVisible(true);
 //    		setVisible(false);
 //    		dispose();
     	}
