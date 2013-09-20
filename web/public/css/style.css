@@ -1,0 +1,51 @@
+html, body {
+	height: 100%;
+}
+
+body {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  background: url("/images/gplaypattern.png");
+  margin-bottom: 45px;
+}
+
+header {
+	height: 35px;
+	background: #27ae60;
+}
+
+section {
+	padding-bottom: 45px;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	height: 45px;
+	background: #27ae60;
+	width: 100%;
+}
+
+header p, footer p {
+	margin: 0;
+	font-size: 10px;
+	line-height: 10px;
+	color: #074620;
+}
+
+footer .footer {
+	margin: 8px auto;
+}
+
+.page {
+	min-height: 100%;
+    position:relative;
+}
+
+.vertical {
+	margin: 15px auto;
+}
+
+.middle {
+	left: 25%;
+}
