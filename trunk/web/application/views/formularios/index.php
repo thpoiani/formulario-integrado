@@ -2,7 +2,9 @@
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<title>Formularios Disponíveis</title>
+	<title>Formularios Integrado - Instituto Federal de São Paulo campus São Carlos</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+	<link href="css/flat-ui.css" rel="stylesheet">
 </head>
 <body>
 	<header>
@@ -13,10 +15,10 @@
 			<li>
 				<div></div>
 			</li>
-		</ul>		 
+		</ul>
 	</nav>
-	<fieldset> 
-		<legend>Opções</legend>		
+	<fieldset>
+		<legend>Opções</legend>
 			<input type="submit" value="Ok">
 			<input type="reset" value="Limpar">
 	</fieldset>
