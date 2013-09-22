@@ -26,15 +26,7 @@ public class FormularioIntegrado {
     	// tentativa de instânciação do Look and Feel Nimbus
         try {
         	
-        	// verifica os LookAndFeels disponíveis do Swing
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            	
-            	// setar LnF Nimbus
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+        	javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         }
         // tratativas de erros
         catch (ClassNotFoundException ex) {

@@ -70,7 +70,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         
         // definição de atributos do JLabel
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ifsp/integrado/ui/ifsp.png")));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ifsp/integrado/assets/ifsp.png")));
         
         // definição de atributos do JFrame
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
