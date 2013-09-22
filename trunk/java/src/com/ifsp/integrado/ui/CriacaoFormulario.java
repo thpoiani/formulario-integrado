@@ -1,5 +1,6 @@
 package com.ifsp.integrado.ui;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -96,6 +97,9 @@ public class CriacaoFormulario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // definição de atributos do JLabel
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18));

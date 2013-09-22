@@ -15,20 +15,20 @@ import java.awt.event.ActionListener;
  */
 public class Login extends javax.swing.JFrame {
 	
-	/**
-	 * Identificação de versão de serialização da classe
-	 */
-	private static final long serialVersionUID = -1562828853183792632L;
-	
-	/**
-	 * Atributos
-	 */
-	private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    /**
+     * Identificação de versão de serialização da classe
+     */
+    private static final long serialVersionUID = -1562828853183792632L;
+
+    /**
+     * Atributos
+     */
+    private javax.swing.JButton jbtnEntrar;
+    private javax.swing.JLabel jlblLogin;
+    private javax.swing.JLabel jlblSenha;
+    private javax.swing.JPanel jpanelLogin;
+    private javax.swing.JPasswordField jpswSenha;
+    private javax.swing.JTextField jtxtLogin;
     
     /**
      * Construtor da classe Login
@@ -45,15 +45,12 @@ public class Login extends javax.swing.JFrame {
         
         // setar título do JFrame
         this.setTitle("Formulário Integrado - IFSP");
-        
-        //setar icone
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
-        
+               
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
         
         // setar botão padrão da janela
-        this.getRootPane().setDefaultButton(jButton1);
+        this.getRootPane().setDefaultButton(jbtnEntrar);
     }
 
     /**
@@ -61,71 +58,74 @@ public class Login extends javax.swing.JFrame {
      */
     private void initComponents() {
     	// instânciação dos atributos da classe
-        this.jPanel1 = new javax.swing.JPanel();
-        this.jLabel1 = new javax.swing.JLabel();
-        this.jLabel2 = new javax.swing.JLabel();
-        this.jPasswordField1 = new javax.swing.JPasswordField();
-        this.jTextField1 = new javax.swing.JTextField();
-        this.jButton1 = new javax.swing.JButton();
+        this.jpanelLogin = new javax.swing.JPanel();
+        this.jlblLogin = new javax.swing.JLabel();
+        this.jlblSenha = new javax.swing.JLabel();
+        this.jpswSenha = new javax.swing.JPasswordField();
+        this.jtxtLogin = new javax.swing.JTextField();
+        this.jbtnEntrar = new javax.swing.JButton();
 
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
+        
         // definição de atributos do JPanel
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jpanelLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         // definição de atributos do JLabel
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14));
-        jLabel1.setText("Login: ");
+        jlblLogin.setFont(new java.awt.Font("Calibri", 0, 14));
+        jlblLogin.setText("Login: ");
         
         // definição de atributos do JLabel
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14));
-        jLabel2.setText("Senha: ");
+        jlblSenha.setFont(new java.awt.Font("Calibri", 0, 14));
+        jlblSenha.setText("Senha: ");
         
         // definição de atributos do JPasswordField
-        jPasswordField1.setFont(new java.awt.Font("Calibri", 0, 12));
-        jPasswordField1.setText("jPasswordField1");
+        jpswSenha.setFont(new java.awt.Font("Calibri", 0, 12));
+        jpswSenha.setText("jpswSenha");
 
         // definição de atributos do JTextField
-        jTextField1.setFont(new java.awt.Font("Calibri", 0, 12));
+        jtxtLogin.setFont(new java.awt.Font("Calibri", 0, 12));
 
         // definição de atributos do JButton
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14));
-        jButton1.setText("Entrar");
+        jbtnEntrar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnEntrar.setText("Entrar");
 
         // definição do GroupLayout
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpanelLoginLayout = new javax.swing.GroupLayout(jpanelLogin);
+        jpanelLogin.setLayout(jpanelLoginLayout);
+        jpanelLoginLayout.setHorizontalGroup(
+            jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelLoginLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLoginLayout.createSequentialGroup()
+                        .addComponent(jlblSenha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                    .addGroup(jpanelLoginLayout.createSequentialGroup()
+                        .addComponent(jlblLogin)
                         .addGap(8, 8, 8)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1))
+                .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jtxtLogin)
+                    .addComponent(jpswSenha))
                 .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpanelLoginLayout.setVerticalGroup(
+            jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelLoginLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblLogin)
+                    .addComponent(jtxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblSenha)
+                    .addComponent(jpswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtnEntrar)
                 .addGap(21, 21, 21))
         );
 
@@ -135,14 +135,14 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpanelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -150,7 +150,7 @@ public class Login extends javax.swing.JFrame {
         pack();
 
         // ouvinte
-        jButton1.addActionListener(new PrincipalHandler());
+        jbtnEntrar.addActionListener(new PrincipalHandler());
     }
     
     /**

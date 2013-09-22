@@ -1,5 +1,6 @@
 package com.ifsp.integrado.ui;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,28 +15,28 @@ import java.awt.event.ActionListener;
 public class InserirCampo extends javax.swing.JFrame {
 
     /**
-	 * Identificação de versão de serialização da classe
-	 */
-	private static final long serialVersionUID = 1823124884274190772L;
-	
-	/**
-	 * Referência do JFrame anterior
-	 */
-	private javax.swing.JFrame parentFrame;
-	
-	/**
-	 * Atributos
-	 */
-	private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+     * Identificação de versão de serialização da classe
+     */
+   private static final long serialVersionUID = 1823124884274190772L;
+
+   /**
+    * Referência do JFrame anterior
+    */
+   private javax.swing.JFrame parentFrame;
+
+   /**
+    * Atributos
+    */
+    private javax.swing.JButton jbtnAcrescentarCampos;
+    private javax.swing.JButton jbtnCancelar;
+    private javax.swing.JButton jbtnSalvar;
+    private javax.swing.JComboBox<String> jcbxTipoCampo;
+    private javax.swing.JPanel jpanelInserirCampo;
+    private javax.swing.JRadioButton jrdbDescritivo;
+    private javax.swing.JRadioButton jrdbMultiplaSelecao;
+    private javax.swing.JRadioButton jrdbUnicaSelecao;
     private javax.swing.ButtonGroup group;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jtxtNomeCampo;
 	
     /**
      * Construtor da classe CriacaoFormulario
@@ -73,102 +74,105 @@ public class InserirCampo extends javax.swing.JFrame {
      * Método responsável por gerenciar os componentes do JFrame
      */
     private void initComponents() {
-    	// instânciação dos atributos da classe
-        jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<String>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+    	// instanciação dos atributos da classe
+        jpanelInserirCampo = new javax.swing.JPanel();
+        jtxtNomeCampo = new javax.swing.JTextField();
+        jcbxTipoCampo = new javax.swing.JComboBox<String>();
+        jrdbDescritivo = new javax.swing.JRadioButton();
+        jrdbMultiplaSelecao = new javax.swing.JRadioButton();
+        jrdbUnicaSelecao = new javax.swing.JRadioButton();
+        jbtnAcrescentarCampos = new javax.swing.JButton();
+        jbtnCancelar = new javax.swing.JButton();
+        jbtnSalvar = new javax.swing.JButton();
         group = new javax.swing.ButtonGroup();
         
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
+        
         // definição de atributos do JLabel
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jpanelInserirCampo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         // definição de atributos do JTextField
-        jTextField2.setFont(new java.awt.Font("Calibri", 2, 12));
-        jTextField2.setText("Nome do Campo");
+        jtxtNomeCampo.setFont(new java.awt.Font("Calibri", 2, 12));
+        jtxtNomeCampo.setText("");
 
         // definição de atributos do JComboBox
-        jComboBox2.setFont(new java.awt.Font("Calibri", 2, 12));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
+        jcbxTipoCampo.setFont(new java.awt.Font("Calibri", 2, 12));
+        jcbxTipoCampo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "", "string", "double", "int", "date", "boolean" }));
 
         // definição de atributos do JRadioButton
-        jRadioButton1.setFont(new java.awt.Font("Calibri", 0, 14));
-        jRadioButton1.setText("Descritivo");
-        jRadioButton1.setSelected(true);
+        jrdbDescritivo.setFont(new java.awt.Font("Calibri", 0, 14));
+        jrdbDescritivo.setText("Descritivo");
+        jrdbDescritivo.setSelected(true);
 
         // definição de atributos do JRadioButton
-        jRadioButton2.setFont(new java.awt.Font("Calibri", 0, 14));
-        jRadioButton2.setText("Múltipla Seleção");
+        jrdbMultiplaSelecao.setFont(new java.awt.Font("Calibri", 0, 14));
+        jrdbMultiplaSelecao.setText("Múltipla Seleção");
         
         // definição de atributos do JRadioButton
-        jRadioButton3.setFont(new java.awt.Font("Calibri", 0, 14));
-        jRadioButton3.setText("Única Seleção");
+        jrdbUnicaSelecao.setFont(new java.awt.Font("Calibri", 0, 14));
+        jrdbUnicaSelecao.setText("Única Seleção");
 
         // definição de atributos do ButtonGroup
-        group.add(jRadioButton1);
-        group.add(jRadioButton2);
-        group.add(jRadioButton3);
+        group.add(jrdbDescritivo);
+        group.add(jrdbMultiplaSelecao);
+        group.add(jrdbUnicaSelecao);
                 
         // definição de atributos do JButton
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14));
-        jButton1.setText("Acrescentar Novos Campos");
+        jbtnAcrescentarCampos.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnAcrescentarCampos.setText("Acrescentar Novos Campos");
         
         // definição de atributos do JButton
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 14));
-        jButton2.setText("Fechar");
+        jbtnCancelar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnCancelar.setText("Fechar");
 
         // definição de atributos do JButton
-        jButton3.setFont(new java.awt.Font("Calibri", 0, 14));
-        jButton3.setText("Salvar");
+        jbtnSalvar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnSalvar.setText("Salvar");
 
         // definição do GroupLayout
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpanelInserirCampoLayout = new javax.swing.GroupLayout(jpanelInserirCampo);
+        jpanelInserirCampo.setLayout(jpanelInserirCampoLayout);
+        jpanelInserirCampoLayout.setHorizontalGroup(
+            jpanelInserirCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelInserirCampoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jpanelInserirCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtxtNomeCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnCancelar))
+                .addGroup(jpanelInserirCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelInserirCampoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbxTipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
+                        .addComponent(jrdbDescritivo)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
+                        .addComponent(jrdbMultiplaSelecao)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3)
+                        .addComponent(jrdbUnicaSelecao)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(jpanelInserirCampoLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jButton1)
+                        .addComponent(jbtnAcrescentarCampos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67))))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jpanelInserirCampoLayout.setVerticalGroup(
+            jpanelInserirCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelInserirCampoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                .addGroup(jpanelInserirCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxtNomeCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbxTipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jrdbDescritivo)
+                    .addComponent(jrdbMultiplaSelecao)
+                    .addComponent(jrdbUnicaSelecao))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpanelInserirCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnAcrescentarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -180,7 +184,7 @@ public class InserirCampo extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpanelInserirCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -189,7 +193,7 @@ public class InserirCampo extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpanelInserirCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         
@@ -197,17 +201,17 @@ public class InserirCampo extends javax.swing.JFrame {
         pack();
         
         // ouvintes        
-        jButton1.addActionListener(new InserirCampoHandler());
-        jButton2.addActionListener(new FecharHandler());
-        jButton3.addActionListener(new SalvarHandler());
+        jbtnAcrescentarCampos.addActionListener(new InserirCampoHandler());
+        jbtnCancelar.addActionListener(new FecharHandler());
+        jbtnSalvar.addActionListener(new SalvarHandler());
         
-        jRadioButton2.addActionListener(new GruposHandler());
-        jRadioButton3.addActionListener(new GruposHandler());
+        jrdbMultiplaSelecao.addActionListener(new GruposHandler());
+        jrdbUnicaSelecao.addActionListener(new GruposHandler());
     }
     
     /**
      * Classe privada responsável por implementar as ações do evento de clique
-     * do botão JButton1
+     * do botão jbtnAcrescentarCampos
      * 
      * @author Gislaine Ferreira Gonçalves
      * @author Thiago Henrique Poiani
@@ -231,7 +235,7 @@ public class InserirCampo extends javax.swing.JFrame {
     
     /**
      * Classe privada responsável por implementar as ações do evento de clique
-     * do botão JButton2
+     * do botão jbtnCancelar
      * 
      * @author Gislaine Ferreira Gonçalves
      * @author Thiago Henrique Poiani
@@ -254,7 +258,7 @@ public class InserirCampo extends javax.swing.JFrame {
     
     /**
      * Classe privada responsável por implementar as ações do evento de clique
-     * do botão JButton3
+     * do botão jbtnSalvar
      * 
      * @author Gislaine Ferreira Gonçalves
      * @author Thiago Henrique Poiani
@@ -280,7 +284,7 @@ public class InserirCampo extends javax.swing.JFrame {
     
     /**
      * Classe privada responsável por implementar as ações do evento de clique
-     * do radio JRadioButton2 e JRadioButton3 
+     * do radio jrdbMultiplaSelecao e jrdbUnicaSelecao 
      * 
      * @author Gislaine Ferreira Gonçalves
      * @author Thiago Henrique Poiani
