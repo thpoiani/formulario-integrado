@@ -168,9 +168,14 @@ public class Principal extends javax.swing.JFrame {
     	 * Método responsável pela funcionalidade do clique do botão
     	 */
     	public void actionPerformed(ActionEvent arg0) {
-    		// JPanel não é instânciado dessa maneira!
-    		// new AbrirForm().setVisible(true);
-    		// dispose();
+    		// TODO
+    		
+    		javax.swing.JFileChooser jFileChooser1 = new javax.swing.JFileChooser();
+    		
+    		if (jFileChooser1.showOpenDialog(Principal.this) == javax.swing.JFileChooser.APPROVE_OPTION) { 
+    		      System.out.println("Diretório: " + jFileChooser1.getCurrentDirectory());
+    		      System.out.println("Arquivo : " + jFileChooser1.getSelectedFile());
+    		}
     	}
     }
     
