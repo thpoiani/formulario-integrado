@@ -1,5 +1,6 @@
 package com.ifsp.integrado.ui;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,6 +45,9 @@ public class Login extends javax.swing.JFrame {
         
         // setar título do JFrame
         this.setTitle("Formulário Integrado - IFSP");
+        
+        //setar icone
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/LogoIFSP.jpg")));
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
