@@ -1,5 +1,6 @@
 package com.ifsp.integrado.ui;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,6 +51,10 @@ public class Principal extends javax.swing.JFrame {
         
         // setar cor de fundo do JFrame
         this.setBackground(new java.awt.Color(255, 255, 255));
+        
+        //setar icone
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/LogoIFSP.jpg")));
+        //Toolkit.getDefaultToolkit().getImage(SuaClasse.class.getResource("/pacote/imagem.a.utilzar"))
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
