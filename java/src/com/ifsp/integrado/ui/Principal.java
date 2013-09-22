@@ -50,10 +50,7 @@ public class Principal extends javax.swing.JFrame {
         this.setTitle("Formulário Integrado - IFSP");
         
         // setar cor de fundo do JFrame
-        this.setBackground(new java.awt.Color(255, 255, 255));
-        
-        //setar icone
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
+        this.setBackground(new java.awt.Color(255, 255, 255));       
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
@@ -72,6 +69,9 @@ public class Principal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
+        
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // definição de atributos do JLabel
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ifsp/integrado/assets/ifsp.png")));
