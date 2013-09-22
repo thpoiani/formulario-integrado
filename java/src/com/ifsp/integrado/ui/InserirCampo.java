@@ -34,6 +34,7 @@ public class InserirCampo extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.ButtonGroup group;
     private javax.swing.JTextField jTextField2;
 	
     /**
@@ -82,7 +83,8 @@ public class InserirCampo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-
+        group = new javax.swing.ButtonGroup();
+        
         // definição de atributos do JLabel
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -97,6 +99,7 @@ public class InserirCampo extends javax.swing.JFrame {
         // definição de atributos do JRadioButton
         jRadioButton1.setFont(new java.awt.Font("Calibri", 0, 14));
         jRadioButton1.setText("Descritivo");
+        jRadioButton1.setSelected(true);
 
         // definição de atributos do JRadioButton
         jRadioButton2.setFont(new java.awt.Font("Calibri", 0, 14));
@@ -106,6 +109,11 @@ public class InserirCampo extends javax.swing.JFrame {
         jRadioButton3.setFont(new java.awt.Font("Calibri", 0, 14));
         jRadioButton3.setText("Única Seleção");
 
+        // definição de atributos do ButtonGroup
+        group.add(jRadioButton1);
+        group.add(jRadioButton2);
+        group.add(jRadioButton3);
+                
         // definição de atributos do JButton
         jButton1.setFont(new java.awt.Font("Calibri", 0, 14));
         jButton1.setText("Acrescentar Novos Campos");
@@ -192,6 +200,9 @@ public class InserirCampo extends javax.swing.JFrame {
         jButton1.addActionListener(new InserirCampoHandler());
         jButton2.addActionListener(new FecharHandler());
         jButton3.addActionListener(new SalvarHandler());
+        
+        jRadioButton2.addActionListener(new GruposHandler());
+        jRadioButton3.addActionListener(new GruposHandler());
     }
     
     /**
@@ -210,7 +221,9 @@ public class InserirCampo extends javax.swing.JFrame {
     		// TODO
     		
     		// instânciação da classe CriarCategoria que estende JFrame
-    		new InserirCampo().setVisible(true);
+    		if (InserirCampo.this.parentFrame != null) {
+    			new InserirCampo(InserirCampo.this.parentFrame).setVisible(true);
+    		}
     		
     		InserirCampo.this.dispose();
     	}
@@ -264,4 +277,27 @@ public class InserirCampo extends javax.swing.JFrame {
     	}
     }
 
+    
+    /**
+     * Classe privada responsável por implementar as ações do evento de clique
+     * do radio JRadioButton2 e JRadioButton3 
+     * 
+     * @author Gislaine Ferreira Gonçalves
+     * @author Thiago Henrique Poiani
+     */
+    private class GruposHandler implements ActionListener{
+
+    	/**
+    	 * Método responsável pela funcionalidade do clique do radio
+    	 */
+    	public void actionPerformed(ActionEvent arg0) {
+    		// TODO
+    		
+    		new Grupos(InserirCampo.this, (javax.swing.JRadioButton) arg0.getSource()).setVisible(true);
+    		
+    		// setar tela invisível
+    		InserirCampo.this.setVisible(false);
+    	}
+    }    
+    
 }

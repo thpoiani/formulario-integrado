@@ -274,7 +274,9 @@ public class CriacaoFormulario extends javax.swing.JFrame {
     	 */
     	public void actionPerformed(ActionEvent arg0) {
     		// instânciação da classe CriarCategoria que estende JFrame
-    		new CriarCategoria().setVisible(true);
+    		new CriarCategoria(CriacaoFormulario.this).setVisible(true);
+    		
+    		CriacaoFormulario.this.setVisible(false);
     	}
     }
     

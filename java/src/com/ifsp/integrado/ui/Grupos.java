@@ -94,6 +94,26 @@ public class Grupos extends javax.swing.JFrame {
     	// referência do JFrame anterior
     	this.parentFrame = frame;
 	}
+    
+    /**
+     * Construtor da classe CriacaoFormulario
+     * @param javax.swing.JFrame frame
+     * @param Object arg
+     */
+    public Grupos(javax.swing.JFrame frame, javax.swing.JRadioButton arg) {
+    	// chamada do construtor sem parâmetros
+    	this(frame);
+    	
+    	switch(arg.getText()) {
+    		case "Múltipla Seleção" :
+    			// TODO check
+    			break;
+    		case "Única Seleção" :
+    			// TODO radio
+    			break;
+    	}
+    	
+	}
    
 
     /**
@@ -157,7 +177,7 @@ public class Grupos extends javax.swing.JFrame {
         jLabel2.setText("Tipo:");
 
         // definição de atributos do JComboBox
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "check", "radio" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
 
         // definição do GroupLayout
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -206,7 +226,7 @@ public class Grupos extends javax.swing.JFrame {
         jLabel6.setText("Tipo:");
 
         // definição de atributos do JComboBox
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "check", "radio" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
 
         // definição do GroupLayout
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -255,7 +275,7 @@ public class Grupos extends javax.swing.JFrame {
         jLabel8.setText("Tipo:");
 
         // definição de atributos do JComboBox
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "check", "radio" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
 
         // definição do GroupLayout
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -304,7 +324,7 @@ public class Grupos extends javax.swing.JFrame {
         jLabel10.setText("Tipo:");
 
         // definição de atributos do JComboBox
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "check", "radio" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
 
         // definição de GroupLayout
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -357,7 +377,7 @@ public class Grupos extends javax.swing.JFrame {
         jLabel14.setText("Tipo:");
 
         // definição de atributos do JComboBox
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "check", "radio" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
 
         // definição de GroupLayout
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -406,7 +426,7 @@ public class Grupos extends javax.swing.JFrame {
         jLabel12.setText("Tipo:");
 
         // definição de atributos do JComboBox
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "check", "radio" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "string", "double", "int", "date", "boolean" }));
 
         // definição de atributos do JGroupBox
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
