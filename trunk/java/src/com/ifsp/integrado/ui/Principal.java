@@ -53,8 +53,7 @@ public class Principal extends javax.swing.JFrame {
         this.setBackground(new java.awt.Color(255, 255, 255));
         
         //setar icone
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/LogoIFSP.jpg")));
-        //Toolkit.getDefaultToolkit().getImage(SuaClasse.class.getResource("/pacote/imagem.a.utilzar"))
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);

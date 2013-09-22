@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         this.setTitle("Formulário Integrado - IFSP");
         
         //setar icone
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/LogoIFSP.jpg")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
