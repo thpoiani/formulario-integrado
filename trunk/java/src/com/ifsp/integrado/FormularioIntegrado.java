@@ -1,47 +1,56 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ifsp.integrado;
 
 import com.ifsp.integrado.ui.Login;
 
 /**
- *
- * @author Gislaine
+ * Formulário integrado ao Programa de Assistência Estudantil - IFSP São Carlos
+ * 
+ * O projeto tem como objetivo o dinamismo e a facilidade para gerenciamento de 
+ * formulários, principalmente o do Programa de Assistência Estudantil – PAE, 
+ * pelos técnicos administrativos do IFSP, assim como a relação de usuários que 
+ * os responderam, com seus dados.
+ * 
+ * Essa classe é responsável por atribuir a interface gráfica do projeto 
+ * (Look and Feel) e por instânciar a primeira tela do sistema: Login.
+ * 
+ * @author Gislaine Ferreira Gonçalves
+ * @author Thiago Henrique Poiani 
  */
 public class FormularioIntegrado {
 	
-	
-    /**
-     * @param args the command line arguments
-     */
+	/**
+	 * O método principal do sistema
+	 */
     public static void main(String args[]) {
-    	/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */        
-        
+    	
+    	// tentativa de instânciação do Look and Feel Nimbus
         try {
+        	
+        	// verifica os LookAndFeels disponíveis do Swing
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            	
+            	// setar LnF Nimbus
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }
+        // tratativas de erros
+        catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } 
+        catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } 
+        catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } 
+        catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
+        // instânciação da classe Login que estende JFrame 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
