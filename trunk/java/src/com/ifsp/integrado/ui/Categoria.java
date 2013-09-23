@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ifsp.integrado.ui;
 
 import java.awt.Toolkit;
@@ -9,9 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
     
-    /**
- *
- * @author Gislaine
+/**
+ * Formulário integrado ao Programa de Assistência Estudantil - IFSP São Carlos
+ * 
+ * Essa classe é responsável por exibir a tela de criação de categorias
+ * 
+ * @author Gislaine Ferreira Gonçalves
+ * @author Thiago Henrique Poiani 
  */
 public class Categoria extends javax.swing.JFrame {
     
@@ -59,6 +59,9 @@ public class Categoria extends javax.swing.JFrame {
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
+        
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
 
     public Categoria(javax.swing.JFrame frame) {
@@ -72,7 +75,6 @@ public class Categoria extends javax.swing.JFrame {
     /**
      * Método responsável por gerenciar os componentes do JFrame
      */
-
     private void initComponents() {
         // instânciação dos atributos da classe
         jpanelCategoria = new javax.swing.JPanel();
@@ -85,10 +87,6 @@ public class Categoria extends javax.swing.JFrame {
         jbtnNovoCampo = new javax.swing.JButton();
         jbtnSalvar = new javax.swing.JButton();
         jbtnLimpar = new javax.swing.JButton();
-        
-        // inserção do ícone do projeto
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
-
         
         // definição de atributos do JLabel
         jlblNome.setFont(new java.awt.Font("Calibri", 0, 14));
@@ -203,8 +201,6 @@ public class Categoria extends javax.swing.JFrame {
         jbtnSalvar.addActionListener(new Categoria.SalvarHandler());
     }
 
-    
-    
     /**
      * Classe privada responsável por implementar as ações do evento de clique
      * do botão JButton1
@@ -218,11 +214,9 @@ public class Categoria extends javax.swing.JFrame {
     	 * Método responsável pela funcionalidade do clique do botão
     	 */        
         public void actionPerformed(ActionEvent arg0) {
-            
+        	jtxaDescricao.setText(""); 
+            jtxtNome.setText("");
         }
-
-        
-        
     }
     
     private class FecharHandler implements ActionListener{

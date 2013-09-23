@@ -51,6 +51,9 @@ public class Login extends javax.swing.JFrame {
         
         // setar botão padrão da janela
         this.getRootPane().setDefaultButton(jbtnEntrar);
+
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
 
     /**
@@ -64,9 +67,6 @@ public class Login extends javax.swing.JFrame {
         this.jpswSenha = new javax.swing.JPasswordField();
         this.jtxtLogin = new javax.swing.JTextField();
         this.jbtnEntrar = new javax.swing.JButton();
-
-        // inserção do ícone do projeto
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // definição de atributos do JPanel
         jpanelLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());

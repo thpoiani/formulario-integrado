@@ -45,7 +45,7 @@ public class FormularioIntegrado {
         // instânciação da classe Login que estende JFrame 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                 new Login().setVisible(true);
             }
         });
     }

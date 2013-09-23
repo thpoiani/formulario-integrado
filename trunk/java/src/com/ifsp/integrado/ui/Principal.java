@@ -53,6 +53,9 @@ public class Principal extends javax.swing.JFrame {
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
+        
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
     
     /**
@@ -68,9 +71,6 @@ public class Principal extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jlblImagem = new javax.swing.JLabel();
         
-        // inserção do ícone do projeto
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
-        
         // definição de atributos do JLabel
         jlblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ifsp/integrado/assets/ifsp.png")));
         
@@ -80,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
         
         // definição de atributos do JButton
         jbtnAbrirForm.setFont(new java.awt.Font("Calibri", 0, 14));
-        jbtnAbrirForm.setText("Abrir Formulário");
+        jbtnAbrirForm.setText("Editar Formulário");
 
         // definição de atributos do JButton
         jbtnAbrirCategoria.setFont(new java.awt.Font("Calibri", 0, 14));
@@ -166,12 +166,20 @@ public class Principal extends javax.swing.JFrame {
     	public void actionPerformed(ActionEvent arg0) {
     		// TODO
     		
+    		/*
     		javax.swing.JFileChooser jFileChooser1 = new javax.swing.JFileChooser();
     		
     		if (jFileChooser1.showOpenDialog(Principal.this) == javax.swing.JFileChooser.APPROVE_OPTION) { 
     		      System.out.println("Diretório: " + jFileChooser1.getCurrentDirectory());
     		      System.out.println("Arquivo : " + jFileChooser1.getSelectedFile());
     		}
+    		*/
+    		
+    		// instânciação da classe Categoria que estende JFrame
+    		new EdicaoFormulario(Principal.this).setVisible(true);
+    		
+    		// setar tela invisível
+    		Principal.this.setVisible(false);
     	}
     }
     

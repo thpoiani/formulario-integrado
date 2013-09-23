@@ -82,6 +82,9 @@ public class Grupos extends javax.swing.JFrame {
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
+
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
     
     /**
@@ -121,6 +124,7 @@ public class Grupos extends javax.swing.JFrame {
      * Método responsável por gerenciar os componentes do JFrame
      */
     private void initComponents() {
+    	
     	// instânciação dos atributos da classe
         jpanelGrupos = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -158,9 +162,6 @@ public class Grupos extends javax.swing.JFrame {
         jbtnCancelar = new javax.swing.JButton();
         jbtnLimpar = new javax.swing.JButton();
         jbtnSalvar = new javax.swing.JButton();
-
-        // inserção do ícone do projeto
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // definição de atributos do JSeparator
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
@@ -630,7 +631,23 @@ public class Grupos extends javax.swing.JFrame {
     	 * Método responsável pela funcionalidade do clique do botão
     	 */
     	public void actionPerformed(ActionEvent arg0) {
-    		// TODO
+    		jtxtOp1.setText("");
+    		jcbxTipoOp1.setSelectedIndex(0);
+    		
+    		jtxtOp2.setText("");
+    		jcbxTipoOp2.setSelectedIndex(0);
+    		
+    		jtxtOp3.setText("");
+    		jcbxTipoOp3.setSelectedIndex(0);
+    		
+    		jtxtOp4.setText("");
+    		jcbxTipoOp4.setSelectedIndex(0);
+    		
+    		jtxtOp5.setText("");
+    		jcbxTipoOp5.setSelectedIndex(0);
+    		
+    		jtxtOp6.setText("");
+    		jcbxTipoOp6.setSelectedIndex(0);
     	}
     }
 }

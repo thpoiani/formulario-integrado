@@ -56,6 +56,9 @@ public class InserirCampo extends javax.swing.JFrame {
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
+        
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
 
     /**
@@ -85,9 +88,6 @@ public class InserirCampo extends javax.swing.JFrame {
         jbtnCancelar = new javax.swing.JButton();
         jbtnSalvar = new javax.swing.JButton();
         group = new javax.swing.ButtonGroup();
-        
-        // inserção do ícone do projeto
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
         
         // definição de atributos do JLabel
         jpanelInserirCampo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
