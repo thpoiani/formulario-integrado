@@ -119,13 +119,13 @@
                   <Component id="jlblRodape" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jscrollRodape" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbtnSalvar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jbtnLimpar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jbtnCancelar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -271,9 +271,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Editar Categorias"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnEditarCategoriaActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
