@@ -165,11 +165,6 @@ public class CriacaoForm extends javax.swing.JFrame {
 
         jbtnEditarCategoria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnEditarCategoria.setText("Editar Categorias");
-        jbtnEditarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnEditarCategoriaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpanelCriacaoFormLayout = new javax.swing.GroupLayout(jpanelCriacaoForm);
         jpanelCriacaoForm.setLayout(jpanelCriacaoFormLayout);
@@ -234,12 +229,12 @@ public class CriacaoForm extends javax.swing.JFrame {
                 .addComponent(jlblRodape)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
