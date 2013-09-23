@@ -150,6 +150,8 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        
+        jbtnEntrar.addActionListener(new PrincipalHandler());
     }// </editor-fold>//GEN-END:initComponents
     
     /**
