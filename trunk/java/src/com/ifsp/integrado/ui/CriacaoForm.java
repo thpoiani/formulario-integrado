@@ -273,6 +273,13 @@ public class CriacaoForm extends javax.swing.JFrame {
         );
 
         pack();
+        
+        // ouvintes
+        jbtnNovaCategoria.addActionListener(new CriacaoForm.CriarCategoriaHandler());
+        jbtnCancelar.addActionListener(new CriacaoForm.FecharHandler());
+        jbtnSalvar.addActionListener(new CriacaoForm.SalvarHandler());
+        jbtnLimpar.addActionListener(new CriacaoForm.LimparHandler());
+        jbtnEditarCategoria.addActionListener(new CriacaoForm.EditarCategoriaHandler());
     }// </editor-fold>//GEN-END:initComponents
     
     
