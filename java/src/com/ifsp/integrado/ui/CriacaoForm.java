@@ -31,24 +31,23 @@ public class CriacaoForm extends javax.swing.JFrame {
     /**
      * Atributos
      */
-    private javax.swing.JButton jbtnCriarCategoria;
-    private javax.swing.JButton jbtnCancelar;
-    private javax.swing.JButton jbtnSalvar;
-    private javax.swing.JButton jbtnLimpar;
-    private javax.swing.JLabel jlblPrinc;
-    private javax.swing.JLabel jlblTitulo;
-    private javax.swing.JLabel jlblCabecalho;
-    private javax.swing.JLabel jlblCategoria;
-    private javax.swing.JLabel jlblRodape;
-    private javax.swing.JList jList1;
-    private javax.swing.JPanel jpanelCriarForm;
-    private javax.swing.JScrollPane jscrollCabecalho;
-    private javax.swing.JScrollPane jscrollRodape;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jtxaCabecalho;
-    private javax.swing.JTextArea jtxaRodape;
-    private javax.swing.JTextField jtxtTitulo;
-    
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<Object> jList2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextField1;
 
     /**
      * Construtor da classe CriacaoFormulario
@@ -68,6 +67,9 @@ public class CriacaoForm extends javax.swing.JFrame {
         
         // setar se a janela pode ser redimensionada
         this.setResizable(false);
+        
+        // inserção do ícone do projeto
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
 
     /**
@@ -85,163 +87,152 @@ public class CriacaoForm extends javax.swing.JFrame {
     /**
      * Método responsável por gerenciar os componentes do JFrame
      */
-    private void initComponents() {
-    	// instânciação dos atributos da classe
+    @SuppressWarnings("serial")
+	private void initComponents() {
 
-        jpanelCriarForm = new javax.swing.JPanel();
-        jlblPrinc = new javax.swing.JLabel();
-        jlblTitulo = new javax.swing.JLabel();
-        jtxtTitulo = new javax.swing.JTextField();
-        jlblCabecalho = new javax.swing.JLabel();
-        jscrollCabecalho = new javax.swing.JScrollPane();
-        jtxaCabecalho = new javax.swing.JTextArea();
-        jlblCategoria = new javax.swing.JLabel();
-        jlblRodape = new javax.swing.JLabel();
-        jscrollRodape = new javax.swing.JScrollPane();
-        jtxaRodape = new javax.swing.JTextArea();
-        jbtnCriarCategoria = new javax.swing.JButton();
-        jbtnCancelar = new javax.swing.JButton();
-        jbtnSalvar = new javax.swing.JButton();
-        jbtnLimpar = new javax.swing.JButton();
-        jList1 = new javax.swing.JList();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<Object>();
+        jButton6 = new javax.swing.JButton();
 
-         // inserção do ícone do projeto
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
-        
-        // definição de atributos do JLabel
-        jlblPrinc.setFont(new java.awt.Font("Calibri", 0, 18));
-        jlblPrinc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblPrinc.setText("Criação de Formulário");
-        
-        // definição de atributos do JLabel
-        jlblTitulo.setFont(new java.awt.Font("Calibri", 0, 14));
-        jlblTitulo.setText("Título");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        // definição de atributos do JLabel
-        jlblCabecalho.setFont(new java.awt.Font("Calibri", 0, 14));
-        jlblCabecalho.setText("Cabeçalho");
-        
-        // definição de atributos do JLabel
-        jlblCategoria.setFont(new java.awt.Font("Calibri", 0, 14));
-        jlblCategoria.setText("Categoria");
-        
-        // definição de atributos do JLabel
-        jlblRodape.setFont(new java.awt.Font("Calibri", 0, 14));
-        jlblRodape.setText("Rodapé");
-        
-        // definição de atributos do JTextField
-        jtxtTitulo.setFont(new java.awt.Font("Calibri", 2, 12));
-        jtxtTitulo.setText("Título do Formulário");
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Criação de Formulário");
 
-        // definição de atributos do JTextArea
-        jtxaCabecalho.setColumns(20);
-        jtxaCabecalho.setFont(new java.awt.Font("Calibri", 2, 12));
-        jtxaCabecalho.setRows(5);
-        jtxaCabecalho.setText("Aqui teremos outro tipo de ferramenta para que o usuário possa criar seu cabeçalho personalizado");
-        jscrollCabecalho.setViewportView(jtxaCabecalho);
-		
-		jList1.setModel(new javax.swing.AbstractListModel() {
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14));
+        jLabel2.setText("Título");
+
+        jTextField1.setFont(new java.awt.Font("Calibri", 2, 12));
+        jTextField1.setText("Título do Formulário");
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14));
+        jLabel3.setText("Cabeçalho");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Calibri", 2, 12));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Aqui teremos outro tipo de ferramenta para que o usuário possa criar seu cabeçalho personalizado");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 0, 14));
+        jLabel5.setText("Rodapé");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Calibri", 2, 12));
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Aqui teremos outro tipo de ferramenta para que o usuário possa criar seu rodapé personalizado");
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jButton2.setFont(new java.awt.Font("Calibri", 0, 14));
+        jButton2.setText("Criar Nova Categoria");
+
+        jButton3.setFont(new java.awt.Font("Calibri", 0, 14));
+        jButton3.setText("Cancelar Formulário");
+
+        jButton4.setFont(new java.awt.Font("Calibri", 0, 14));
+        jButton4.setText("Salvar Formulário");
+
+        jButton5.setFont(new java.awt.Font("Calibri", 0, 14));
+        jButton5.setText("Limpar Formulário");
+        
+        jButton6.setFont(new java.awt.Font("Calibri", 0, 14));
+        jButton6.setText("Editar Categorias");
+
+        jList2.setModel(new javax.swing.AbstractListModel<Object>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane4.setViewportView(jList2);
 
-        jbtnCriarCategoria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jbtnCriarCategoria.setText("Criar Nova Categoria");
-
-        jbtnCancelar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jbtnCancelar.setText("Cancelar Formulário");
-
-        jbtnSalvar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jbtnSalvar.setText("Salvar Formulário");
-
-        jbtnLimpar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jbtnLimpar.setText("Limpar Formulário");
-
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList1);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jpanelCriarForm);
-        jpanelCriarForm.setLayout(jPanel1Layout);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addComponent(jbtnCancelar)
+                .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnLimpar)
+                .addComponent(jButton5)
                 .addGap(60, 60, 60)
-                .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlblPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(276, 276, 276))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jscrollCabecalho)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtxtTitulo))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlblCabecalho, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbtnCriarCategoria)
-                                .addGap(61, 61, 61))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton2)
+                                            .addComponent(jButton6))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlblPrinc)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblTitulo)
-                    .addComponent(jtxtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addComponent(jlblCabecalho)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblCategoria)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtnCriarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)))
-                .addComponent(jlblRodape)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
 
@@ -251,26 +242,27 @@ public class CriacaoForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpanelCriarForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpanelCriarForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        // cálculo de tamanho da janela
         pack();
-
+        
         // ouvintes
-        jbtnCriarCategoria.addActionListener(new CriacaoForm.CriarCategoriaHandler());
-        jbtnCancelar.addActionListener(new CriacaoForm.FecharHandler());
-        jbtnSalvar.addActionListener(new CriacaoForm.SalvarHandler());
-        jbtnLimpar.addActionListener(new CriacaoForm.LimparHandler());
+        jButton2.addActionListener(new CriacaoForm.CriarCategoriaHandler());
+        jButton3.addActionListener(new CriacaoForm.FecharHandler());
+        jButton4.addActionListener(new CriacaoForm.SalvarHandler());
+        jButton5.addActionListener(new CriacaoForm.LimparHandler());
+        jButton6.addActionListener(new CriacaoForm.EditarCategoriaHandler());
     }
+    
     
     /**
      * Classe privada responsável por implementar as ações do evento de clique
@@ -356,5 +348,27 @@ public class CriacaoForm extends javax.swing.JFrame {
     		// TODO
     	}
     }
+    
+    /**
+     * Classe privada responsável por implementar as ações do evento de clique
+     * do botão JButton6
+     * 
+     * @author Gislaine Ferreira Gonçalves
+     * @author Thiago Henrique Poiani
+     */
+    private class EditarCategoriaHandler implements ActionListener{
 
+    	/**
+    	 * Método responsável pela funcionalidade do clique do botão
+    	 */
+    	public void actionPerformed(ActionEvent arg0) {
+    		// TODO
+    		
+    		// instânciação da classe Categoria que estende JFrame
+    		new EdicaoCategoria(CriacaoForm.this).setVisible(true);
+    		
+    		// setar tela invisível
+    		CriacaoForm.this.setVisible(false);
+    	}
+    }
 }
