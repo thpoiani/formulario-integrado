@@ -34,10 +34,12 @@ public class CriacaoForm extends javax.swing.JFrame {
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnCancelar;
+    private javax.swing.JButton jbtnDescer;
     private javax.swing.JButton jbtnEditarCategoria;
     private javax.swing.JButton jbtnLimpar;
     private javax.swing.JButton jbtnNovaCategoria;
     private javax.swing.JButton jbtnSalvar;
+    private javax.swing.JButton jbtnSubir;
     private javax.swing.JLabel jlblCabecalho;
     private javax.swing.JLabel jlblCriacao;
     private javax.swing.JLabel jlblRodape;
@@ -113,6 +115,8 @@ public class CriacaoForm extends javax.swing.JFrame {
         jscrollLista = new javax.swing.JScrollPane();
         jlistLista = new javax.swing.JList();
         jbtnEditarCategoria = new javax.swing.JButton();
+        jbtnSubir = new javax.swing.JButton();
+        jbtnDescer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,6 +170,12 @@ public class CriacaoForm extends javax.swing.JFrame {
         jbtnEditarCategoria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnEditarCategoria.setText("Editar Categorias");
 
+        jbtnSubir.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jbtnSubir.setText("Subir");
+
+        jbtnDescer.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jbtnDescer.setText("Descer");
+
         javax.swing.GroupLayout jpanelCriacaoFormLayout = new javax.swing.GroupLayout(jpanelCriacaoForm);
         jpanelCriacaoForm.setLayout(jpanelCriacaoFormLayout);
         jpanelCriacaoFormLayout.setHorizontalGroup(
@@ -197,11 +207,15 @@ public class CriacaoForm extends javax.swing.JFrame {
                             .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
                                 .addComponent(jscrollLista, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jbtnNovaCategoria)
-                                    .addComponent(jbtnEditarCategoria)))
+                                .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
+                                        .addComponent(jbtnSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jbtnDescer))
+                                    .addComponent(jbtnEditarCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbtnNovaCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jlblRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 56, Short.MAX_VALUE)))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addGap(33, 33, 33))
         );
         jpanelCriacaoFormLayout.setVerticalGroup(
@@ -222,10 +236,14 @@ public class CriacaoForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jscrollLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
-                        .addComponent(jbtnEditarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtnSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnDescer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtnEditarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(jbtnNovaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 52, Short.MAX_VALUE)
                 .addComponent(jlblRodape)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
