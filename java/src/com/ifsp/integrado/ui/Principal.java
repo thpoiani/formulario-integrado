@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
  */
 public class Principal extends javax.swing.JFrame {
 
-	/**
+    /**
 	 * Identificação de versão de serialização da classe
 	 */
 	private static final long serialVersionUID = 7997028687274933146L;
@@ -27,10 +27,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jbtnAbrirForm;
     private javax.swing.JButton jbtnAbrirCategoria;
     private javax.swing.JButton jbtnCriarForm;
+    private javax.swing.JButton jbtnEditarCategoria;
     private javax.swing.JLabel jlblImagem;
     private javax.swing.JPanel jpanelPrincipal;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
 
     /**
      * Construtor da classe Principal
@@ -57,7 +57,7 @@ public class Principal extends javax.swing.JFrame {
         // inserção do ícone do projeto
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/ifsp/integrado/assets/icon.png")));
     }
-    
+
     /**
      * Método responsável por gerenciar os componentes do JFrame
      */
@@ -66,9 +66,9 @@ public class Principal extends javax.swing.JFrame {
         jpanelPrincipal = new javax.swing.JPanel();
         jbtnAbrirForm = new javax.swing.JButton();
         jbtnAbrirCategoria = new javax.swing.JButton();
+        jbtnEditarCategoria = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();       
         jbtnCriarForm = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
         jlblImagem = new javax.swing.JLabel();
         
         // definição de atributos do JLabel
@@ -90,11 +90,12 @@ public class Principal extends javax.swing.JFrame {
         jbtnCriarForm.setFont(new java.awt.Font("Calibri", 0, 14));
         jbtnCriarForm.setText("Criar Formulário");
         
+        // definição de atributos do JButton
+        jbtnEditarCategoria.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnEditarCategoria.setText("Editar Categoria");
+        
         // definição de atributos do Separator
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
-
-        // definição de atributos do JSeparator
-        jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
 
         // definição do GroupLayout
         javax.swing.GroupLayout jpanelPrincipalLayout = new javax.swing.GroupLayout(jpanelPrincipal);
@@ -102,7 +103,9 @@ public class Principal extends javax.swing.JFrame {
         jpanelPrincipalLayout.setHorizontalGroup(
             jpanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jpanelPrincipalLayout.createSequentialGroup()
+                .addGap(179, 179, 179)                
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelPrincipalLayout.createSequentialGroup()
                 .addGap(0, 28, Short.MAX_VALUE)
                 .addGroup(jpanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -110,23 +113,28 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jbtnCriarForm, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnAbrirForm, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtnEditarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         jpanelPrincipalLayout.setVerticalGroup(
             jpanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelPrincipalLayout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(jbtnCriarForm, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)                
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)               
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnAbrirForm, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jbtnAbrirCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jbtnEditarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,18 +147,41 @@ public class Principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jlblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jlblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
         );
 
         // cálculo de tamanho da janela
         pack();
         
         // ouvintes
-        jbtnAbrirForm.addActionListener(new AbriFormHandler());
-        jbtnAbrirCategoria.addActionListener(new CriarCategoriaHandler());
-        jbtnCriarForm.addActionListener(new CriacaoFormularioHandler());
+        jbtnAbrirForm.addActionListener(new Principal.AbriFormHandler());
+        jbtnAbrirCategoria.addActionListener(new Principal.CriarCategoriaHandler());
+        jbtnCriarForm.addActionListener(new Principal.CriacaoFormularioHandler());
+        jbtnEditarCategoria.addActionListener(new Principal.EdicaoCategoriaHandler());
+        
+    }                     
+
+    /**
+     * Classe privada responsável por implementar as ações do evento de clique
+     * do botão JButton6
+     * 
+     * @author Gislaine Ferreira Gonçalves
+     * @author Thiago Henrique Poiani
+     */
+    private class EdicaoCategoriaHandler implements ActionListener{
+        
+        /**
+    	 * Método responsável pela funcionalidade do clique do botão
+    	 */
+    	public void actionPerformed(ActionEvent arg0) {
+    		// instânciação da classe Categoria que estende JFrame
+    		new EdicaoCategoria(Principal.this).setVisible(true);
+    		
+    		// setar tela invisível
+    		Principal.this.setVisible(false);
+    	}
     }
-    
+
     /**
      * Classe privada responsável por implementar as ações do evento de clique
      * do botão JButton2
@@ -224,4 +255,7 @@ public class Principal extends javax.swing.JFrame {
     		Principal.this.setVisible(false);
     	}
     }
+
+
 }
+
