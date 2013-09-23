@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jlblLogin;
     private javax.swing.JLabel jlblSenha;
     private javax.swing.JPanel jpanelLogin;
-    private javax.swing.JPasswordField jpswSenha;
+    private javax.swing.JPasswordField jpsswSenha;
     private javax.swing.JTextField jtxtLogin;
     // End of variables declaration//GEN-END:variables
     
@@ -66,37 +66,34 @@ public class Login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	// instânciação dos atributos da classe
-        this.jpanelLogin = new javax.swing.JPanel();
-        this.jlblLogin = new javax.swing.JLabel();
-        this.jlblSenha = new javax.swing.JLabel();
-        this.jpswSenha = new javax.swing.JPasswordField();
-        this.jtxtLogin = new javax.swing.JTextField();
-        this.jbtnEntrar = new javax.swing.JButton();
-        
-        // definição de atributos do JPanel
+
+        jpanelLogin = new javax.swing.JPanel();
+        jlblLogin = new javax.swing.JLabel();
+        jlblSenha = new javax.swing.JLabel();
+        jpsswSenha = new javax.swing.JPasswordField();
+        jtxtLogin = new javax.swing.JTextField();
+        jbtnEntrar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fazer Login");
+        setResizable(false);
+
         jpanelLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        // definição de atributos do JLabel
-        jlblLogin.setFont(new java.awt.Font("Calibri", 0, 14));
+        jlblLogin.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jlblLogin.setText("Login: ");
-        
-        // definição de atributos do JLabel
-        jlblSenha.setFont(new java.awt.Font("Calibri", 0, 14));
+
+        jlblSenha.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jlblSenha.setText("Senha: ");
-        
-        // definição de atributos do JPasswordField
-        jpswSenha.setFont(new java.awt.Font("Calibri", 0, 12));
-        jpswSenha.setText("jpswSenha");
 
-        // definição de atributos do JTextField
-        jtxtLogin.setFont(new java.awt.Font("Calibri", 0, 12));
+        jpsswSenha.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jpsswSenha.setText("jPasswordField1");
 
-        // definição de atributos do JButton
-        jbtnEntrar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jtxtLogin.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+
+        jbtnEntrar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnEntrar.setText("Entrar");
 
-        // definição do GroupLayout
         javax.swing.GroupLayout jpanelLoginLayout = new javax.swing.GroupLayout(jpanelLogin);
         jpanelLogin.setLayout(jpanelLoginLayout);
         jpanelLoginLayout.setHorizontalGroup(
@@ -112,8 +109,8 @@ public class Login extends javax.swing.JFrame {
                         .addGap(8, 8, 8)))
                 .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jtxtLogin)
-                    .addComponent(jpswSenha))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jpsswSenha))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,7 +126,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblSenha)
-                    .addComponent(jpswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpsswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jbtnEntrar)
                 .addGap(21, 21, 21))
@@ -152,11 +149,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        // cálculo de tamanho da janela 
         pack();
-
-        // ouvinte
-        jbtnEntrar.addActionListener(new PrincipalHandler());
     }// </editor-fold>//GEN-END:initComponents
     
     /**
