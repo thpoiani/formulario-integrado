@@ -33,20 +33,20 @@ public class CriacaoForm extends javax.swing.JFrame {
      * Atributos
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbtnNovaCategoria;
     private javax.swing.JButton jbtnCancelar;
-    private javax.swing.JButton jbtnSalvar;
-    private javax.swing.JButton jbtnLimpar;
     private javax.swing.JButton jbtnEditarCategoria;
-    private javax.swing.JLabel jlblCriacao;
-    private javax.swing.JLabel jlblTitulo;
+    private javax.swing.JButton jbtnLimpar;
+    private javax.swing.JButton jbtnNovaCategoria;
+    private javax.swing.JButton jbtnSalvar;
     private javax.swing.JLabel jlblCabecalho;
+    private javax.swing.JLabel jlblCriacao;
     private javax.swing.JLabel jlblRodape;
-    private javax.swing.JList<Object> jlistLista;
+    private javax.swing.JLabel jlblTitulo;
+    private javax.swing.JList jlistLista;
     private javax.swing.JPanel jpanelCriacaoForm;
     private javax.swing.JScrollPane jscrollCabecalho;
-    private javax.swing.JScrollPane jscrollRodape;
     private javax.swing.JScrollPane jscrollLista;
+    private javax.swing.JScrollPane jscrollRodape;
     private javax.swing.JTextArea jtxaCabecalho;
     private javax.swing.JTextArea jtxaRodape;
     private javax.swing.JTextField jtxtTitulo;
@@ -94,7 +94,7 @@ public class CriacaoForm extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    private void initComponents() {
 
         jpanelCriacaoForm = new javax.swing.JPanel();
         jlblCriacao = new javax.swing.JLabel();
@@ -111,60 +111,65 @@ public class CriacaoForm extends javax.swing.JFrame {
         jbtnSalvar = new javax.swing.JButton();
         jbtnLimpar = new javax.swing.JButton();
         jscrollLista = new javax.swing.JScrollPane();
-        jlistLista = new javax.swing.JList<Object>();
+        jlistLista = new javax.swing.JList();
         jbtnEditarCategoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jlblCriacao.setFont(new java.awt.Font("Calibri", 0, 18));
+        jlblCriacao.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jlblCriacao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblCriacao.setText("Criação de Formulário");
 
-        jlblTitulo.setFont(new java.awt.Font("Calibri", 0, 14));
+        jlblTitulo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jlblTitulo.setText("Título");
 
-        jtxtTitulo.setFont(new java.awt.Font("Calibri", 2, 12));
+        jtxtTitulo.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
         jtxtTitulo.setText("Título do Formulário");
 
-        jlblCabecalho.setFont(new java.awt.Font("Calibri", 0, 14));
+        jlblCabecalho.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jlblCabecalho.setText("Cabeçalho");
 
         jtxaCabecalho.setColumns(20);
-        jtxaCabecalho.setFont(new java.awt.Font("Calibri", 2, 12));
+        jtxaCabecalho.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
         jtxaCabecalho.setRows(5);
         jtxaCabecalho.setText("Aqui teremos outro tipo de ferramenta para que o usuário possa criar seu cabeçalho personalizado");
         jscrollCabecalho.setViewportView(jtxaCabecalho);
 
-        jlblRodape.setFont(new java.awt.Font("Calibri", 0, 14));
+        jlblRodape.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jlblRodape.setText("Rodapé");
 
         jtxaRodape.setColumns(20);
-        jtxaRodape.setFont(new java.awt.Font("Calibri", 2, 12));
+        jtxaRodape.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
         jtxaRodape.setRows(5);
         jtxaRodape.setText("Aqui teremos outro tipo de ferramenta para que o usuário possa criar seu rodapé personalizado");
         jscrollRodape.setViewportView(jtxaRodape);
 
-        jbtnNovaCategoria.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnNovaCategoria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnNovaCategoria.setText("Criar Nova Categoria");
 
-        jbtnCancelar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnCancelar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnCancelar.setText("Cancelar Formulário");
 
-        jbtnSalvar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnSalvar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnSalvar.setText("Salvar Formulário");
 
-        jbtnLimpar.setFont(new java.awt.Font("Calibri", 0, 14));
+        jbtnLimpar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jbtnLimpar.setText("Limpar Formulário");
-        
-        jbtnEditarCategoria.setFont(new java.awt.Font("Calibri", 0, 14));
-        jbtnEditarCategoria.setText("Editar Categorias");
 
-        jlistLista.setModel(new javax.swing.AbstractListModel<Object>() {
+        jlistLista.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         jscrollLista.setViewportView(jlistLista);
+
+        jbtnEditarCategoria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jbtnEditarCategoria.setText("Editar Categorias");
+        jbtnEditarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEditarCategoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpanelCriacaoFormLayout = new javax.swing.GroupLayout(jpanelCriacaoForm);
         jpanelCriacaoForm.setLayout(jpanelCriacaoFormLayout);
@@ -182,31 +187,26 @@ public class CriacaoForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlblCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(276, 276, 276))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelCriacaoFormLayout.createSequentialGroup()
-                .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscrollRodape)
+                    .addComponent(jscrollCabecalho)
                     .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtxtTitulo))
+                    .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
                         .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpanelCriacaoFormLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jscrollCabecalho)
+                            .addComponent(jlblCabecalho, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
-                                .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtxtTitulo))
-                            .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
+                                .addComponent(jscrollLista, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlblCabecalho, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jpanelCriacaoFormLayout.createSequentialGroup()
-                                        .addComponent(jscrollLista, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jbtnNovaCategoria)
-                                            .addComponent(jbtnEditarCategoria))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(jbtnNovaCategoria)
+                                    .addComponent(jbtnEditarCategoria)))
+                            .addComponent(jlblRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 56, Short.MAX_VALUE)))
                 .addGap(33, 33, 33))
         );
         jpanelCriacaoFormLayout.setVerticalGroup(
@@ -232,9 +232,9 @@ public class CriacaoForm extends javax.swing.JFrame {
                         .addComponent(jbtnNovaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jlblRodape)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jscrollRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(30, 30, 30)
                 .addGroup(jpanelCriacaoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,13 +260,6 @@ public class CriacaoForm extends javax.swing.JFrame {
         );
 
         pack();
-        
-        // ouvintes
-        jbtnNovaCategoria.addActionListener(new CriacaoForm.CriarCategoriaHandler());
-        jbtnCancelar.addActionListener(new CriacaoForm.FecharHandler());
-        jbtnSalvar.addActionListener(new CriacaoForm.SalvarHandler());
-        jbtnLimpar.addActionListener(new CriacaoForm.LimparHandler());
-        jbtnEditarCategoria.addActionListener(new CriacaoForm.EditarCategoriaHandler());
     }// </editor-fold>//GEN-END:initComponents
     
     
