@@ -85,7 +85,6 @@ function getParams() {
 		// converte para lowercase
 		$parametros[1] = strtolower($parametros[1]);
 	}
-
 	return $parametros;
 }
 
