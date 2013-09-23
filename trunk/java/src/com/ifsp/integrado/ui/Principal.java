@@ -188,8 +188,8 @@ public class Principal extends javax.swing.JFrame {
     	 * Método responsável pela funcionalidade do clique do botão
     	 */
     	public void actionPerformed(ActionEvent arg0) {
-    		// instânciação da classe CriarCategoria que estende JFrame
-    		new CriarCategoria(Principal.this).setVisible(true);
+    		// instânciação da classe Categoria que estende JFrame
+    		new Categoria(Principal.this).setVisible(true);
     		
     		// setar tela invisível
     		Principal.this.setVisible(false);
@@ -209,8 +209,8 @@ public class Principal extends javax.swing.JFrame {
     	 * Método responsável pela funcionalidade do clique do botão
     	 */
     	public void actionPerformed(ActionEvent arg0) {
-    		// instânciação da classe CriacaoFormulario que estende JFrame
-    		new CriacaoFormulario(Principal.this).setVisible(true);
+    		// instânciação da classe CriacaoForm que estende JFrame
+    		new CriacaoForm(Principal.this).setVisible(true);
     		
     		// setar tela invisivel
     		Principal.this.setVisible(false);
