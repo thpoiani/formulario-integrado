@@ -1,9 +1,10 @@
 <?php
 
 /**
- * Definição de caminho para pasta public e application
+ * Definição de caminho para pasta application e layout
  */
 define('APPLICATION', realpath(dirname(__FILE__) . '/../application'));
+define('LAYOUT', realpath(APPLICATION . '/layout'));
 
 /**
  * Recebimento dos parâmetros
