@@ -3,6 +3,8 @@ require_once('Controller.php');
 
 class FormulariosController extends Controller{
 
-	public function index() {}
+	public function index() {
+		$this->setLayout(LAYOUT . '/layout.php');
+	}
 }
 
