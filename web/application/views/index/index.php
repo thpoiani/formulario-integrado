@@ -13,28 +13,36 @@
 </header>
 
 <form id="Formulario" action="/index/salvar">
-<fieldset class="container vertical">
-	<article class="row">
-		<div class="col-xs-6 middle">
-			<legend>Validação</legend>
-				<label for="username">Usuario</label>
-				<input type="text" class="form-control" id="username" name="username" maxlength="8">
-				<label for="prontuario">Prontuario</label>
-				<input type="text" class="form-control" id="prontuario" name="prontuario" maxlength="6">
-				<label for="passwd">Senha</label>
-				<input type="text" class="form-control" id="passwd" name="passwd" maxlength="16">
-				
-		</div>
-	</article>
+<fieldset class="container vertical">  
+    <article class="row">        
+        <div class="col-xs-3 middle spacer">
+        <legend>Validação</legend>
+        </div>
+    </article>
+    
+    <article class="row">        
+        <div class="col-xs-3 middle spacer">
+            <label for="prontuario" title="Prontuario">Prontuario</label>
+            <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="Prontuario">
+        </div>
+    </article>
+    
+    <article class="row">
+        <div class="col-xs-3 middle spacer">
+            <label for="passwd" title="Senha">Senha</label>
+            <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Senha">
+        </div>
+    </article>
 </fieldset>
 </form>
-    
-<fieldset class="container vertical">  
-    <div class="col-xs-6 middle text-right">
-        <input type="submit" class="btn btn-default" value="Ok">
-        <input type="reset" class="btn btn-success"value="Limpar">
-    </div>
-</fieldset>
+
+<section class="container vertical">        
+    <div class="row">
+        <div class="col-xs-3 middle spacer text-right">            
+            <button class="btn btn-success">Login</button>
+        </div>
+    </div>		
+</section>
 
 <footer>
 	<div class="footer">
