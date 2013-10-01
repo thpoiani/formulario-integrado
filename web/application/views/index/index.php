@@ -23,14 +23,16 @@
 				<input type="text" class="form-control" id="prontuario" name="prontuario" maxlength="6">
 				<label for="passwd">Senha</label>
 				<input type="text" class="form-control" id="passwd" name="passwd" maxlength="16">
-				<div class="col-xs-6 middle text-center">
-					<input type="submit" class="btn btn-default" value="Ok">
-					<input type="reset" class="btn btn-success"value="Limpar">
-				</div>
+				
 		</div>
 	</article>
 </fieldset>
 </form>
+    
+<div class="col-xs-6 middle text-right">
+					<input type="submit" class="btn btn-default" value="Ok">
+					<input type="reset" class="btn btn-success"value="Limpar">
+				</div>
 
 <footer>
 	<div class="footer">
