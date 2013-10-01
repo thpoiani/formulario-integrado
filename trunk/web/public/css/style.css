@@ -1,5 +1,6 @@
 html, body {
 	height: 100%;
+	margin: 0;
 }
 
 body {
@@ -10,16 +11,21 @@ body {
 }
 
 header {
-	position: fixed;
-	top: 0;
 	width: 100%;
-	height: 35px;
-	background: #27ae60;
-	z-index: 1;
+	height: 40px;
+	background: #2ECC71;
+}
+
+a {
+	color: #074620;
+}
+
+a:hover {
+	color: #FFFFFF;
 }
 
 section {
-	padding-bottom: 0px;
+	padding-bottom: 45px;
 }
 
 footer {
@@ -27,7 +33,7 @@ footer {
 	bottom: 0;
 	text-align: center;
 	height: 45px;
-	background: #27ae60;
+	background: #2ECC71;
 	width: 100%;
 }
 
@@ -58,4 +64,19 @@ footer .footer {
 .centered {
 	float: none;
     margin: 0 auto
+}
+
+.align-right {
+	float: none;
+	text-align: right;
+}
+
+.align-center {
+	float: none;
+	text-align: center;
+}
+
+.align-left {
+	float: none;
+	text-align: left;
 }
