@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-	<title>Formularios Integrado - Instituto Federal de São Paulo campus São Carlos</title>
+	<title>Formulário Integrado - Instituto Federal de São Paulo campus São Carlos</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -21,8 +21,30 @@
 
 </head>
 <body>
+<div class="page">
+	<header class="navbar-fixed-top">
+		<div class="col-xs-3">
+			<p class="navbar-text align-left">Boa noite <a href="#" class="navbar-link" title="Usuário">Usuário</a></p>
+		</div>
 
+		<div class="col-xs-6">
+			<p class="navbar-text align-center">Formulário Integrado - Instituto Federal de São Paulo campus São Carlos</p>
+		</div>
+
+		<div class="col-xs-3">
+			<p class="navbar-text align-right"><a href="#" class="navbar-link" title="Sair">Sair</a>
+		</div>
+	</header>
 <?php $this->getContent(); ?>
+
+	<footer>
+		<div class="footer">
+			<p>Instituto Federal de São Paulo campus São Carlos</p>
+			<p>Rodovia Washington Luís, km 235 prédio AT-6 - Salas 136, 138 e 139 - Bairro Monjolinho</p>
+			<p>CEP 13.565-905 - São Carlos - SP</p>
+		</div>
+	</footer>
+</div>
 
 <script src="/js/jquery-1.8.3.min.js"></script>
 <script src="/js/flatui-checkbox.js"></script>
