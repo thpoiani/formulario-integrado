@@ -29,10 +29,12 @@
 </fieldset>
 </form>
     
-<div class="col-xs-6 middle text-right">
-					<input type="submit" class="btn btn-default" value="Ok">
-					<input type="reset" class="btn btn-success"value="Limpar">
-				</div>
+<fieldset class="container vertical">  
+    <div class="col-xs-6 middle text-right">
+        <input type="submit" class="btn btn-default" value="Ok">
+        <input type="reset" class="btn btn-success"value="Limpar">
+    </div>
+</fieldset>
 
 <footer>
 	<div class="footer">
