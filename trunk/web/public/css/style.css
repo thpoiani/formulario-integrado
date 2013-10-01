@@ -5,7 +5,7 @@ html, body {
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   background: url("../images/gplaypattern.png");
-  padding-top: 35px;
+  padding-top: 145px;
   padding-bottom: 45px;
 }
 
@@ -48,11 +48,11 @@ footer .footer {
 }
 
 .vertical {
-	margin: 15px auto;
+	margin: 45px auto;
 }
 
 .middle {
-	left: 38%;
+	left: 29%;
 }
 
 .centered {
