@@ -10,7 +10,7 @@ $(document).ready(function() {
  * @return void
  */
 function validate() {
-    $('input').change(function(){
+    $('input').blur(function(){
         if ($(this).val()) {
             $(this).parent().parent().removeClass('has-error').addClass('has-success');
         } else {

@@ -55,10 +55,7 @@ footer .footer {
 	left: 38%;
 }
 
-.spacer {
-	margin-bottom: 10px;
-}
-
-.not-empty {
-	border-color: #157C68;
+.centered {
+	float: none;
+    margin: 0 auto
 }
