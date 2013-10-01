@@ -15,20 +15,20 @@
 <form id="Formulario" action="/index/salvar">
 <fieldset class="container vertical">  
     <article class="row">        
-        <div class="col-xs-3 middle spacer">
+        <div class="col-md-5 middle spacer">
         <legend>Validação</legend>
         </div>
     </article>
     
     <article class="row">        
-        <div class="col-xs-3 middle spacer">
+        <div class="col-md-5 middle spacer">
             <label for="prontuario" title="Prontuario">Prontuario</label>
             <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="Prontuario">
         </div>
     </article>
     
     <article class="row">
-        <div class="col-xs-3 middle spacer">
+        <div class="col-md-5 middle spacer">
             <label for="passwd" title="Senha">Senha</label>
             <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Senha">
         </div>
@@ -38,7 +38,7 @@
 
 <section class="container vertical">        
     <div class="row">
-        <div class="col-xs-3 middle spacer text-right">            
+        <div class="col-md-5 middle spacer text-right">            
             <button class="btn btn-success">Login</button>
         </div>
     </div>		
