@@ -12,33 +12,35 @@
 	</div>
 </header>
 
-<form id="Formulario" action="/index/salvar">
-<fieldset class="container vertical">  
-    <article class="row">        
-        <div class="col-md-5 middle spacer">
-        <legend>Validação</legend>
-        </div>
-    </article>
-    
-    <article class="row">        
-        <div class="col-md-5 middle spacer">
-            <label for="prontuario" title="Prontuario">Prontuario</label>
-            <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="Prontuario">
-        </div>
-    </article>
-    
-    <article class="row">
-        <div class="col-md-5 middle spacer">
-            <label for="passwd" title="Senha">Senha</label>
-            <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Senha">
-        </div>
-    </article>
-</fieldset>
-</form>
+<section class="container vertical">
+    <form method="POST" id="Formulario" action="/index/salvar">
+        <fieldset>    
+            <article class="row mbm">        
+                <div class="col-md-5 centered">
+                <h6>Validação</h6>
+                </div>
+            </article>
+            
+            <article class="row mbm">        
+                <div class="col-md-5 centered">
+                    <label for="prontuario" title="Prontuario">Prontuario</label>
+                    <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="Prontuario">
+                </div>
+            </article>
+            
+            <article class="row mbm">
+                <div class="col-md-5 centered">
+                    <label for="passwd" title="Senha">Senha</label>
+                    <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Senha">
+                </div>
+            </article>
+        </fieldset>
+    </form>
+</section>   
 
 <section class="container vertical">        
-    <div class="row">
-        <div class="col-md-5 middle spacer text-right">            
+    <div class="row mbm">
+        <div class="col-md-5 centered text-right">            
             <button class="btn btn-success">Login</button>
         </div>
     </div>		
