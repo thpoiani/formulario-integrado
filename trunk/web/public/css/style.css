@@ -24,6 +24,10 @@ a:hover {
 	color: #FFFFFF;
 }
 
+ul {
+    float:left;
+}
+
 section {
 	padding-bottom: 45px;
 }
