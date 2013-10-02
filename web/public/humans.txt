@@ -1,0 +1,11 @@
+# TEAM
+    Gislaine Ferreira Gonçalves - gi.fgoncalves@gmail.com
+    Thiago Henrique Poiani - thpoiani@gmail.com
+    Thiago Silva Barros - thiagosbarros02@gmail.com
+
+# THANKS
+    Paulo Henrique Lopes Rettore - paulohenriqueh@yahoo.com.br
+
+# TECHNOLOGY
+    HTML5, CSS3
+    Bootstrap, Flat UI, jQuery

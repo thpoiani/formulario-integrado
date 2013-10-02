@@ -1,56 +1,60 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<title>Formulário Integrado - Instituto Federal de São Paulo campus São Carlos</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Formulário Integrado - Instituto Federal de São Paulo campus São Carlos</title>
+<meta name="keywords" content="IFSP, campus São Carlos, Instituto Federal">
+<meta name="description" content="IFSP campus São Carlos Instituto Federal de Educação Ciência e Tenologia de São Paulo SCL ifsp">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="css/bootstrap.css" rel="stylesheet">
-	<link href="css/flat-ui.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/flat-ui.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 
-	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+<link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="/humans.txt" rel="author" type="text/plain">
 
-	<!--[if IE]>
-		<script type="text/javascript">
-			var htmlshim='abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,mark,meter,nav,output,progress,section,summary,time,video'.split(',');
-			var htmlshimtotal=htmlshim.length;
-			for(var i=0;i<htmlshimtotal;i++) document.createElement(htmlshim[i]);
-		</script>
-	<![endif]-->
+<!--[if IE]>
+    <script type="text/javascript">
+        var htmlshim='abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,mark,meter,nav,output,progress,section,summary,time,video'.split(',');
+        var htmlshimtotal=htmlshim.length;
+        for(var i=0;i<htmlshimtotal;i++) document.createElement(htmlshim[i]);
+    </script>
+<![endif]-->
 
 </head>
 <body>
 <div class="page">
-	<header class="navbar-fixed-top">
-		<div class="col-xs-3">
-			<?php if (isset($this->login) && $this->login) { ?>
+    <header class="navbar-fixed-top">
+        <div class="col-xs-3">
+            <?php if (isset($this->login) && $this->login) { ?>
 
-			<p class="navbar-text align-left">Boa noite <a href="#" class="navbar-link" title="Usuário">Usuário</a></p>
-			<?php } ?>
-		</div>
+            <p class="navbar-text align-left">Boa noite <a href="#" class="navbar-link" title="Usuário">Usuário</a></p>
+            <?php } ?>
+        </div>
 
-		<div class="col-xs-6">
-			<p class="navbar-text align-center">Formulário Integrado - Instituto Federal de São Paulo campus São Carlos</p>
-		</div>
+        <div class="col-xs-6">
+            <p class="navbar-text align-center">Formulário Integrado - Instituto Federal de São Paulo campus São Carlos</p>
+        </div>
 
-		<div class="col-xs-3">
-			<?php if (isset($this->login) && $this->login) { ?>
+        <div class="col-xs-3">
+            <?php if (isset($this->login) && $this->login) { ?>
 
-			<p class="navbar-text align-right"><a href="/" class="navbar-link" title="Sair">Sair</a>
-			<?php } ?>
-		</div>
-	</header>
+            <p class="navbar-text align-right"><a href="/" class="navbar-link" title="Sair">Sair</a>
+            <?php } ?>
+        </div>
+    </header>
 
-	<?php $this->getContent(); ?>
+    <?php $this->getContent(); ?>
 
-	<footer>
-		<div class="footer">
-			<p>Instituto Federal de São Paulo campus São Carlos</p>
-			<p>Rodovia Washington Luís, km 235 prédio AT-6 - Salas 136, 138 e 139 - Bairro Monjolinho</p>
-			<p>CEP 13.565-905 - São Carlos - SP</p>
-		</div>
-	</footer>
+    <footer>
+        <div class="footer">
+            <p>Instituto Federal de São Paulo campus São Carlos</p>
+            <p>Rodovia Washington Luís, km 235 prédio AT-6 - Salas 136, 138 e 139 - Bairro Monjolinho</p>
+            <p>CEP 13.565-905 - São Carlos - SP</p>
+        </div>
+    </footer>
 </div>
 
 
