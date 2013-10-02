@@ -24,7 +24,10 @@
 <div class="page">
 	<header class="navbar-fixed-top">
 		<div class="col-xs-3">
+			<?php if (isset($this->login) && $this->login) { ?>
+
 			<p class="navbar-text align-left">Boa noite <a href="#" class="navbar-link" title="Usuário">Usuário</a></p>
+			<?php } ?>
 		</div>
 
 		<div class="col-xs-6">
@@ -32,7 +35,10 @@
 		</div>
 
 		<div class="col-xs-3">
+			<?php if (isset($this->login) && $this->login) { ?>
+
 			<p class="navbar-text align-right"><a href="/" class="navbar-link" title="Sair">Sair</a>
+			<?php } ?>
 		</div>
 	</header>
 
@@ -47,9 +53,12 @@
 	</footer>
 </div>
 
-<script src="/js/jquery-1.8.3.min.js"></script>
-<script src="/js/flatui-checkbox.js"></script>
-<script src="/js/flatui-radio.js"></script>
-<script src="/js/default.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min"><\/script>')</script>
+
+<script src="js/flatui-checkbox.js"></script>
+<script src="js/flatui-radio.js"></script>
+<script src="js/default.js"></script>
 </body>
 </html>

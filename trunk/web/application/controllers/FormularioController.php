@@ -5,5 +5,6 @@ class FormularioController extends Controller {
 
 	public function index() {
 		$this->setLayout(LAYOUT . '/layout.php');
+		$this->login = true;
 	}
 }
