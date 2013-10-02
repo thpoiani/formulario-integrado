@@ -1,6 +1,6 @@
-	<section class="container vertical">
-		<form method="POST">
-			<fieldset>
+    <section class="container vertical">
+        <form method="POST">
+            <fieldset>
 				<article class="row mbm">
 					<div class="col-md-5 centered">
 						<label for="nome" title="Nome">Nome</label>
