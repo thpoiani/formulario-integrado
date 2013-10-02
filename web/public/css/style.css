@@ -24,8 +24,46 @@ a:hover {
 	color: #FFFFFF;
 }
 
-ul {
-    float:left;
+.tile {
+    margin: 0 auto;
+    width: 298px; 
+    height: 80px;
+    webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+}
+
+.turquoise {
+    background: #1abc9c;
+}
+
+.turquoise:hover {
+    background: #16a085;
+}
+
+.asbestos {
+    background: #7f8c8d;
+}
+
+.asbestos:hover {
+    background: #34495e;
+}
+
+.alizarin {
+    background: #e74c3c;
+}
+
+.alizarin:hover {
+    background: #c0392b;
+}
+
+.peterriver {
+    background: #3498db;
+}
+
+.peterriver:hover {
+    background: #2980b9;
 }
 
 section {
