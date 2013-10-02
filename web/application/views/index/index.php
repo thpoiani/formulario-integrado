@@ -19,7 +19,7 @@
             <article class="row mbm">
                 <div class="col-md-5 centered">
                     <label for="passwd" title="Senha">Senha</label>
-                    <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Senha">
+                    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Senha">
                 </div>
             </article>
         </fieldset>
