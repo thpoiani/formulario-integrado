@@ -32,10 +32,11 @@
 		</div>
 
 		<div class="col-xs-3">
-			<p class="navbar-text align-right"><a href="#" class="navbar-link" title="Sair">Sair</a>
+			<p class="navbar-text align-right"><a href="/" class="navbar-link" title="Sair">Sair</a>
 		</div>
 	</header>
-<?php $this->getContent(); ?>
+
+	<?php $this->getContent(); ?>
 
 	<footer>
 		<div class="footer">

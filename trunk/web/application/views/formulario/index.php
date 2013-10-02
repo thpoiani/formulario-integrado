@@ -75,19 +75,19 @@
 					<div class="col-md-5 centered">
 						<label>Estado civil</label>
 
-						<label class="radio">
+						<label class="radio cursor-pointer" title="Solteiro">
 							<input type="radio" name="estado_civil" value="1" data-toggle="radio" checked>Solteiro
 						</label>
 
-						<label class="radio">
+						<label class="radio cursor-pointer" title="Casado/mora com companheiro">
 							<input type="radio" name="estado_civil" value="2" data-toggle="radio">Casado/mora com companheiro
 						</label>
 
-						<label class="radio">
+						<label class="radio cursor-pointer" title="Separado/divorciado">
 							<input type="radio" name="estado_civil" value="3" data-toggle="radio">Separado/divorciado
 						</label>
 
-						<label class="radio">
+						<label class="radio cursor-pointer" title="Viúvo">
 							<input type="radio" name="estado_civil" value="4" data-toggle="radio">Viúvo
 						</label>
 					</div>

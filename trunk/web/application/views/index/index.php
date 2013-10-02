@@ -1,12 +1,14 @@
-<section class="container vertical">
-    <form method="POST" id="Formulario" action="/index/salvar">
-        <fieldset>
-            <article class="row mbm">
-                <div class="col-md-5 centered">
-                <h6>Validação</h6>
-                </div>
-            </article>
+<section class="container vertical no-padding">
+    <article class="row mbm">
+        <div class="align-center">
+            <h6>Autenticação</h6>
+        </div>
+    </article>
+</section>
 
+<section class="container vertical">
+    <form method="POST" id="Formulario" action="/formularios">
+        <fieldset>
             <article class="row mbm">
                 <div class="col-md-5 centered">
                     <label for="prontuario" title="Prontuário">Prontuário</label>
@@ -21,13 +23,11 @@
                 </div>
             </article>
         </fieldset>
-    </form>
-</section>
 
-<section class="container vertical">
-    <div class="row mbm">
-        <div class="col-md-5 centered text-right">
-            <button class="btn btn-success">Login</button>
-        </div>
-    </div>
+        <article class="row mbm">
+            <div class="col-md-5 centered text-right">
+                <input type="submit" class="btn btn-success" value="Login" title="Login">
+            </div>
+        </article>
+    </form>
 </section>

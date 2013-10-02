@@ -34,6 +34,11 @@ a:hover {
     transition: 0.25s;
 }
 
+.tile .font {
+	font-size: 24px;
+	line-height: 48px;
+}
+
 .turquoise {
     background: #1abc9c;
 }
@@ -121,4 +126,12 @@ footer .footer {
 .align-left {
 	float: none;
 	text-align: left;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.cursor-pointer {
+	cursor: pointer;
 }
