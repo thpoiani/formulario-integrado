@@ -1,7 +1,7 @@
 package com.ifsp.integrado.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Formulario {
 	private int id;
@@ -11,7 +11,7 @@ public class Formulario {
 	private char status;
 	private char aberto;
 	private Date data;
-	private List<Categoria> id_categoria;
+	private ArrayList<Categoria> id_categoria;
 	
 	public int getId() {
 		return id;
@@ -69,11 +69,12 @@ public class Formulario {
 		this.data = data;
 	}
 	
-	public List<Categoria> getCategoria() {
+	public void setIdCategoria(Categoria categoria) {
+		this.id_categoria.add(categoria);
+	}
+	
+	public ArrayList<Categoria> getIdCategoria() {
 		return id_categoria;
 	}
 	
-	public void setCategoria(List<Categoria> id_categoria) {
-		this.id_categoria = id_categoria;
-	}
 }

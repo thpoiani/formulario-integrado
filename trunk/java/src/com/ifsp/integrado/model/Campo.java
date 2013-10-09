@@ -1,7 +1,7 @@
 package com.ifsp.integrado.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Campo {
 	private int id;
@@ -11,7 +11,7 @@ public class Campo {
 	private char tipo;
 	private char status;
 	private Date data;
-	private List<Categoria> id_categoria;
+	private ArrayList<Categoria> id_categoria;
 
 	public int getId() {
 		return id;
@@ -68,12 +68,13 @@ public class Campo {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	
-	public List<Categoria> getIdCategoria() {
-		return id_categoria;
+
+	public void setIdCategoria(Categoria categoria) {
+		this.id_categoria.add(categoria);
 	}
 	
-	public void setIdCategoria(List<Categoria> id_categoria) {
-		this.id_categoria = id_categoria;
-	}	
+	public ArrayList<Categoria> getIdCategoria() {
+		return id_categoria;
+	}
+		
 }
