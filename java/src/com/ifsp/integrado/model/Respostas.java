@@ -1,15 +1,15 @@
 package com.ifsp.integrado.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Respostas {
 	private int id;
 	private String prontuario;
 	private String resposta;
 	private Date data;
-	private List<Campo> id_campo;
-	private List<Grupo> id_grupo;
+	private ArrayList<Campo> id_campo;
+	private ArrayList<Grupo> id_grupo;
 	
 	public int getId() {
 		return id;
@@ -43,19 +43,19 @@ public class Respostas {
 		this.data = data;
 	}
 	
-	public List<Campo> getIdCampo() {
+	public void setIdCampo(Campo id_campo) {
+		this.id_campo.add(id_campo);
+	}
+	
+	public ArrayList<Campo> getIdCampo() {
 		return id_campo;
 	}
 	
-	public void setIdCampo(List<Campo> id_campo) {
-		this.id_campo = id_campo;
+	public void setIdGrupo(Grupo grupo) {
+		this.id_grupo.add(grupo);
 	}
 	
-	public List<Grupo> getIdGrupo() {
+	public ArrayList<Grupo> getIdGrupo() {
 		return id_grupo;
-	}
-	
-	public void setIdGrupo(List<Grupo> id_grupo) {
-		this.id_grupo = id_grupo;
 	}
 }

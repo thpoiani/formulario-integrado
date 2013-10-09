@@ -1,14 +1,14 @@
 package com.ifsp.integrado.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Grupo {
 	private int id;
 	private String titulo;
 	private char tipo;
 	private Date data;
-	private List<Campo> id_campo;
+	private ArrayList<Campo> id_campo;
 
 	public int getId() {
 		return id;
@@ -42,11 +42,12 @@ public class Grupo {
 		this.data = data;
 	}
 	
-	public List<Campo> getIdCampo() {
+	public void setIdCampo(Campo campo) {
+		this.id_campo.add(campo);
+	}
+	
+	public ArrayList<Campo> getIdCampo() {
 		return id_campo;
 	}
 	
-	public void setIdCampo(List<Campo> id_campo) {
-		this.id_campo = id_campo;
-	}
 }
