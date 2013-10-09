@@ -23,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
 	
 	/**
 	 * Atributos
-	 */
+	 */    
     private javax.swing.JButton jbtnAbrirForm;
     private javax.swing.JButton jbtnAbrirCategoria;
     private javax.swing.JButton jbtnCriarForm;
@@ -159,7 +159,7 @@ public class Principal extends javax.swing.JFrame {
         jbtnCriarForm.addActionListener(new Principal.CriacaoFormularioHandler());
         jbtnEditarCategoria.addActionListener(new Principal.EdicaoCategoriaHandler());
         
-    }                     
+    }                      
 
     /**
      * Classe privada responsável por implementar as ações do evento de clique
