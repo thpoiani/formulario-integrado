@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" snapToPixel="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="formulario.integrado.controller.LoginController">
+  <children>
+    <Pane layoutX="-1.0" layoutY="0.0" prefHeight="150.0" prefWidth="251.0">
+      <children>
+        <Label layoutX="25.0" layoutY="15.0" text="Prontuário" />
+        <TextField fx:id="prontuario" layoutX="25.0" layoutY="31.0" prefWidth="200.0" />
+        <Label layoutX="25.0" layoutY="64.0" text="Senha" />
+        <PasswordField fx:id="senha" layoutX="25.0" layoutY="80.0" prefWidth="200.0" />
+        <Button id="loginButton" fx:id="login" cancelButton="false" defaultButton="true" layoutX="175.0" layoutY="118.0" mnemonicParsing="false" onAction="#loginAction" styleClass="btn, btn-success" text="Login" wrapText="false" />
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@../../../assets/styles.css" />
+  </stylesheets>
+</AnchorPane>
