@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formulario.integrado;
 
 import javafx.application.Application;
@@ -10,10 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author ThiagoHenrique
- */
 public class FormularioIntegrado extends Application {
     
     @Override
