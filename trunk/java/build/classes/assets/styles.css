@@ -6,8 +6,13 @@
         Purpose of the stylesheet follows.
 */
 
-Pane {
+Pane, .split-pane {
     -fx-background-image: url("gplaypattern.png");
+}
+
+.split-pane.left {
+    -fx-background-image: url("ifsp.png");
+    -fx-background-repeat: no-repeat;
 }
 
 .btn.btn-success:hover, .btn.btn-success:focused {
