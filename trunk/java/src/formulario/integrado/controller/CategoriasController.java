@@ -14,7 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 
-public class CategoriasController {
+public class CategoriasController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -57,6 +57,7 @@ public class CategoriasController {
     @FXML
     void editarAction(ActionEvent event) {
         // handle the event here
+        super.start("categoria.fxml", "Categoria");
     }
 
     // Handler for Button[fx:id="pesquisar"] onAction

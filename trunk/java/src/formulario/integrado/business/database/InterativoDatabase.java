@@ -36,7 +36,7 @@ class InterativoDatabase {
                             connection.close();
                             connection = null;
                     } catch (SQLException e) {
-                            // TODO RETIRAR EM AMBIENTE DE PRODUÇÃO
+                            // TODO - RETIRAR EM AMBIENTE DE PRODUÇÃO
                             e.printStackTrace();
                     }
             }

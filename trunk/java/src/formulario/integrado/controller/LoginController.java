@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 
-public class LoginController {
+public class LoginController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -34,13 +34,10 @@ public class LoginController {
     
     private java.sql.Connection connection;
 
-
     // Handler for Button[fx:id="login"] onAction
     @FXML
     void loginAction(ActionEvent event) {
-        connection = Database.getInstance("ifsp");
-        
-        Database.close("ifsp");
+        super.start("principal.fxml", "Principal");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

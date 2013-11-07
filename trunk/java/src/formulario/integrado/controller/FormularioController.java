@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 
-public class FormularioController {
+public class FormularioController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -65,6 +65,7 @@ public class FormularioController {
     // Handler for Button[fx:id="inserir"] onAction
     @FXML
     void inserirAction(ActionEvent event) {
+        super.start("categoria.fxml", "Categoria");
         // handle the event here
     }
 

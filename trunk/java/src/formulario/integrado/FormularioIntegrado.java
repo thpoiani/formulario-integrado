@@ -15,6 +15,9 @@ public class FormularioIntegrado extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("Formulário Integrado");
+
         stage.show();
     }
 
