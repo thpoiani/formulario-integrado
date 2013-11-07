@@ -10,14 +10,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 
 
-public class CampoController {
+public class CampoController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -31,8 +31,8 @@ public class CampoController {
     @FXML // fx:id="cancelar"
     private Button cancelar; // Value injected by FXMLLoader
 
-    @FXML // fx:id="id"
-    private TableColumn<?, ?> id; // Value injected by FXMLLoader
+    @FXML // fx:id="editar"
+    private Button editar; // Value injected by FXMLLoader
 
     @FXML // fx:id="maxlength"
     private TextField maxlength; // Value injected by FXMLLoader
@@ -58,28 +58,44 @@ public class CampoController {
     @FXML // fx:id="textoAbertoPane"
     private Pane textoAbertoPane; // Value injected by FXMLLoader
 
-    // WARNING: fx:id="tipo" cannot be injected: several objects share the same fx:id;
+    @FXML // fx:id="tipo"
+    private ComboBox<?> tipo; // Value injected by FXMLLoader
 
-    // WARNING: fx:id="titulo" cannot be injected: several objects share the same fx:id;
+    @FXML // fx:id="titulo"
+    private TextField titulo; // Value injected by FXMLLoader
 
 
     // Handler for RadioButton[fx:id="UnicaEscolha"] onAction
     @FXML
     void UnicaEscolhaAction(ActionEvent event) {
         // handle the event here
+        super.start("grupo.fxml", "Grupo");
+        textoAbertoPane.setVisible(false);
+        multiplaEscolhaPane.setVisible(true);
+        editar.setVisible(true);
     }
 
     // Handler for Button[fx:id="cancelar"] onAction
-    // Handler for Button[id="loginButton"] onAction
     @FXML
     void cancelarAction(ActionEvent event) {
         // handle the event here
+    }
+
+    // Handler for Button[fx:id="editar"] onAction
+    @FXML
+    void editarAction(ActionEvent event) {
+        // handle the event here
+        super.start("grupos.fxml", "Grupo");
     }
 
     // Handler for RadioButton[fx:id="multiplaEscolha"] onAction
     @FXML
     void multiplaEscolhaAction(ActionEvent event) {
         // handle the event here
+        super.start("grupo.fxml", "Grupo");
+        textoAbertoPane.setVisible(false);
+        multiplaEscolhaPane.setVisible(true);
+        editar.setVisible(true);
     }
 
     // Handler for Button[fx:id="salvar"] onAction
@@ -92,13 +108,16 @@ public class CampoController {
     @FXML
     void textoAbertoAction(ActionEvent event) {
         // handle the event here
+        multiplaEscolhaPane.setVisible(false);
+        textoAbertoPane.setVisible(true);
+        editar.setVisible(false);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert UnicaEscolha != null : "fx:id=\"UnicaEscolha\" was not injected: check your FXML file 'campo.fxml'.";
         assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'campo.fxml'.";
-        assert id != null : "fx:id=\"id\" was not injected: check your FXML file 'campo.fxml'.";
+        assert editar != null : "fx:id=\"editar\" was not injected: check your FXML file 'campo.fxml'.";
         assert maxlength != null : "fx:id=\"maxlength\" was not injected: check your FXML file 'campo.fxml'.";
         assert multiplaEscolha != null : "fx:id=\"multiplaEscolha\" was not injected: check your FXML file 'campo.fxml'.";
         assert multiplaEscolhaPane != null : "fx:id=\"multiplaEscolhaPane\" was not injected: check your FXML file 'campo.fxml'.";
@@ -107,6 +126,8 @@ public class CampoController {
         assert salvar != null : "fx:id=\"salvar\" was not injected: check your FXML file 'campo.fxml'.";
         assert textoAberto != null : "fx:id=\"textoAberto\" was not injected: check your FXML file 'campo.fxml'.";
         assert textoAbertoPane != null : "fx:id=\"textoAbertoPane\" was not injected: check your FXML file 'campo.fxml'.";
+        assert tipo != null : "fx:id=\"tipo\" was not injected: check your FXML file 'campo.fxml'.";
+        assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'campo.fxml'.";
 
         // Initialize your logic here: all @FXML variables will have been injected
 

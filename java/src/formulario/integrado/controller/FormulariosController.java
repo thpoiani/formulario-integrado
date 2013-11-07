@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 
-public class FormulariosController {
+public class FormulariosController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -64,6 +64,7 @@ public class FormulariosController {
     // Handler for Button[fx:id="remover"] onAction
     @FXML
     void editarAction(ActionEvent event) {
+        super.start("formulario.fxml", "Formulário");
         // handle the event here
     }
 

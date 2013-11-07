@@ -18,7 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 
-public class CategoriaController {
+public class CategoriaController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -72,12 +72,14 @@ public class CategoriaController {
     // Handler for Button[fx:id="editar"] onAction
     @FXML
     void editarAction(ActionEvent event) {
+        super.start("campo.fxml", "Campo");
         // handle the event here
     }
 
     // Handler for Button[fx:id="inserir"] onAction
     @FXML
     void inserirAction(ActionEvent event) {
+        super.start("campo.fxml", "Campo");
         // handle the event here
     }
 

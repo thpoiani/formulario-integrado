@@ -1,23 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package formulario.integrado.controller;
-
 /**
- * Sample Skeleton for "formulario.fxml" Controller Class
+ * Sample Skeleton for "principal.fxml" Controller Class
  * You can copy and paste this code into your favorite IDE
  **/
+
+package formulario.integrado.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleGroup;
 
 
-public class PrincipalController {
+public class PrincipalController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -25,73 +20,64 @@ public class PrincipalController {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
-    @FXML // fx:id="ativo"
-    private ToggleGroup ativo; // Value injected by FXMLLoader
+    @FXML // fx:id="categoria"
+    private Button categoria; // Value injected by FXMLLoader
 
-    @FXML // fx:id="cancelar"
-    private Button cancelar; // Value injected by FXMLLoader
+    @FXML // fx:id="categorias"
+    private Button categorias; // Value injected by FXMLLoader
 
-    @FXML // fx:id="desce"
-    private Button desce; // Value injected by FXMLLoader
+    @FXML // fx:id="formulario"
+    private Button formulario; // Value injected by FXMLLoader
 
-    @FXML // fx:id="inserir"
-    private Button inserir; // Value injected by FXMLLoader
+    @FXML // fx:id="formularios"
+    private Button formularios; // Value injected by FXMLLoader
 
-    @FXML // fx:id="retirar"
-    private Button retirar; // Value injected by FXMLLoader
-
-    @FXML // fx:id="salvar"
-    private Button salvar; // Value injected by FXMLLoader
-
-    @FXML // fx:id="sobe"
-    private Button sobe; // Value injected by FXMLLoader
+    @FXML // fx:id="respostas"
+    private Button respostas; // Value injected by FXMLLoader
 
 
-    // Handler for Button[fx:id="cancelar"] onAction
+    // Handler for Button[fx:id="categoria"] onAction
     @FXML
-    void cancelarAction(ActionEvent event) {
+    void categoriaAction(ActionEvent event) {
         // handle the event here
+        super.start("categoria.fxml", "Categoria");
     }
 
-    // Handler for Button[fx:id="desce"] onAction
+    // Handler for Button[fx:id="categorias"] onAction
     @FXML
-    void desceAction(ActionEvent event) {
+    void categoriasAction(ActionEvent event) {
         // handle the event here
+        super.start("categorias.fxml", "Categorias");
     }
 
-    // Handler for Button[fx:id="inserir"] onAction
+    // Handler for Button[fx:id="formulario"] onAction
     @FXML
-    void inserirAction(ActionEvent event) {
+    void formularioAction(ActionEvent event) {
         // handle the event here
+        super.start("formulario.fxml", "Formulário");
     }
 
-    // Handler for Button[fx:id="retirar"] onAction
+    // Handler for Button[fx:id="formularios"] onAction
     @FXML
-    void retirarAction(ActionEvent event) {
+    void formulariosAction(ActionEvent event) {
         // handle the event here
+        super.start("formularios.fxml", "Formulários");
     }
 
-    // Handler for Button[fx:id="salvar"] onAction
+    // Handler for Button[fx:id="respostas"] onAction
     @FXML
-    void salvarAction(ActionEvent event) {
+    void respostasAction(ActionEvent event) {
         // handle the event here
-    }
-
-    // Handler for Button[fx:id="sobe"] onAction
-    @FXML
-    void sobeAction(ActionEvent event) {
-        // handle the event here
+        super.start("pesquisas.fxml", "Respostas");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert ativo != null : "fx:id=\"ativo\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert desce != null : "fx:id=\"desce\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert inserir != null : "fx:id=\"inserir\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert retirar != null : "fx:id=\"retirar\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert salvar != null : "fx:id=\"salvar\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert sobe != null : "fx:id=\"sobe\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert categoria != null : "fx:id=\"categoria\" was not injected: check your FXML file 'principal.fxml'.";
+        assert categorias != null : "fx:id=\"categorias\" was not injected: check your FXML file 'principal.fxml'.";
+        assert formulario != null : "fx:id=\"formulario\" was not injected: check your FXML file 'principal.fxml'.";
+        assert formularios != null : "fx:id=\"formularios\" was not injected: check your FXML file 'principal.fxml'.";
+        assert respostas != null : "fx:id=\"respostas\" was not injected: check your FXML file 'principal.fxml'.";
 
         // Initialize your logic here: all @FXML variables will have been injected
 

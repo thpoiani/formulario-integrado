@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 
 
-public class CamposController {
+public class CamposController extends Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -50,6 +50,7 @@ public class CamposController {
     @FXML
     void editarAction(ActionEvent event) {
         // handle the event here
+        super.start("campo.fxml", "Campo");
     }
 
     // Handler for Button[id="loginButton"] onAction
