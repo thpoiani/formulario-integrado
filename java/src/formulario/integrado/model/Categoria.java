@@ -1,17 +1,18 @@
-
 package formulario.integrado.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Formulario implements IModel {
-    
+public class Categoria implements IModel {
+
     private int id;
     private String titulo;
-    private boolean aberto;
+    private String descricao;
     private boolean status;
     private Date data;
-    private ArrayList<Categoria> categorias;
+    private int ordem;
+    private ArrayList<Formulario> formulario;
+    private ArrayList<Campo> campos;
 
     /**
      * @return the id
@@ -42,17 +43,17 @@ public class Formulario implements IModel {
     }
 
     /**
-     * @return the aberto
+     * @return the descricao
      */
-    public boolean isAberto() {
-        return aberto;
+    public String getDescricao() {
+        return descricao;
     }
 
     /**
-     * @param aberto the aberto to set
+     * @param descricao the descricao to set
      */
-    public void setAberto(boolean aberto) {
-        this.aberto = aberto;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     /**
@@ -84,16 +85,45 @@ public class Formulario implements IModel {
     }
 
     /**
-     * @return the categorias
+     * @return the ordem
      */
-    public ArrayList<Categoria> getCategorias() {
-        return categorias;
+    public int getOrdem() {
+        return ordem;
     }
 
     /**
-     * @param categorias the categorias to set
+     * @param ordem the ordem to set
      */
-    public void setCategorias(ArrayList<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setOrdem(int ordem) {
+        this.ordem = ordem;
     }
+
+    /**
+     * @return the formulario
+     */
+    public ArrayList<Formulario> getFormulario() {
+        return formulario;
+    }
+
+    /**
+     * @param formulario the formulario to set
+     */
+    public void setFormulario(ArrayList<Formulario> formulario) {
+        this.formulario = formulario;
+    }
+
+    /**
+     * @return the campos
+     */
+    public ArrayList<Campo> getCampos() {
+        return campos;
+    }
+
+    /**
+     * @param campos the campos to set
+     */
+    public void setCampos(ArrayList<Campo> campos) {
+        this.campos = campos;
+    }
+
 }

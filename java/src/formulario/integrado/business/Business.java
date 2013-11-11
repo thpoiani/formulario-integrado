@@ -13,7 +13,7 @@ abstract class Business implements IBusiness {
     public void openConnection() {
         connection = Database.getInstance("integrado");
     }
-
+    
     @Override
     public void closeConnection() {
         Database.close("integrado");
