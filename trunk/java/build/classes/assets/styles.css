@@ -10,6 +10,10 @@ Pane, .split-pane {
     -fx-background-image: url("gplaypattern.png");
 }
 
+Pane Pane {
+    -fx-background-image: null;
+}
+
 .split-pane.left {
     -fx-background-image: url("ifsp.png");
     -fx-background-repeat: no-repeat;

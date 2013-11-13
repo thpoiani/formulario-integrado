@@ -1,11 +1,13 @@
 package formulario.integrado.model;
 
-public class Login implements IModel {
+public class Login extends Model {
     
     private String prontuario;
     private String senha;
-    
-    private static boolean session;
+
+    public Login() {
+        super();
+    }
 
     /**
      * @return the prontuario
@@ -34,12 +36,18 @@ public class Login implements IModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    /**
-     * Método para verificar se usuário está logado em sessão autorizada
-     * @return boolean
-     */
-    public static boolean Session() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+    @Override
+    public boolean validate() {
+        if (this.prontuario.isEmpty() || this.prontuario == null ) {
+            super.addErrors("prontuario");
+        }
+        
+        if (this.senha.isEmpty() || this.senha == null ) {
+            super.addErrors("senha");
+        }
+        
+        return super.getErrors().isEmpty();
     }
+    
 }
