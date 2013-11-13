@@ -25,10 +25,10 @@ public class LoginController extends Controller {
         if (login.isValid()) {
             ILoginBusiness loginBusiness = new LoginBusiness();
 
-            if (loginBusiness.isAuthenticated(login)) {
+            //if (loginBusiness.isAuthenticated(login)) {
                 super.start("principal.fxml", "Principal");
                 super.close(this.login.getScene().getWindow());
-            }
+            //}
         }
 
         this.showErrors(login);
