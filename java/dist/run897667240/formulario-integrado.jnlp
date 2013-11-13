@@ -11,9 +11,8 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="formulario-integrado.jar" size="238220" download="eager" />
-    <jar href="lib/commons-lang3-3.1.jar" size="334198" download="eager" />
-    <jar href="lib/mysql-connector-java-5.1.23-bin.jar" size="860437" download="eager" />
+    <jar href="formulario-integrado.jar" size="215456" download="eager" />
+    <jar href="lib/mysql-connector-java-5.1.23-bin.jar" size="860438" download="eager" />
   </resources>
 <security>
   <all-permissions/>
