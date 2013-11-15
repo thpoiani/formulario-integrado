@@ -1,6 +1,7 @@
 package formulario.integrado.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 abstract class Model implements IModel {
@@ -11,6 +12,10 @@ abstract class Model implements IModel {
 
     public Model() {
         this.errors = new ArrayList<String>();
+    }
+    
+    public Iterator createErrorIterator() {
+        return this.getErrors().iterator();
     }
 
     /**
@@ -34,6 +39,7 @@ abstract class Model implements IModel {
         this.errors.add(error);
     }
 
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
