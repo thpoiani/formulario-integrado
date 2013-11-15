@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 
 
-public class CamposController extends Controller {
+public class CamposController extends AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;

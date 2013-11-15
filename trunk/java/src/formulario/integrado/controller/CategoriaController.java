@@ -18,7 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 
-public class CategoriaController extends Controller {
+public class CategoriaController extends AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
