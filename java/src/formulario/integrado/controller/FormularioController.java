@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 
-public class FormularioController extends Controller {
+public class FormularioController extends AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
