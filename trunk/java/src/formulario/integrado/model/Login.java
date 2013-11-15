@@ -41,10 +41,18 @@ public class Login extends Model {
     public boolean validate() {
         if (this.prontuario.isEmpty() || this.prontuario == null ) {
             super.addErrors("prontuario");
+        } else {
+            if (this.prontuario.length() > 50) {
+                super.addErrors("prontuario");
+            }
         }
         
         if (this.senha.isEmpty() || this.senha == null ) {
             super.addErrors("senha");
+        } else {
+            if (this.senha.length() > 100) {
+                super.addErrors("senha");
+            }
         }
         
         return super.getErrors().isEmpty();

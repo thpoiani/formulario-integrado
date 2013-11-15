@@ -45,4 +45,12 @@ class Controller {
     public void show(Window window) {
         ((Stage) window).show();
     }
+    
+    public String getClearStyle() {
+        return "-fx-border-color: null;";
+    }
+    
+    public String getErrorStyle() {
+        return "-fx-border-color: red;";
+    }
 }
