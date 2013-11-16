@@ -5,33 +5,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-
 public class PrincipalController extends AbstractController {
-    
-//    private AbstractController controller;
-//    
-//    @Override
-//    public void addParentController(AbstractController controller) {
-//        this.controller = controller;
-//    }
-//    
-//    @Override
-//    public AbstractController getParentController() {
-//        return this.controller;
-//    }
-    
+
     @FXML
     private Button categoria;
-
+    
     @FXML
     private Button categorias;
-
+    
     @FXML
     private Button formulario;
-
+    
     @FXML
     private Button formularios;
-
+    
     @FXML
     private Button respostas;
 
@@ -63,8 +50,6 @@ public class PrincipalController extends AbstractController {
     void respostasAction(ActionEvent event) {
         super.start("pesquisas.fxml", "Respostas", this);
         super.hide();
-        
-//        getParentController().show();
     }
 
     @Override
@@ -74,12 +59,12 @@ public class PrincipalController extends AbstractController {
         assert formulario != null : "fx:id=\"formulario\" was not injected: check your FXML file 'principal.fxml'.";
         assert formularios != null : "fx:id=\"formularios\" was not injected: check your FXML file 'principal.fxml'.";
         assert respostas != null : "fx:id=\"respostas\" was not injected: check your FXML file 'principal.fxml'.";
-        
+
         Platform.runLater(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 setWindow(respostas.getScene().getWindow());
             }
         });
     }
-
 }

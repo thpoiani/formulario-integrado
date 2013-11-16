@@ -1,12 +1,6 @@
-/**
- * Sample Skeleton for "formularios.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
-
 package formulario.integrado.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,73 +8,63 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-
 public class FormulariosController extends AbstractController {
+    
+    private AbstractController controller;
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    @FXML
+    private TableColumn<?, ?> aberto;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    private Button cancelar;
 
-    @FXML // fx:id="aberto"
-    private TableColumn<?, ?> aberto; // Value injected by FXMLLoader
+    @FXML
+    private Button editar;
 
-    @FXML // fx:id="cancelar"
-    private Button cancelar; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<?, ?> id;
 
-    @FXML // fx:id="editar"
-    private Button editar; // Value injected by FXMLLoader
+    @FXML
+    private Button pesquisar;
 
-    @FXML // fx:id="id"
-    private TableColumn<?, ?> id; // Value injected by FXMLLoader
+    @FXML
+    private TextField pesquisarField;
 
-    @FXML // fx:id="pesquisar"
-    private Button pesquisar; // Value injected by FXMLLoader
+    @FXML
+    private Button remover;
 
-    @FXML // fx:id="pesquisarField"
-    private TextField pesquisarField; // Value injected by FXMLLoader
+    @FXML
+    private TableView<?> tabela;
 
-    @FXML // fx:id="remover"
-    private Button remover; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<?, ?> titulo;
 
-    @FXML // fx:id="tabela"
-    private TableView<?> tabela; // Value injected by FXMLLoader
+    @FXML
+    private Button visualizar;
 
-    @FXML // fx:id="titulo"
-    private TableColumn<?, ?> titulo; // Value injected by FXMLLoader
-
-    @FXML // fx:id="visualizar"
-    private Button visualizar; // Value injected by FXMLLoader
-
-
-    // Handler for Button[fx:id="cancelar"] onAction
     @FXML
     void cancelarAction(ActionEvent event) {
-        // handle the event here
+        getParentController().show();
+        super.close();
     }
 
-    // Handler for Button[fx:id="editar"] onAction
-    // Handler for Button[fx:id="remover"] onAction
     @FXML
     void editarAction(ActionEvent event) {
         super.start("formulario.fxml", "Formulário");
-        // handle the event here
+        super.hide();
     }
 
-    // Handler for Button[fx:id="pesquisar"] onAction
     @FXML
     void pesquisarAction(ActionEvent event) {
-        // handle the event here
+    
     }
 
-    // Handler for Button[fx:id="visualizar"] onAction
     @FXML
     void visualizarAction(ActionEvent event) {
-        // handle the event here
+    
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @Override
     void initialize() {
         assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formularios.fxml'.";
         assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'formularios.fxml'.";
@@ -93,8 +77,22 @@ public class FormulariosController extends AbstractController {
         assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'formularios.fxml'.";
         assert visualizar != null : "fx:id=\"visualizar\" was not injected: check your FXML file 'formularios.fxml'.";
 
-        // Initialize your logic here: all @FXML variables will have been injected
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                setWindow(pesquisar.getScene().getWindow());
+            }
+        });
+    }
 
+    @Override
+    public void addParentController(AbstractController controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public AbstractController getParentController() {
+        return this.controller;
     }
 
 }

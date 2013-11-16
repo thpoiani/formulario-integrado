@@ -29,7 +29,7 @@ public class LoginController extends AbstractController {
 //            ILoginBusiness loginBusiness = new LoginBusiness();
 
 //            if (loginBusiness.isAuthenticated(login)) {            
-            super.start("principal.fxml", "Principal", this);
+            super.start("principal.fxml", "Principal");
             super.close();
 //            } else {
 //                Dialog.showError("Erro de autenticação", "Prontuário ou senha incorretos.");
