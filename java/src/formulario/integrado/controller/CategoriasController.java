@@ -1,78 +1,61 @@
-/**
- * Sample Skeleton for "categorias.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
-
 package formulario.integrado.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
-
 public class CategoriasController extends AbstractController {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    private AbstractController controller;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    private Button cancelar;
+    
+    @FXML
+    private TableColumn<?, ?> descricao;
+    
+    @FXML
+    private Button editar;
+    
+    @FXML
+    private TableColumn<?, ?> id;
+    
+    @FXML
+    private Button pesquisar;
+    
+    @FXML
+    private TextField pesquisarField;
+    
+    @FXML
+    private Button remover;
+    
+    @FXML
+    private TableColumn<?, ?> titulo;
 
-    @FXML // fx:id="cancelar"
-    private Button cancelar; // Value injected by FXMLLoader
-
-    @FXML // fx:id="descricao"
-    private TableColumn<?, ?> descricao; // Value injected by FXMLLoader
-
-    @FXML // fx:id="editar"
-    private Button editar; // Value injected by FXMLLoader
-
-    @FXML // fx:id="id"
-    private TableColumn<?, ?> id; // Value injected by FXMLLoader
-
-    @FXML // fx:id="pesquisar"
-    private Button pesquisar; // Value injected by FXMLLoader
-
-    @FXML // fx:id="pesquisarField"
-    private TextField pesquisarField; // Value injected by FXMLLoader
-
-    @FXML // fx:id="remover"
-    private Button remover; // Value injected by FXMLLoader
-
-    @FXML // fx:id="titulo"
-    private TableColumn<?, ?> titulo; // Value injected by FXMLLoader
-
-
-    // Handler for Button[fx:id="cancelar"] onAction
     @FXML
     void cancelarAction(ActionEvent event) {
-        // handle the event here
+        getParentController().show();
+        super.close();
     }
 
-    // Handler for Button[fx:id="editar"] onAction
     @FXML
     void editarAction(ActionEvent event) {
-        // handle the event here
         super.start("categoria.fxml", "Categoria");
+        super.hide();
     }
 
-    // Handler for Button[fx:id="pesquisar"] onAction
     @FXML
     void pesquisarAction(ActionEvent event) {
-        // handle the event here
     }
 
-    // Handler for Button[fx:id="remover"] onAction
     @FXML
     void removerAction(ActionEvent event) {
-        // handle the event here
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @Override
     void initialize() {
         assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'categorias.fxml'.";
         assert descricao != null : "fx:id=\"descricao\" was not injected: check your FXML file 'categorias.fxml'.";
@@ -83,8 +66,21 @@ public class CategoriasController extends AbstractController {
         assert remover != null : "fx:id=\"remover\" was not injected: check your FXML file 'categorias.fxml'.";
         assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'categorias.fxml'.";
 
-        // Initialize your logic here: all @FXML variables will have been injected
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                setWindow(pesquisar.getScene().getWindow());
+            }
+        });
     }
 
+    @Override
+    public void addParentController(AbstractController controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public AbstractController getParentController() {
+        return this.controller;
+    }
 }
