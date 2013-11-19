@@ -3,7 +3,7 @@ package formulario.integrado.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Categoria implements IModel {
+public class Categoria extends Model {
 
     private int id;
     private String titulo;
@@ -124,6 +124,11 @@ public class Categoria implements IModel {
      */
     public void setCampos(ArrayList<Campo> campos) {
         this.campos = campos;
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

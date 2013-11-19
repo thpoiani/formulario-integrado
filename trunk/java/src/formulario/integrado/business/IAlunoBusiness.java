@@ -5,5 +5,4 @@ import java.util.List;
 
 interface IAlunoBusiness {
     public List<Aluno> show();
-    public List<Aluno> show(Aluno filter);
 }

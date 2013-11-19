@@ -10,9 +10,4 @@ public class CampoBusiness extends Business implements ICampoBusiness {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public List<Campo> show(Campo filter) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }

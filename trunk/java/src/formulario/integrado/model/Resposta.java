@@ -2,7 +2,7 @@ package formulario.integrado.model;
 
 import java.util.Date;
 
-public class Resposta implements IModel {
+public class Resposta extends Model {
     
     private int alunoId;
     private int campoId;
@@ -63,5 +63,10 @@ public class Resposta implements IModel {
      */
     public void setData(Date data) {
         this.data = data;
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

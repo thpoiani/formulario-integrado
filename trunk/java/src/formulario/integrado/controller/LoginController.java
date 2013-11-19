@@ -13,11 +13,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController extends AbstractController {
+    
+    private ILoginBusiness loginBusiness;
 
     @FXML
     private Button login;
+    
     @FXML
     private TextField prontuario;
+    
     @FXML
     private PasswordField senha;
 
@@ -26,9 +30,7 @@ public class LoginController extends AbstractController {
         Login login = assemblyRequest();
 
         if (login.isValid()) {
-//            ILoginBusiness loginBusiness = new LoginBusiness();
-
-//            if (loginBusiness.isAuthenticated(login)) {            
+//            if (this.loginBusiness.isAuthenticated(login)) {            
             super.start("principal.fxml", "Principal");
             super.close();
 //            } else {
@@ -44,6 +46,8 @@ public class LoginController extends AbstractController {
         assert login != null : "fx:id=\"login\" was not injected: check your FXML file 'login.fxml'.";
         assert prontuario != null : "fx:id=\"prontuario\" was not injected: check your FXML file 'login.fxml'.";
         assert senha != null : "fx:id=\"senha\" was not injected: check your FXML file 'login.fxml'.";
+        
+        this.loginBusiness = new LoginBusiness();
 
         Platform.runLater(new Runnable() {
             @Override public void run() {

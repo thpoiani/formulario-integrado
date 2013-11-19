@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formulario.integrado.business.database;
 
 import java.sql.Connection;
 
-/**
- *
- * @author ThiagoHenrique
- */
 public class Database {
     private Database() {}
     

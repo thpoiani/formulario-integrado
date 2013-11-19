@@ -2,7 +2,7 @@ package formulario.integrado.model;
 
 import java.util.ArrayList;
 
-public class Aluno {
+public class Aluno extends Model {
     private int id;
     private String prontuario;
     private String nome;
@@ -63,5 +63,10 @@ public class Aluno {
      */
     public void setRespostas(ArrayList<Resposta> respostas) {
         this.respostas = respostas;
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

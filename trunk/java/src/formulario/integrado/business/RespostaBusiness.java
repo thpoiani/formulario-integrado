@@ -9,10 +9,5 @@ public class RespostaBusiness extends Business implements IRespostaBusiness {
     public List<Resposta> show() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    public List<Resposta> show(Resposta filter) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
 }

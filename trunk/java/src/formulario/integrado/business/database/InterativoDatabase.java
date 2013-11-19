@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formulario.integrado.business.database;
 
 import java.sql.SQLException;
 
-/**
- *
- * @author ThiagoHenrique
- */
 class InterativoDatabase {
     private final static String ADAPTER = "mysql";
     private final static String HOST = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";

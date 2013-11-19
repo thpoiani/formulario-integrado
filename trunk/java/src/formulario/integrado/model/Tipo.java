@@ -1,6 +1,6 @@
 package formulario.integrado.model;
 
-public class Tipo implements IModel {
+public class Tipo extends Model {
     
     private int id;
     private String descricao;
@@ -31,5 +31,10 @@ public class Tipo implements IModel {
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
