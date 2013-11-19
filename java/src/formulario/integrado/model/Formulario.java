@@ -1,10 +1,9 @@
-
 package formulario.integrado.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Formulario implements IModel {
+public class Formulario extends Model {
     
     private int id;
     private String titulo;
@@ -48,6 +47,13 @@ public class Formulario implements IModel {
         return aberto;
     }
 
+    /**
+     * @return the aberto
+     */
+    public String getAberto() {
+        return aberto ? "Sim" : "Não";
+    }
+    
     /**
      * @param aberto the aberto to set
      */
@@ -95,5 +101,10 @@ public class Formulario implements IModel {
      */
     public void setCategorias(ArrayList<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

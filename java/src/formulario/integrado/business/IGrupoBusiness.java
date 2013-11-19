@@ -5,5 +5,4 @@ import java.util.List;
 
 interface IGrupoBusiness {
     public List<Grupo> show();
-    public List<Grupo> show(Grupo filter);
 }

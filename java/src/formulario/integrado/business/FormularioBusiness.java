@@ -9,10 +9,5 @@ public class FormularioBusiness extends Business implements IFormularioBusiness 
     public List<Formulario> show() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    public List<Formulario> show(Formulario filter) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
 }

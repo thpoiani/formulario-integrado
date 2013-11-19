@@ -2,7 +2,7 @@ package formulario.integrado.model;
 
 import java.util.Date;
 
-public class Grupo implements IModel {
+public class Grupo extends Model {
     
     private int id;
     private String titulo;
@@ -110,5 +110,10 @@ public class Grupo implements IModel {
      */
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
