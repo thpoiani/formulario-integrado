@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `interativo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `interativo`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com    Database: interativo
@@ -16,14 +18,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `interativo`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `interativo` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `interativo`;
-
---
 -- Table structure for table `aluno`
 --
 
@@ -36,7 +30,7 @@ CREATE TABLE `aluno` (
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `prontuario_UNIQUE` (`prontuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +228,7 @@ CREATE TABLE `tipo` (
   `descricao` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `descricao_UNIQUE` (`descricao`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,43 +240,6 @@ LOCK TABLES `tipo` WRITE;
 INSERT INTO `tipo` VALUES (5,'Check'),(4,'Data'),(3,'Decimal'),(2,'Inteiro'),(6,'Radio'),(1,'Texto');
 /*!40000 ALTER TABLE `tipo` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Current Database: `prematricula`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `prematricula` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `prematricula`;
-
---
--- Table structure for table `pm_pessoas`
---
-
-DROP TABLE IF EXISTS `pm_pessoas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pm_pessoas` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `prontuario` varchar(50) NOT NULL,
-  `nome` varchar(200) DEFAULT NULL,
-  `nomec` varchar(200) NOT NULL,
-  `senha` varchar(100) NOT NULL,
-  `categ` varchar(50) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=936 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pm_pessoas`
---
-
-LOCK TABLES `pm_pessoas` WRITE;
-/*!40000 ALTER TABLE `pm_pessoas` DISABLE KEYS */;
-INSERT INTO `pm_pessoas` VALUES (935,'1234567','Aluno','Aluno','1234567','Aluno','aluno@ifsp.com');
-/*!40000 ALTER TABLE `pm_pessoas` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -293,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-22  1:18:13
+-- Dump completed on 2013-11-20 10:20:46
