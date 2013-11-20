@@ -3,6 +3,7 @@ package formulario.integrado.controller;
 import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
 import formulario.integrado.model.Formulario;
+import formulario.integrado.vendor.Dialog;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -15,6 +16,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -66,8 +69,30 @@ public class FormulariosController extends AbstractController {
 
     @FXML
     void editarAction(ActionEvent event) {
-        super.start("formulario.fxml", "Formulário", this);
-        super.hide();
+        Formulario formulario = tabela.getSelectionModel().getSelectedItem();
+
+        if (formulario != null) {
+            super.start("formulario.fxml", "Formulário", this);
+            super.hide();
+        }
+    }
+    
+    @FXML
+    void removerAction(ActionEvent event) {
+        Formulario formulario = tabela.getSelectionModel().getSelectedItem();
+
+        if (formulario != null) {
+            Dialog.buildConfirmation("Remover formulário", "Deseja remover o formulário " + formulario.getTitulo())
+                    .addYesButton(new EventHandler() {
+                        @Override
+                        public void handle(Event event) {
+                            remover(tabela.getSelectionModel().getSelectedItem());
+                        }
+                    })
+                    .addNoButton(null)
+                    .build()
+                    .show();
+        }
     }
 
     @FXML
@@ -150,6 +175,22 @@ public class FormulariosController extends AbstractController {
         
         tabela.getSortOrder().clear();
         tabela.getSortOrder().addAll(resultado);
+    }
+    
+    /**
+     * Método para remoção de Formulário
+     *
+     * @param formulario
+     */
+    private void remover(Formulario formulario) {
+        try {
+            // this.formularioBusiness.remove(formulario);
+            this.dados.remove(formulario);
+
+            Dialog.showInfo("Formulário", "Formulário removido com sucesso");
+        } catch (Exception e) {
+            Dialog.showError("Formulário", "Ocorreu algum problema na remoção do formulário.");
+        }
     }
 
     @Override
