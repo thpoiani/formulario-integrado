@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="formulario.integrado.controller.CategoriasController">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
+      <children>
+        <TableView fx:id="tabela" disable="false" focusTraversable="true" layoutX="14.0" layoutY="50.0" prefHeight="300.0" prefWidth="572.0" tableMenuButtonVisible="false" visible="true">
+          <columns>
+            <TableColumn editable="false" prefWidth="75.0" resizable="false" text="ID" fx:id="id" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="318.0" resizable="false" sortable="true" text="Título" fx:id="titulo" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" resizable="false" sortable="true" text="Descrição" fx:id="descricao" />
+          </columns>
+        </TableView>
+        <Button id="loginButton" fx:id="remover" cancelButton="false" defaultButton="true" layoutX="518.0" layoutY="365.0" mnemonicParsing="false" onAction="#removerAction" styleClass="btn, btn-success" text="Remover" wrapText="false" />
+        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+        <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="true" layoutX="275.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar" wrapText="false" />
+        <Label layoutX="14.0" layoutY="18.0" text="Pesquisar" />
+        <TextField id="titulo" fx:id="pesquisar" layoutX="80.0" layoutY="15.0" prefWidth="505.999977929685" />
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@../../../assets/styles.css" />
+  </stylesheets>
+</AnchorPane>
