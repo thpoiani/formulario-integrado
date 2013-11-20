@@ -4,7 +4,6 @@ import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
 import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Formulario;
-import formulario.integrado.model.IModel;
 import formulario.integrado.vendor.Dialog;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +11,7 @@ import java.util.Iterator;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
@@ -19,10 +19,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
 public class FormularioController extends AbstractController {
-    
+
     private AbstractController controller;
     
     private IFormularioBusiness formularioBusiness;
@@ -32,34 +33,79 @@ public class FormularioController extends AbstractController {
     
     @FXML
     private ToggleGroup ativo;
-
+    
     @FXML
     private Button cancelar;
-
+    
     @FXML
     private ListView<Categoria> categorias;
-
+    
     @FXML
     private Button desce;
-
+    
     @FXML
     private RadioButton fechado;
-
+    
     @FXML
     private Button inserir;
-
+    
     @FXML
     private Button retirar;
-
+    
     @FXML
     private Button salvar;
-
+    
     @FXML
     private Button sobe;
-
+    
     @FXML
     private TextField titulo;
 
+    public FormularioController() {
+        this.formularioBusiness = new FormularioBusiness();
+    }
+    
+    @Override
+    void initialize() {
+        assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert ativo != null : "fx:id=\"ativo\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert categorias != null : "fx:id=\"categorias\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert desce != null : "fx:id=\"desce\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert fechado != null : "fx:id=\"fechado\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert inserir != null : "fx:id=\"inserir\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert retirar != null : "fx:id=\"retirar\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert salvar != null : "fx:id=\"salvar\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert sobe != null : "fx:id=\"sobe\" was not injected: check your FXML file 'formulario.fxml'.";
+        assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'formulario.fxml'.";
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                setWindow(titulo.getScene().getWindow());
+
+                if (getParentController().model != null) {
+                    // estado de edição
+                    populateModel((Formulario) getParentController().model);
+                } else {
+                    models = new ArrayList<>();
+                }
+
+                populateListView();
+            }
+        });
+    }
+    
+    @Override
+    public void addParentController(AbstractController controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public AbstractController getParentController() {
+        return this.controller;
+    }
+    
     @FXML
     void cancelarAction(ActionEvent event) {
         getParentController().show();
@@ -68,19 +114,24 @@ public class FormularioController extends AbstractController {
 
     @FXML
     void desceAction(ActionEvent event) {
-    
+        if (categoriaIsSelected()) {
+            // formularioBusiness.moveDown(categorias.getSelectionModel().getSelectedItem());
+            refreshListView();
+        }
     }
 
     @FXML
     void inserirAction(ActionEvent event) {
-        // deve passar uma lista de categorias, para limpar a lista do proximo
         super.start("categorias-listar.fxml", "Categorias", this);
         super.hide();
     }
 
     @FXML
     void retirarAction(ActionEvent event) {
-        
+        if (categoriaIsSelected()) {
+            models.remove(categorias.getSelectionModel().getSelectedItem());
+            refreshListView();
+        }
     }
 
     @FXML
@@ -106,60 +157,77 @@ public class FormularioController extends AbstractController {
 
     @FXML
     void sobeAction(ActionEvent event) {
+        if (categoriaIsSelected()) {
+            // formularioBusiness.moveUp(categorias.getSelectionModel().getSelectedItem());
+            refreshListView();
+        }
+    }
     
+    /**
+     * Método para verificar se alguma categoria está selecionada
+     * 
+     * @return boolean 
+     */
+    private boolean categoriaIsSelected() {
+        return categorias.getSelectionModel().getSelectedItem() != null;
+    }
+    
+    /**
+     * Método para popular campos quando o formulário for para edição
+     *
+     * @param formulario
+     */
+    private void populateModel(Formulario formulario) {
+        models = formulario.getCategorias();
+        
+        titulo.setText(formulario.getTitulo());
+        aberto.setSelected(formulario.isAberto());
+        fechado.setSelected(!formulario.isAberto());
     }
 
-    @Override
-    void initialize() {
-        assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert ativo != null : "fx:id=\"ativo\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert categorias != null : "fx:id=\"categorias\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert desce != null : "fx:id=\"desce\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert fechado != null : "fx:id=\"fechado\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert inserir != null : "fx:id=\"inserir\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert retirar != null : "fx:id=\"retirar\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert salvar != null : "fx:id=\"salvar\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert sobe != null : "fx:id=\"sobe\" was not injected: check your FXML file 'formulario.fxml'.";
-        assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'formulario.fxml'.";
+    /**
+     * Método para popular lista de categorias
+     *
+     */
+    private void populateListView() {
+        categorias.setItems(FXCollections.observableArrayList(models));
+        onShowRefreshListView();
+        displayCategoriaTituloOnListView();
+    }
 
-        this.formularioBusiness = new FormularioBusiness();
-        
-        Platform.runLater(new Runnable() {
+    /**
+     * Método para adicionar um Listener de onShowing. Quando exibir a tela,
+     * atualiza a lista de categorias
+     *
+     */
+    private void onShowRefreshListView() {
+        getWindow().setOnShowing(new EventHandler<WindowEvent>() {
             @Override
-            public void run() {
-                setWindow(titulo.getScene().getWindow());
-                
-                // estado de edição
-                if (getParentController().model != null) {
-                    populate((Formulario) getParentController().model);
-                } else {
-                    models = new ArrayList<Categoria>();
-                }
+            public void handle(WindowEvent e) {
+                refreshListView();
             }
         });
     }
     
     /**
-     * Método para popular campos quando o formulário for para edição
+     * Método para atualizar lista de categorias
      * 
-     * @param formulario
      */
-    private void populate(Formulario formulario) {
-        titulo.setText(formulario.getTitulo());
-        
-        aberto.setSelected(formulario.isAberto());
-        fechado.setSelected(!formulario.isAberto());
-
-        models = formulario.getCategorias();
-        categorias.setItems(FXCollections.observableArrayList(formulario.getCategorias()));
-        categorias.setCellFactory(new Callback<ListView<Categoria>, ListCell<Categoria>>(){
- 
+    private void refreshListView() {
+        categorias.setItems(null);
+        categorias.setItems(FXCollections.observableArrayList(models));
+    }
+    
+    /**
+     * Método para exibição do título da categoria na ListView
+     * 
+     */
+    private void displayCategoriaTituloOnListView() {
+        categorias.setCellFactory(new Callback<ListView<Categoria>, ListCell<Categoria>>() {
             @Override
-            public ListCell<Categoria> call(ListView<Categoria> categoria ){
-                 
-                ListCell<Categoria> celulas = new ListCell<Categoria>(){
- 
+            public ListCell<Categoria> call(ListView<Categoria> categoria) {
+
+                ListCell<Categoria> cells = new ListCell<Categoria>() {
                     @Override
                     protected void updateItem(Categoria categoria, boolean bool) {
                         super.updateItem(categoria, bool);
@@ -167,14 +235,13 @@ public class FormularioController extends AbstractController {
                             setText(categoria.getTitulo());
                         }
                     }
- 
                 };
-                 
-                return celulas;
+
+                return cells;
             }
         });
     }
-    
+
     /**
      * Método para recuperar dados inseridos pelo usuário
      *
@@ -182,29 +249,29 @@ public class FormularioController extends AbstractController {
      */
     private Formulario assemblyRequest() {
         Formulario formulario;
-        
+
         if (getParentController().model != null) {
             formulario = (Formulario) getParentController().model;
         } else {
             formulario = new Formulario();
             formulario.setData(new Date());
         }
-        
+
         formulario.setTitulo(titulo.getText());
         formulario.setAberto(ativo.getSelectedToggle() == aberto ? true : false);
         formulario.setStatus(true);
         
-        // categorias
-        
+        formulario.setCategorias(models);
+
         return formulario;
     }
-    
+
     /**
      * Método para colorir borda de campos inválidos
      *
      * @param Formulario formulario
      */
-    private void showErrors(Formulario formulario ){
+    private void showErrors(Formulario formulario) {
         titulo.setStyle(super.getClearStyle());
 
         Iterator iterator = formulario.createErrorIterator();
@@ -217,13 +284,4 @@ public class FormularioController extends AbstractController {
         }
     }
 
-    @Override
-    public void addParentController(AbstractController controller) {
-        this.controller = controller;
-    }
-
-    @Override
-    public AbstractController getParentController() {
-        return this.controller;
-    }
 }

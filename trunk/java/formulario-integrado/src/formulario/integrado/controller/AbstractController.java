@@ -17,7 +17,7 @@ abstract class AbstractController implements IController {
     private Window window;
     
     protected IModel model;
-    protected List<? extends IModel> models;
+    protected List models;
 
     @FXML
     abstract void initialize();

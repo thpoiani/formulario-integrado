@@ -53,7 +53,7 @@ public class CategoriasListarController extends AbstractController {
         Categoria categoria = tabela.getSelectionModel().getSelectedItem();
         
         if (categoria != null) {
-        //    getParentController().models.add(categoria);
+            getParentController().models.add(categoria);
             // retornar categoria para formulario
             getParentController().show();
             super.close();
