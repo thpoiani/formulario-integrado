@@ -54,13 +54,13 @@ public class CategoriaController extends AbstractController {
 
     @FXML
     void editarAction(ActionEvent event) {
-        super.start("campo.fxml", "Campo");
+        super.start("campo.fxml", "Campo", this);
         super.hide();
     }
 
     @FXML
     void inserirAction(ActionEvent event) {
-        super.start("campo.fxml", "Campo");
+        super.start("campo.fxml", "Campo", this);
         super.hide();
     }
 
