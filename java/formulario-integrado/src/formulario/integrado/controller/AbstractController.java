@@ -1,7 +1,7 @@
 package formulario.integrado.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import formulario.integrado.model.IModel;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +15,9 @@ import javafx.stage.Window;
 abstract class AbstractController implements IController {
 
     private Window window;
+    
+    protected IModel model;
+    protected List<IModel> models;
 
     @FXML
     abstract void initialize();

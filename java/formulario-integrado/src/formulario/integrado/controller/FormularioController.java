@@ -74,21 +74,22 @@ public class FormularioController extends AbstractController {
 
     @FXML
     void retirarAction(ActionEvent event) {
-    
+        
     }
 
     @FXML
     void salvarAction(ActionEvent event) {
         Formulario formulario = assemblyRequest();
-        
+
         if (formulario.isValid()) {
             try {
                 // this.formularioBusiness.add(formulario);
-                
                 getParentController().show();
                 super.close();
-                
-                Dialog.showInfo("Formulário", "Formulário cadastrado com sucesso");
+
+                Dialog.showInfo("Formulário", "Formulário " + 
+                        (getParentController().model == null ? "cadastrado" : "alterado") + 
+                        " com sucesso");
             } catch (Exception e) {
                 Dialog.showError("Formulário", "Ocorreu algum problema na persistência do formulário.");
             }
@@ -122,8 +123,27 @@ public class FormularioController extends AbstractController {
             @Override
             public void run() {
                 setWindow(titulo.getScene().getWindow());
+                
+                // estado de edição
+                if (getParentController().model != null) {
+                    populate((Formulario) getParentController().model);
+                }
+                
             }
         });
+    }
+    
+    /**
+     * Método para popular campos quando o formulário for para edição
+     * @param formulario 
+     */
+    private void populate(Formulario formulario) {
+        titulo.setText(formulario.getTitulo());
+        
+        aberto.setSelected(formulario.isAberto());
+        fechado.setSelected(!formulario.isAberto());
+        
+        // categorias
     }
     
     /**
@@ -132,12 +152,20 @@ public class FormularioController extends AbstractController {
      * @return Formulario
      */
     private Formulario assemblyRequest() {
-        Formulario formulario = new Formulario();
+        Formulario formulario;
+        
+        if (getParentController().model != null) {
+            formulario = (Formulario) getParentController().model;
+        } else {
+            formulario = new Formulario();
+            formulario.setData(new Date());
+        }
         
         formulario.setTitulo(titulo.getText());
         formulario.setAberto(ativo.getSelectedToggle() == aberto ? true : false);
         formulario.setStatus(true);
-        formulario.setData(new Date());
+        
+        // categorias
         
         return formulario;
     }
@@ -169,5 +197,4 @@ public class FormularioController extends AbstractController {
     public AbstractController getParentController() {
         return this.controller;
     }
-    
 }
