@@ -12,7 +12,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -65,6 +64,60 @@ public class FormulariosController extends AbstractController {
     @FXML
     private Button visualizar;
     
+    public FormulariosController() {
+        this.formularioBusiness = new FormularioBusiness();
+    }
+    
+    @Override
+    void initialize() {
+        assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert editar != null : "fx:id=\"editar\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert id != null : "fx:id=\"id\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert pesquisar != null : "fx:id=\"pesquisarField\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert remover != null : "fx:id=\"remover\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert tabela != null : "fx:id=\"tabela\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'formularios.fxml'.";
+        assert visualizar != null : "fx:id=\"visualizar\" was not injected: check your FXML file 'formularios.fxml'.";
+
+        aberto.setCellValueFactory(new PropertyValueFactory<Formulario, String>("aberto"));
+        id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
+        titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
+
+//        this.dados = FXCollections.observableArrayList(formularioBusiness.show());
+//        tabela.setItems(this.dados);
+
+        // REMOVER EM PRODUÇÃO
+        testeTabela();
+
+        this.filtro.addAll(this.dados);
+
+        pesquisar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                filtrarResultados();
+            }
+        });
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                setWindow(visualizar.getScene().getWindow());
+            }
+        });
+
+    }
+    
+    @Override
+    public void addParentController(AbstractController controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public AbstractController getParentController() {
+        return this.controller;
+    }
+    
     @FXML
     void cancelarAction(ActionEvent event) {
         getParentController().show();
@@ -108,48 +161,7 @@ public class FormulariosController extends AbstractController {
             Desktop.getDesktop().browse(new URI("http://formulario-integrado.com/formulario/" + formulario.getId()));
         }
     }
-
-    @Override
-    void initialize() {
-        assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert editar != null : "fx:id=\"editar\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert id != null : "fx:id=\"id\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert pesquisar != null : "fx:id=\"pesquisarField\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert remover != null : "fx:id=\"remover\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert tabela != null : "fx:id=\"tabela\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'formularios.fxml'.";
-        assert visualizar != null : "fx:id=\"visualizar\" was not injected: check your FXML file 'formularios.fxml'.";
-
-        this.formularioBusiness = new FormularioBusiness();
-
-        aberto.setCellValueFactory(new PropertyValueFactory<Formulario, String>("aberto"));
-        id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
-        titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
-
-//        this.dados = FXCollections.observableArrayList(formularioBusiness.show());
-//        tabela.setItems(this.dados);
-
-        testeTabela();
-
-        this.filtro.addAll(this.dados);
-
-        pesquisar.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                filtrarResultados();
-            }
-        });
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                setWindow(visualizar.getScene().getWindow());
-            }
-        });
-
-    }
-
+    
     private void filtrarResultados() {
         filtro.clear();
 
@@ -199,15 +211,6 @@ public class FormulariosController extends AbstractController {
         }
     }
 
-    @Override
-    public void addParentController(AbstractController controller) {
-        this.controller = controller;
-    }
-
-    @Override
-    public AbstractController getParentController() {
-        return this.controller;
-    }
     
     private void testeTabela() {
         Formulario formulario1 = new Formulario();
