@@ -14,10 +14,10 @@ import javafx.stage.Window;
  */
 abstract class AbstractController implements IController {
 
-    private Window window;
-    
     protected IModel model;
     protected List models;
+
+    private Window window;
 
     @FXML
     abstract void initialize();
@@ -46,14 +46,12 @@ abstract class AbstractController implements IController {
 
     @Override
     public void start(String view, String title, AbstractController controller) {
-        Stage stage = start(view, controller);
-        stage.setTitle(title);
+        start(view, controller).setTitle(title);
     }
 
     @Override
     public void start(String view, String title) {
-        Stage stage = start(view, (AbstractController) null);
-        stage.setTitle(title);
+        start(view, (AbstractController) null).setTitle(title);
     }
 
     @Override
@@ -62,8 +60,8 @@ abstract class AbstractController implements IController {
     }
 
     public void close() {
-        if (getWindow() != null) {
-            ((Stage) getWindow()).close();
+        if (window != null) {
+            close(window);
         }
     }
 
@@ -73,8 +71,8 @@ abstract class AbstractController implements IController {
     }
 
     public void hide() {
-        if (getWindow() != null) {
-            ((Stage) getWindow()).hide();
+        if (window != null) {
+            hide(window);
         }
     }
 
@@ -84,8 +82,8 @@ abstract class AbstractController implements IController {
     }
 
     public void show() {
-        if (getWindow() != null) {
-            ((Stage) getWindow()).show();
+        if (window != null) {
+            show(this.window);
         }
     }
 

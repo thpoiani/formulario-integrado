@@ -25,46 +25,46 @@ import javafx.util.Callback;
 public class FormularioController extends AbstractController {
 
     private AbstractController controller;
-    
+
     private IFormularioBusiness formularioBusiness;
-    
+
     @FXML
     private RadioButton aberto;
-    
+
     @FXML
     private ToggleGroup ativo;
-    
+
     @FXML
     private Button cancelar;
-    
+
     @FXML
     private ListView<Categoria> categorias;
-    
+
     @FXML
     private Button desce;
-    
+
     @FXML
     private RadioButton fechado;
-    
+
     @FXML
     private Button inserir;
-    
+
     @FXML
     private Button retirar;
-    
+
     @FXML
     private Button salvar;
-    
+
     @FXML
     private Button sobe;
-    
+
     @FXML
     private TextField titulo;
 
     public FormularioController() {
         this.formularioBusiness = new FormularioBusiness();
     }
-    
+
     @Override
     void initialize() {
         assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formulario.fxml'.";
@@ -95,7 +95,7 @@ public class FormularioController extends AbstractController {
             }
         });
     }
-    
+
     @Override
     public void addParentController(AbstractController controller) {
         this.controller = controller;
@@ -105,7 +105,7 @@ public class FormularioController extends AbstractController {
     public AbstractController getParentController() {
         return this.controller;
     }
-    
+
     @FXML
     void cancelarAction(ActionEvent event) {
         getParentController().show();
@@ -162,16 +162,16 @@ public class FormularioController extends AbstractController {
             refreshListView();
         }
     }
-    
+
     /**
      * Método para verificar se alguma categoria está selecionada
-     * 
-     * @return boolean 
+     *
+     * @return boolean
      */
     private boolean categoriaIsSelected() {
         return categorias.getSelectionModel().getSelectedItem() != null;
     }
-    
+
     /**
      * Método para popular campos quando o formulário for para edição
      *
@@ -179,7 +179,7 @@ public class FormularioController extends AbstractController {
      */
     private void populateModel(Formulario formulario) {
         models = formulario.getCategorias();
-        
+
         titulo.setText(formulario.getTitulo());
         aberto.setSelected(formulario.isAberto());
         fechado.setSelected(!formulario.isAberto());
@@ -208,19 +208,19 @@ public class FormularioController extends AbstractController {
             }
         });
     }
-    
+
     /**
      * Método para atualizar lista de categorias
-     * 
+     *
      */
     private void refreshListView() {
         categorias.setItems(null);
         categorias.setItems(FXCollections.observableArrayList(models));
     }
-    
+
     /**
      * Método para exibição do título da categoria na ListView
-     * 
+     *
      */
     private void displayCategoriaTituloOnListView() {
         categorias.setCellFactory(new Callback<ListView<Categoria>, ListCell<Categoria>>() {
@@ -260,7 +260,7 @@ public class FormularioController extends AbstractController {
         formulario.setTitulo(titulo.getText());
         formulario.setAberto(ativo.getSelectedToggle() == aberto ? true : false);
         formulario.setStatus(true);
-        
+
         formulario.setCategorias(models);
 
         return formulario;
