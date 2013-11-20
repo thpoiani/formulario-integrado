@@ -30,7 +30,7 @@ public class LoginController extends AbstractController {
         Login login = assemblyRequest();
 
         if (login.isValid()) {
-//            if (this.loginBusiness.isAuthenticated(login)) {            
+//            if (this.loginBusiness.isAuthenticated(login)) {
             super.start("principal.fxml", "Principal");
             super.close();
 //            } else {

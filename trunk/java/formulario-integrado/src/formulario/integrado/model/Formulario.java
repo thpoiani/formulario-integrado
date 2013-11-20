@@ -105,6 +105,14 @@ public class Formulario extends Model {
 
     @Override
     public boolean validate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.titulo.isEmpty() || this.titulo == null ) {
+            super.addErrors("titulo");
+        } else {
+            if (this.titulo.length() > 100) {
+                super.addErrors("titulo");
+            }
+        }
+        
+        return super.getErrors().isEmpty();
     }
 }

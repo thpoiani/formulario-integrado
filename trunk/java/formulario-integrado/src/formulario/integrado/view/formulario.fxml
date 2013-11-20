@@ -19,12 +19,12 @@
         <Button id="formulario" fx:id="retirar" layoutX="476.0" layoutY="172.0" mnemonicParsing="false" onAction="#retirarAction" prefHeight="40.0" prefWidth="110.0" styleClass="btn, btn-success" text="Retirar Categoria" />
         <Button id="formulario" fx:id="sobe" layoutX="343.0" layoutY="100.0" mnemonicParsing="false" onAction="#sobeAction" prefHeight="40.0" prefWidth="110.0" styleClass="btn, btn-success" text="Sobe" />
         <Button id="formulario" fx:id="desce" layoutX="343.0" layoutY="172.0" mnemonicParsing="false" onAction="#desceAction" prefHeight="40.0" prefWidth="110.0" styleClass="btn, btn-success" text="Desce" />
-        <RadioButton layoutX="14.0" layoutY="273.0" mnemonicParsing="false" selected="true" text="Formulário Aberto" underline="false">
+        <RadioButton fx:id="aberto" layoutX="18.0" layoutY="273.0" mnemonicParsing="false" selected="true" text="Formulário Aberto" underline="false">
           <toggleGroup>
             <ToggleGroup fx:id="ativo" />
           </toggleGroup>
         </RadioButton>
-        <RadioButton layoutX="14.0" layoutY="299.0" mnemonicParsing="false" text="Formulário Fechado" toggleGroup="$ativo" />
+        <RadioButton fx:id="fechado" layoutX="18.0" layoutY="299.0" mnemonicParsing="false" text="Formulário Fechado" toggleGroup="$ativo" />
         <Button id="loginButton" fx:id="salvar" cancelButton="false" defaultButton="true" layoutX="534.0" layoutY="365.0" mnemonicParsing="false" onAction="#salvarAction" styleClass="btn, btn-success" text="Salvar" wrapText="false" />
         <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
       </children>
