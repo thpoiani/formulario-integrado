@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="formulario.integrado.controller.CategoriasListarController">
+  <children>
+    <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <TableView fx:id="tabela" layoutX="14.0" layoutY="14.0" prefHeight="320.0" prefWidth="572.0">
+          <columns>
+            <TableColumn editable="false" prefWidth="75.0" resizable="false" text="ID" fx:id="id" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="262.0" resizable="false" text="Título" fx:id="titulo" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="234.0" resizable="false" text="Descrição" fx:id="descricao" />
+          </columns>
+        </TableView>
+        <Button id="loginButton" fx:id="salvar" cancelButton="false" defaultButton="true" layoutX="534.0" layoutY="365.0" mnemonicParsing="false" onAction="#salvarAction" styleClass="btn, btn-success" text="Salvar" wrapText="false" />
+        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@../../../assets/styles.css" />
+  </stylesheets>
+</AnchorPane>
