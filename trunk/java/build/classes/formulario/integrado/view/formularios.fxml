@@ -11,6 +11,7 @@
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
       <children>
+        <TextField id="titulo" fx:id="pesquisar" layoutX="80.0" layoutY="14.0" prefWidth="505.999977929685" />
         <TableView fx:id="tabela" disable="false" focusTraversable="true" layoutX="14.0" layoutY="50.0" prefHeight="300.0" prefWidth="572.0" tableMenuButtonVisible="false" visible="true">
           <columns>
             <TableColumn editable="false" prefWidth="75.0" resizable="false" text="ID" fx:id="id" />
@@ -23,8 +24,6 @@
         <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="true" layoutX="180.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar" wrapText="false" />
         <Button id="loginButton" fx:id="remover" cancelButton="false" defaultButton="true" layoutX="356.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Remover" wrapText="false" />
         <Label layoutX="14.0" layoutY="17.0" text="Pesquisar" />
-        <TextField id="titulo" fx:id="pesquisarField" layoutX="80.0" layoutY="14.0" prefWidth="400.0000999999975" />
-        <Button id="loginButton" fx:id="pesquisar" cancelButton="false" defaultButton="true" layoutX="515.0" layoutY="15.0" mnemonicParsing="false" onAction="#pesquisarAction" styleClass="btn, btn-success" text="Pesquisar" wrapText="false" />
       </children>
     </Pane>
   </children>

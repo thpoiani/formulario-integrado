@@ -54,7 +54,7 @@ public class FormularioController extends AbstractController {
 
     @FXML
     void inserirAction(ActionEvent event) {
-        super.start("categoria.fxml", "Categoria");
+        super.start("categoria.fxml", "Categoria", this);
         super.hide();
     }
 
