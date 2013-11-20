@@ -160,9 +160,16 @@ public class Campo extends Model {
 
     /**
      * @return the tipo
+     */ 
+//    public Tipo getTipo() {
+//        return tipo;
+//    }
+    
+    /**
+     * @return the tipo
      */
-    public Tipo getTipo() {
-        return tipo;
+    public String getTipo() {
+        return tipo.getDescricao();
     }
 
     /**
