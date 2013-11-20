@@ -151,15 +151,15 @@ public class CategoriasController extends AbstractController {
     private void testeTabela() {
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
-        categoria1.setTitulo("thiago");
-        categoria1.setDescricao("thpoiani@hotmail.com");
+        categoria1.setTitulo("categoria 1");
+        categoria1.setDescricao("descricao 1");
         
         Categoria categoria2 = new Categoria();
         categoria2.setId(2);
-        categoria2.setTitulo("poiani");
-        categoria2.setDescricao("thpoiani@gmail.com");
+        categoria2.setTitulo("categoria 2");
+        categoria2.setDescricao("descricao 2");
         
-        ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+        ArrayList<Categoria> categorias = new ArrayList<>();
         categorias.add(categoria1);
         categorias.add(categoria2);
 

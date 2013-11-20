@@ -1,7 +1,7 @@
 package formulario.integrado.model;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Formulario extends Model {
     
@@ -10,7 +10,7 @@ public class Formulario extends Model {
     private boolean aberto;
     private boolean status;
     private Date data;
-    private ArrayList<Categoria> categorias;
+    private List<Categoria> categorias;
 
     /**
      * @return the id
@@ -92,14 +92,14 @@ public class Formulario extends Model {
     /**
      * @return the categorias
      */
-    public ArrayList<Categoria> getCategorias() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
 
     /**
      * @param categorias the categorias to set
      */
-    public void setCategorias(ArrayList<Categoria> categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
 

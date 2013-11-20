@@ -2,6 +2,7 @@ package formulario.integrado.controller;
 
 import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
+import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Formulario;
 import formulario.integrado.model.IModel;
 import formulario.integrado.vendor.Dialog;
@@ -11,6 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -215,6 +217,22 @@ public class FormulariosController extends AbstractController {
         formulario1.setAberto(true);
         formulario1.setData(new Date());
         formulario1.setStatus(false);
+        
+        Categoria categoria1 = new Categoria();
+        categoria1.setId(1);
+        categoria1.setTitulo("categoria 1");
+        categoria1.setDescricao("descricao 1");
+        
+        Categoria categoria2 = new Categoria();
+        categoria2.setId(2);
+        categoria2.setTitulo("categoria 2");
+        categoria2.setDescricao("descricao 2");
+        
+        ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+        categorias.add(categoria1);
+        categorias.add(categoria2);
+        
+        formulario1.setCategorias(categorias);
 
         Formulario formulario2 = new Formulario();
         formulario2.setId(2);

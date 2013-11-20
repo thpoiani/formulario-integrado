@@ -4,17 +4,22 @@ import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
 import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Formulario;
+import formulario.integrado.model.IModel;
 import formulario.integrado.vendor.Dialog;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.util.Callback;
 
 public class FormularioController extends AbstractController {
     
@@ -68,7 +73,8 @@ public class FormularioController extends AbstractController {
 
     @FXML
     void inserirAction(ActionEvent event) {
-        super.start("categoria.fxml", "Categoria", this);
+        // deve passar uma lista de categorias, para limpar a lista do proximo
+        super.start("categorias-listar.fxml", "Categorias", this);
         super.hide();
     }
 
@@ -87,9 +93,9 @@ public class FormularioController extends AbstractController {
                 getParentController().show();
                 super.close();
 
-                Dialog.showInfo("Formulário", "Formulário " + 
-                        (getParentController().model == null ? "cadastrado" : "alterado") + 
-                        " com sucesso");
+                Dialog.showInfo("Formulário", "Formulário "
+                        + (getParentController().model == null ? "cadastrado" : "alterado")
+                        + " com sucesso");
             } catch (Exception e) {
                 Dialog.showError("Formulário", "Ocorreu algum problema na persistência do formulário.");
             }
@@ -127,23 +133,46 @@ public class FormularioController extends AbstractController {
                 // estado de edição
                 if (getParentController().model != null) {
                     populate((Formulario) getParentController().model);
+                } else {
+                    models = new ArrayList<Categoria>();
                 }
-                
             }
         });
     }
     
     /**
      * Método para popular campos quando o formulário for para edição
-     * @param formulario 
+     * 
+     * @param formulario
      */
     private void populate(Formulario formulario) {
         titulo.setText(formulario.getTitulo());
         
         aberto.setSelected(formulario.isAberto());
         fechado.setSelected(!formulario.isAberto());
-        
-        // categorias
+
+        models = formulario.getCategorias();
+        categorias.setItems(FXCollections.observableArrayList(formulario.getCategorias()));
+        categorias.setCellFactory(new Callback<ListView<Categoria>, ListCell<Categoria>>(){
+ 
+            @Override
+            public ListCell<Categoria> call(ListView<Categoria> categoria ){
+                 
+                ListCell<Categoria> celulas = new ListCell<Categoria>(){
+ 
+                    @Override
+                    protected void updateItem(Categoria categoria, boolean bool) {
+                        super.updateItem(categoria, bool);
+                        if (categoria != null) {
+                            setText(categoria.getTitulo());
+                        }
+                    }
+ 
+                };
+                 
+                return celulas;
+            }
+        });
     }
     
     /**
