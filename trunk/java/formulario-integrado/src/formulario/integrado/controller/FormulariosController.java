@@ -3,6 +3,7 @@ package formulario.integrado.controller;
 import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
 import formulario.integrado.model.Formulario;
+import formulario.integrado.model.IModel;
 import formulario.integrado.vendor.Dialog;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class FormulariosController extends AbstractController {
     private AbstractController controller;
 
     private IFormularioBusiness formularioBusiness;
+    private IModel model;
     
     private ObservableList<Formulario> dados = FXCollections.observableArrayList();
     private ObservableList<Formulario> filtro = FXCollections.observableArrayList();
@@ -72,6 +74,7 @@ public class FormulariosController extends AbstractController {
         Formulario formulario = tabela.getSelectionModel().getSelectedItem();
 
         if (formulario != null) {
+            super.model = formulario;
             super.start("formulario.fxml", "Formulário", this);
             super.hide();
         }
@@ -82,7 +85,7 @@ public class FormulariosController extends AbstractController {
         Formulario formulario = tabela.getSelectionModel().getSelectedItem();
 
         if (formulario != null) {
-            Dialog.buildConfirmation("Remover formulário", "Deseja remover o formulário " + formulario.getTitulo())
+            Dialog.buildConfirmation("Remover formulário", "Deseja remover o formulário '" + formulario.getTitulo() + "'?")
                     .addYesButton(new EventHandler() {
                         @Override
                         public void handle(Event event) {
@@ -186,6 +189,7 @@ public class FormulariosController extends AbstractController {
         try {
             // this.formularioBusiness.remove(formulario);
             this.dados.remove(formulario);
+            this.filtro.remove(formulario);
 
             Dialog.showInfo("Formulário", "Formulário removido com sucesso");
         } catch (Exception e) {
@@ -202,7 +206,7 @@ public class FormulariosController extends AbstractController {
     public AbstractController getParentController() {
         return this.controller;
     }
-
+    
     private void testeTabela() {
         Formulario formulario1 = new Formulario();
 
