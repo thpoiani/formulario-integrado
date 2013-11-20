@@ -1,4 +1,3 @@
-
 package formulario.integrado.controller;
 
 import formulario.integrado.business.CategoriaBusiness;
@@ -15,50 +14,35 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 public class CategoriasListarController extends AbstractController {
-    
+
     private AbstractController controller;
     
     private ICategoriaBusiness categoriaBusiness;
     
     private ObservableList<Categoria> dados = FXCollections.observableArrayList();
-
+    
     @FXML
     private Button cancelar;
-
+    
     @FXML
     private TableColumn<Categoria, String> descricao;
-
+    
     @FXML
     private TableColumn<Categoria, Integer> id;
-
+    
     @FXML
     private Button inserir;
-
+    
     @FXML
     private TableView<Categoria> tabela;
-
+    
     @FXML
     private TableColumn<Categoria, String> titulo;
-
-    @FXML
-    void cancelarAction(ActionEvent event) {
-        getParentController().show();
-        super.close();
-    }
-
-    @FXML
-    void inserirAction(ActionEvent event) {
-        Categoria categoria = tabela.getSelectionModel().getSelectedItem();
-        
-        if (categoria != null) {
-            getParentController().models.add(categoria);
-            // retornar categoria para formulario
-            getParentController().show();
-            super.close();
-        }
-    }
+    
+    public CategoriasListarController() {
+        this.categoriaBusiness = new CategoriaBusiness();
+    }    
 
     @Override
     void initialize() {
@@ -68,24 +52,14 @@ public class CategoriasListarController extends AbstractController {
         assert inserir != null : "fx:id=\"salvar\" was not injected: check your FXML file 'categorias-listar.fxml'.";
         assert tabela != null : "fx:id=\"tabela\" was not injected: check your FXML file 'categorias-listar.fxml'.";
         assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'categorias-listar.fxml'.";
-        
-        this.categoriaBusiness = new CategoriaBusiness();
-        
-        descricao.setCellValueFactory(new PropertyValueFactory<Categoria, String>("descricao"));
-        id.setCellValueFactory(new PropertyValueFactory<Categoria, Integer>("id"));
-        titulo.setCellValueFactory(new PropertyValueFactory<Categoria, String>("titulo"));
-        
+
+        populateTableColumns();
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 setWindow(inserir.getScene().getWindow());
-                
-//                List<Categoria> categorias = categoriaBusiness.show();
-//                categorias.removeAll(getParentController().models);
-//                this.dados = FXCollections.observableArrayList(categorias);
-//                tabela.setItems(this.dados);
-                
-                testeTabela();
+                populateTableView();
             }
         });
     }
@@ -99,30 +73,80 @@ public class CategoriasListarController extends AbstractController {
     public AbstractController getParentController() {
         return this.controller;
     }
+
+    @FXML
+    void cancelarAction(ActionEvent event) {
+        getParentController().show();
+        super.close();
+    }
+
+    @FXML
+    void inserirAction(ActionEvent event) {
+        if (categoriaIsSelected()) {
+            getParentController().models.add(tabela.getSelectionModel().getSelectedItem());
+            getParentController().show();
+            super.close();
+        }
+    }
     
-    private void testeTabela() {
+    /**
+     * Método para verificar se alguma categoria está selecionada
+     *
+     * @return boolean
+     */
+    private boolean categoriaIsSelected() {
+        return tabela.getSelectionModel().getSelectedItem() != null;
+    }
+    
+    /**
+     * Método para atribuir os valores às colunas da TableView
+     */
+    private void populateTableColumns() {
+        descricao.setCellValueFactory(new PropertyValueFactory<Categoria, String>("descricao"));
+        id.setCellValueFactory(new PropertyValueFactory<Categoria, Integer>("id"));
+        titulo.setCellValueFactory(new PropertyValueFactory<Categoria, String>("titulo"));
+    }
+    
+    /**
+     * Método para popular lista de categorias
+     *
+     */
+    private void populateTableView() {
+//        List<Categoria> categorias = categoriaBusiness.show();
+//        categorias.removeAll(getParentController().models);
+//        this.dados = FXCollections.observableArrayList(categorias);
+//        tabela.setItems(this.dados);
+
+        fakeData();
+    }
+
+    /**
+     * Método com dados fictícios para homologação
+     * 
+     */
+    private void fakeData() {
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
         categoria1.setTitulo("categoria 1");
         categoria1.setDescricao("descricao 1");
-        
+
         Categoria categoria2 = new Categoria();
         categoria2.setId(2);
         categoria2.setTitulo("categoria 2");
         categoria2.setDescricao("descricao 2");
-        
+
         Categoria categoria3 = new Categoria();
         categoria3.setId(3);
         categoria3.setTitulo("categoria 3");
         categoria3.setDescricao("descricao 3");
-        
-        ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+
+        ArrayList<Categoria> categorias = new ArrayList<>();
         categorias.add(categoria1);
         categorias.add(categoria2);
         categorias.add(categoria3);
 
-        categorias.removeAll(getParentController().models);                
-        dados = FXCollections.observableArrayList(categorias);        
+        categorias.removeAll(getParentController().models);
+        dados = FXCollections.observableArrayList(categorias);
         tabela.setItems(dados);
     }
 
