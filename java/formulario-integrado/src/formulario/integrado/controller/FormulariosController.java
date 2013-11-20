@@ -4,7 +4,6 @@ import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
 import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Formulario;
-import formulario.integrado.model.IModel;
 import formulario.integrado.vendor.Dialog;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -30,11 +29,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FormulariosController extends AbstractController {
 
     private AbstractController controller;
-
+    
     private IFormularioBusiness formularioBusiness;
-    private IModel model;
     
     private ObservableList<Formulario> dados = FXCollections.observableArrayList();
+    
     private ObservableList<Formulario> filtro = FXCollections.observableArrayList();
     
     @FXML
@@ -63,11 +62,11 @@ public class FormulariosController extends AbstractController {
     
     @FXML
     private Button visualizar;
-    
+
     public FormulariosController() {
         this.formularioBusiness = new FormularioBusiness();
     }
-    
+
     @Override
     void initialize() {
         assert aberto != null : "fx:id=\"aberto\" was not injected: check your FXML file 'formularios.fxml'.";
@@ -80,22 +79,13 @@ public class FormulariosController extends AbstractController {
         assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'formularios.fxml'.";
         assert visualizar != null : "fx:id=\"visualizar\" was not injected: check your FXML file 'formularios.fxml'.";
 
-        aberto.setCellValueFactory(new PropertyValueFactory<Formulario, String>("aberto"));
-        id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
-        titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
-
-//        this.dados = FXCollections.observableArrayList(formularioBusiness.show());
-//        tabela.setItems(this.dados);
-
-        // REMOVER EM PRODUÇÃO
-        testeTabela();
-
-        this.filtro.addAll(this.dados);
+        populateTableView();
 
         pesquisar.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                filtrarResultados();
+                filterResults();
+                reorderTableView();
             }
         });
 
@@ -105,7 +95,6 @@ public class FormulariosController extends AbstractController {
                 setWindow(visualizar.getScene().getWindow());
             }
         });
-
     }
     
     @Override
@@ -118,6 +107,24 @@ public class FormulariosController extends AbstractController {
         return this.controller;
     }
     
+    /**
+     * Método para atribuir os dados exibidos na tabela
+     * 
+     */
+    private void populateTableView() {
+        aberto.setCellValueFactory(new PropertyValueFactory<Formulario, String>("aberto"));
+        id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
+        titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
+        
+//        this.dados = FXCollections.observableArrayList(formularioBusiness.show());
+//        tabela.setItems(this.dados);
+
+//         REMOVER EM PRODUÇÃO
+        fakeData();
+
+        this.filtro.addAll(this.dados);
+    }
+   
     @FXML
     void cancelarAction(ActionEvent event) {
         getParentController().show();
@@ -126,21 +133,20 @@ public class FormulariosController extends AbstractController {
 
     @FXML
     void editarAction(ActionEvent event) {
-        Formulario formulario = tabela.getSelectionModel().getSelectedItem();
-
-        if (formulario != null) {
-            super.model = formulario;
+        if (formularioIsSelected()) {
+            super.model = tabela.getSelectionModel().getSelectedItem();
             super.start("formulario.fxml", "Formulário", this);
             super.hide();
         }
     }
-    
+
     @FXML
     void removerAction(ActionEvent event) {
-        Formulario formulario = tabela.getSelectionModel().getSelectedItem();
-
-        if (formulario != null) {
-            Dialog.buildConfirmation("Remover formulário", "Deseja remover o formulário '" + formulario.getTitulo() + "'?")
+        if (formularioIsSelected()) {
+            Dialog.buildConfirmation(
+                    "Remover formulário",
+                    "Deseja remover o formulário '" 
+                    + tabela.getSelectionModel().getSelectedItem().getTitulo() + "'?")
                     .addYesButton(new EventHandler() {
                         @Override
                         public void handle(Event event) {
@@ -155,49 +161,70 @@ public class FormulariosController extends AbstractController {
 
     @FXML
     void visualizarAction(ActionEvent event) throws IOException, URISyntaxException {
-        Formulario formulario = tabela.getSelectionModel().getSelectedItem();
-
-        if (formulario != null) {
-            Desktop.getDesktop().browse(new URI("http://formulario-integrado.com/formulario/" + formulario.getId()));
+        if (formularioIsSelected()) {
+            Desktop.getDesktop().browse(
+                    new URI(
+                    "http://formulario-integrado.com/formulario/"
+                    + tabela.getSelectionModel().getSelectedItem().getId()));
         }
-    }
-    
-    private void filtrarResultados() {
-        filtro.clear();
-
-        for (Formulario formulario : dados) {
-            if (validarFiltro(formulario)) {
-                filtro.add(formulario);
-            }
-        }
-        
-        atribuirResultados();
-    }
-
-    private boolean validarFiltro(Formulario formulario) {
-        String filtro = pesquisar.getText().toLowerCase();
-
-        if (filtro == null || filtro.isEmpty()) return true;
-        
-        return formulario.getTitulo().toLowerCase().contains(filtro);
-    }
-    
-    private void atribuirResultados() {
-        tabela.setItems(this.filtro);
-        reordenarTabela();
-    }
-
-    private void reordenarTabela() {
-        ArrayList<TableColumn<Formulario, ?>> resultado = new ArrayList<>(tabela.getSortOrder());
-        
-        tabela.getSortOrder().clear();
-        tabela.getSortOrder().addAll(resultado);
     }
     
     /**
+     * Método para verificar se algum formulário está selecionado
+     *
+     * @return boolean
+     */
+    private boolean formularioIsSelected() {
+        return tabela.getSelectionModel().getSelectedItem() != null;
+    }
+
+    /**
+     * Método para filtrar os resultados inseridos e os adicionar a ListView
+     *
+     */
+    private void filterResults() {
+        filtro.clear();
+
+        for (Formulario formulario : dados) {
+            if (matchesFilter(formulario)) {
+                filtro.add(formulario);
+            }
+        }
+
+        tabela.setItems(this.filtro);
+    }
+
+    /**
+     * Método para validar o filtro com os dados existentes
+     * 
+     * @param Formulario formulario
+     * @return boolean
+     */
+    private boolean matchesFilter(Formulario formulario) {
+        String filtro = pesquisar.getText().toLowerCase();
+
+        if (filtro == null || filtro.isEmpty()) {
+            return true;
+        }
+
+        return formulario.getTitulo().toLowerCase().contains(filtro);
+    }
+
+    /**
+     * Método para reordenar tabela
+     * 
+     */
+    private void reorderTableView() {
+        ArrayList<TableColumn<Formulario, ?>> resultado = new ArrayList<>(tabela.getSortOrder());
+
+        tabela.getSortOrder().clear();
+        tabela.getSortOrder().addAll(resultado);
+    }
+
+    /**
      * Método para remoção de Formulário
      *
-     * @param formulario
+     * @param Formulario formulario
      */
     private void remover(Formulario formulario) {
         try {
@@ -211,30 +238,32 @@ public class FormulariosController extends AbstractController {
         }
     }
 
-    
-    private void testeTabela() {
+    /**
+     * Método com dados fictícios para homologação
+     * 
+     */
+    private void fakeData() {
         Formulario formulario1 = new Formulario();
-
-        formulario1.setTitulo("thiago");
         formulario1.setId(1);
+        formulario1.setTitulo("thiago");
         formulario1.setAberto(true);
         formulario1.setData(new Date());
         formulario1.setStatus(false);
-        
+
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
         categoria1.setTitulo("categoria 1");
         categoria1.setDescricao("descricao 1");
-        
+
         Categoria categoria2 = new Categoria();
         categoria2.setId(2);
         categoria2.setTitulo("categoria 2");
         categoria2.setDescricao("descricao 2");
-        
-        ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+
+        ArrayList<Categoria> categorias = new ArrayList<>();
         categorias.add(categoria1);
         categorias.add(categoria2);
-        
+
         formulario1.setCategorias(categorias);
 
         Formulario formulario2 = new Formulario();
@@ -242,7 +271,7 @@ public class FormulariosController extends AbstractController {
         formulario2.setTitulo("poiani");
         formulario2.setAberto(false);
 
-        ArrayList<Formulario> formularios = new ArrayList<Formulario>();
+        ArrayList<Formulario> formularios = new ArrayList<>();
         formularios.add(formulario1);
         formularios.add(formulario2);
 

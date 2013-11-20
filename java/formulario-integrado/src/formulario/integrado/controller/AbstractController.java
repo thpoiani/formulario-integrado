@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -110,7 +111,8 @@ abstract class AbstractController implements IController {
 
             stage.setScene(scene);
             stage.setResizable(false);
-
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/icon.png")));
+            
             stage.show();
 
             return stage;
