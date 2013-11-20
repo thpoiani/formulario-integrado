@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-abstract class Model implements IModel {
+public abstract class Model implements IModel {
 
     private ArrayList<String> errors;
 

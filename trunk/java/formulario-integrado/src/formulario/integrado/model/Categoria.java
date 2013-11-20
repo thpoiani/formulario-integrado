@@ -1,7 +1,7 @@
 package formulario.integrado.model;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Categoria extends Model {
 
@@ -11,8 +11,8 @@ public class Categoria extends Model {
     private boolean status;
     private Date data;
     private int ordem;
-    private ArrayList<Formulario> formulario;
-    private ArrayList<Campo> campos;
+    private List<Formulario> formulario;
+    private List<Campo> campos;
 
     /**
      * @return the id
@@ -101,28 +101,28 @@ public class Categoria extends Model {
     /**
      * @return the formulario
      */
-    public ArrayList<Formulario> getFormulario() {
+    public List<Formulario> getFormulario() {
         return formulario;
     }
 
     /**
      * @param formulario the formulario to set
      */
-    public void setFormulario(ArrayList<Formulario> formulario) {
+    public void setFormulario(List<Formulario> formulario) {
         this.formulario = formulario;
     }
 
     /**
      * @return the campos
      */
-    public ArrayList<Campo> getCampos() {
+    public List<Campo> getCampos() {
         return campos;
     }
 
     /**
      * @param campos the campos to set
      */
-    public void setCampos(ArrayList<Campo> campos) {
+    public void setCampos(List<Campo> campos) {
         this.campos = campos;
     }
 
@@ -130,5 +130,28 @@ public class Categoria extends Model {
     public boolean validate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.id;
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categoria other = (Categoria) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
 }
