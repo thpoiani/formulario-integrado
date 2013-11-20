@@ -189,6 +189,7 @@ public class FormularioController extends AbstractController {
      * Método para popular lista de categorias
      *
      */
+    @SuppressWarnings("unchecked")
     private void populateListView() {
         categorias.setItems(FXCollections.observableArrayList(models));
         onShowRefreshListView();
@@ -213,6 +214,7 @@ public class FormularioController extends AbstractController {
      * Método para atualizar lista de categorias
      *
      */
+    @SuppressWarnings("unchecked")
     private void refreshListView() {
         categorias.setItems(null);
         categorias.setItems(FXCollections.observableArrayList(models));
@@ -247,6 +249,7 @@ public class FormularioController extends AbstractController {
      *
      * @return Formulario
      */
+    @SuppressWarnings("unchecked")
     private Formulario assemblyRequest() {
         Formulario formulario;
 
@@ -274,9 +277,9 @@ public class FormularioController extends AbstractController {
     private void showErrors(Formulario formulario) {
         titulo.setStyle(super.getClearStyle());
 
-        Iterator iterator = formulario.createErrorIterator();
+        Iterator<String> iterator = formulario.createErrorIterator();
         while (iterator.hasNext()) {
-            switch ((String) iterator.next()) {
+            switch (iterator.next()) {
                 case "titulo":
                     titulo.setStyle(super.getErrorStyle());
                     break;

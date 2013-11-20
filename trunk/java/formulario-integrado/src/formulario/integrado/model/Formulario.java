@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Formulario extends Model {
-    
+
     private int id;
     private String titulo;
     private boolean aberto;
@@ -53,7 +53,7 @@ public class Formulario extends Model {
     public String getAberto() {
         return aberto ? "Sim" : "Não";
     }
-    
+
     /**
      * @param aberto the aberto to set
      */
@@ -105,14 +105,14 @@ public class Formulario extends Model {
 
     @Override
     public boolean validate() {
-        if (this.titulo.isEmpty() || this.titulo == null ) {
+        if (this.titulo.isEmpty() || this.titulo == null) {
             super.addErrors("titulo");
         } else {
             if (this.titulo.length() > 100) {
                 super.addErrors("titulo");
             }
         }
-        
+
         return super.getErrors().isEmpty();
     }
 }

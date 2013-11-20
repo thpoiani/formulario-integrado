@@ -81,6 +81,7 @@ public class CategoriasListarController extends AbstractController {
     }
 
     @FXML
+    @SuppressWarnings("unchecked")
     void inserirAction(ActionEvent event) {
         if (categoriaIsSelected()) {
             getParentController().models.add(tabela.getSelectionModel().getSelectedItem());

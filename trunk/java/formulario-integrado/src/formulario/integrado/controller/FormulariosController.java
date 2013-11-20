@@ -147,12 +147,7 @@ public class FormulariosController extends AbstractController {
                     "Remover formulário",
                     "Deseja remover o formulário '" 
                     + tabela.getSelectionModel().getSelectedItem().getTitulo() + "'?")
-                    .addYesButton(new EventHandler() {
-                        @Override
-                        public void handle(Event event) {
-                            remover(tabela.getSelectionModel().getSelectedItem());
-                        }
-                    })
+                    .addYesButton(new removerEvent())
                     .addNoButton(null)
                     .build()
                     .show();
@@ -277,5 +272,16 @@ public class FormulariosController extends AbstractController {
 
         dados = FXCollections.observableArrayList(formularios);
         tabela.setItems(dados);
+    }
+
+    /**
+     * Classe privada com implementação do evento de remoção de formulário
+     */
+    private class removerEvent implements EventHandler {
+
+        @Override
+        public void handle(Event event) {
+            remover(tabela.getSelectionModel().getSelectedItem());
+        }
     }
 }

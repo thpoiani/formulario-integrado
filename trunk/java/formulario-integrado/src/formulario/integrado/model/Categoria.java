@@ -14,6 +14,31 @@ public class Categoria extends Model {
     private List<Formulario> formulario;
     private List<Campo> campos;
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Categoria other = (Categoria) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.id;
+        return hash;
+    }
+
     /**
      * @return the id
      */
@@ -128,30 +153,14 @@ public class Categoria extends Model {
 
     @Override
     public boolean validate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.id;
-        return hash;
-    }
+        if (this.titulo.isEmpty() || this.titulo == null) {
+            super.addErrors("titulo");
+        } else {
+            if (this.titulo.length() > 100) {
+                super.addErrors("titulo");
+            }
+        }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Categoria other = (Categoria) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return super.getErrors().isEmpty();
     }
-    
 }

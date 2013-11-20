@@ -7,20 +7,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public abstract class Model implements IModel {
 
     private ArrayList<String> errors;
-
-    public abstract boolean validate();
-
-    public Model() {
-        this.errors = new ArrayList<String>();
-    }
     
-    public Iterator createErrorIterator() {
+    public Model() {
+        this.errors = new ArrayList<>();
+    }
+
+    public Iterator<String> createErrorIterator() {
         return this.getErrors().iterator();
     }
 
     /**
      * @return the valid
      */
+    @Override
     public boolean isValid() {
         return validate();
     }
@@ -28,6 +27,7 @@ public abstract class Model implements IModel {
     /**
      * @return the errors
      */
+    @Override
     public ArrayList<String> getErrors() {
         return errors;
     }
@@ -35,6 +35,7 @@ public abstract class Model implements IModel {
     /**
      * @param errors the errors to set
      */
+    @Override
     public void addErrors(String error) {
         this.errors.add(error);
     }
