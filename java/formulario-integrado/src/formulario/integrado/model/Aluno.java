@@ -67,6 +67,22 @@ public class Aluno extends Model {
 
     @Override
     public boolean validate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.prontuario.isEmpty() || this.prontuario == null ) {
+            super.addErrors("prontuario");
+        } else {
+            if (this.prontuario.length() > 10) {
+                super.addErrors("prontuario");
+            }
+        }
+        
+        if (this.nome.isEmpty() || this.nome == null ) {
+            super.addErrors("nome");
+        } else {
+            if (this.nome.length() > 10) {
+                super.addErrors("nome");
+            }
+        }
+        
+        return super.getErrors().isEmpty();
     }
 }
