@@ -35,6 +35,14 @@ public class Tipo extends Model {
 
     @Override
     public boolean validate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.descricao.isEmpty() || this.descricao == null ) {
+            super.addErrors("descricao");
+        } else {
+            if (this.descricao.length() > 10) {
+                super.addErrors("descricao");
+            }
+        }
+        
+        return super.getErrors().isEmpty();
     }
 }

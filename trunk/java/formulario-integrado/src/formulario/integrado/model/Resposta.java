@@ -67,6 +67,10 @@ public class Resposta extends Model {
 
     @Override
     public boolean validate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.resposta.isEmpty() || this.resposta == null ) {
+            super.addErrors("titulo");
+        }
+        
+        return super.getErrors().isEmpty();
     }
 }
