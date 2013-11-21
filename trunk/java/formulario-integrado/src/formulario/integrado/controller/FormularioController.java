@@ -191,7 +191,10 @@ public class FormularioController extends AbstractController {
      */
     @SuppressWarnings("unchecked")
     private void populateListView() {
-        categorias.setItems(FXCollections.observableArrayList(models));
+        if (models != null) {
+            categorias.setItems(FXCollections.observableArrayList(models));
+        }
+        
         onShowRefreshListView();
         displayCategoriaTituloOnListView();
     }
