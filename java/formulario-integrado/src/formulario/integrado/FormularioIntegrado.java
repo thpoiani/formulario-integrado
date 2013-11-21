@@ -23,8 +23,7 @@ public class FormularioIntegrado extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//         Parent root = FXMLLoader.load(getClass().getResource("/formulario/integrado/view/login.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/formulario/integrado/view/principal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/formulario/integrado/view/login.fxml"));
 
         Scene scene = new Scene(root);
 
