@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -120,6 +119,7 @@ public class Dialog extends Stage {
             stage.borderPanel.setBottom(stage.buttonsPanel);
             stage.borderPanel.widthProperty().addListener(new ChangeListener<Number> () {
 
+                @Override
                 public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
                     stage.buttonsPanel.layout();
                 }
@@ -205,6 +205,7 @@ public class Dialog extends Stage {
             stage.stackTraceLabel = new Label();
             stage.stackTraceLabel.widthProperty().addListener(new ChangeListener<Number>() {
 
+                @Override
                 public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
                     alignScrollPane();
                 }
@@ -212,6 +213,7 @@ public class Dialog extends Stage {
             
             stage.stackTraceLabel.heightProperty().addListener(new ChangeListener<Number>() {
 
+                @Override
                 public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
                     alignScrollPane();
                 }
@@ -225,6 +227,7 @@ public class Dialog extends Stage {
             
             stage.viewStacktraceButton.setOnAction(new EventHandler<ActionEvent>() {
 
+                @Override
                 public void handle(ActionEvent t) {
                     stage.stacktraceVisible = !stage.stacktraceVisible;
                     if (stage.stacktraceVisible) {
@@ -247,9 +250,10 @@ public class Dialog extends Stage {
             
             stage.copyStacktraceButton.setOnAction(new EventHandler<ActionEvent>() {
 
+                @Override
                 public void handle(ActionEvent t) {
                     Clipboard clipboard = Clipboard.getSystemClipboard();
-                    Map<DataFormat, Object> map = new HashMap<DataFormat, Object>();
+                    Map<DataFormat, Object> map = new HashMap<>();
                     map.put(DataFormat.PLAIN_TEXT, stage.stacktrace);
                     clipboard.setContent(map);
                 }
@@ -257,6 +261,7 @@ public class Dialog extends Stage {
             
             stage.showingProperty().addListener(new ChangeListener<Boolean>() {
 
+                @Override
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean oldValue, Boolean newValue) {
                     if (newValue) {
                         stage.originalWidth = stage.getWidth();
@@ -303,6 +308,7 @@ public class Dialog extends Stage {
             stage.okButton.setPrefWidth(BUTTON_WIDTH + 20);
             stage.okButton.setOnAction(new EventHandler<ActionEvent> () {
 
+                @Override
                 public void handle(ActionEvent t) {
                     stage.close();
                 }
@@ -317,10 +323,12 @@ public class Dialog extends Stage {
             confirmationButton.setMinWidth(BUTTON_WIDTH);
             confirmationButton.setOnAction(new EventHandler<ActionEvent>() {
 
+                @Override
                 public void handle(ActionEvent t) {
                     stage.close();
-                    if (actionHandler != null)
+                    if (actionHandler != null) {
                         actionHandler.handle(t);
+                    }
                 }
             });
             
@@ -364,8 +372,9 @@ public class Dialog extends Stage {
          * @return dialog instance
          */
         public Dialog build() {
-            if (stage.buttonsPanel.getChildren().size() == 0)
+            if (stage.buttonsPanel.getChildren().size() == 0) {
                 throw new RuntimeException("Add one dialog button at least");
+            }
             
             stage.buttonsPanel.getChildren().get(0).requestFocus();
             return stage;
