@@ -192,7 +192,10 @@ public class CategoriaController extends AbstractController {
      */
     @SuppressWarnings("unchecked")
     private void populateListView() {
-        campos.setItems(FXCollections.observableArrayList(models));
+        if (models != null) {
+            campos.setItems(FXCollections.observableArrayList(models));
+        }
+        
         onShowRefreshListView();
         displayCampoTituloOnListView();
     }

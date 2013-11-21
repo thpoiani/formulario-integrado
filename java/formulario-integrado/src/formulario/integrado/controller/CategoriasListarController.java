@@ -84,7 +84,7 @@ public class CategoriasListarController extends AbstractController {
     @SuppressWarnings("unchecked")
     void inserirAction(ActionEvent event) {
         if (categoriaIsSelected()) {
-            getParentController().models.add(tabela.getSelectionModel().getSelectedItem());
+            getParentController().models.add(tabela.getSelectionModel().getSelectedItem());;
             getParentController().show();
             super.close();
         }
@@ -114,7 +114,11 @@ public class CategoriasListarController extends AbstractController {
      */
     private void populateTableView() {
 //        List<Categoria> categorias = categoriaBusiness.show();
-//        categorias.removeAll(getParentController().models);
+//        if (getParentController().models != null) {
+//            categorias.removeAll(getParentController().models);
+//        } else {
+//            getParentController().models = new ArrayList<>();
+//        }
 //        this.dados = FXCollections.observableArrayList(categorias);
 //        tabela.setItems(this.dados);
 
@@ -146,7 +150,12 @@ public class CategoriasListarController extends AbstractController {
         categorias.add(categoria2);
         categorias.add(categoria3);
 
-        categorias.removeAll(getParentController().models);
+        if (getParentController().models != null) {
+            categorias.removeAll(getParentController().models);
+        } else {
+            getParentController().models = new ArrayList<>();
+        }
+        
         dados = FXCollections.observableArrayList(categorias);
         tabela.setItems(dados);
     }
