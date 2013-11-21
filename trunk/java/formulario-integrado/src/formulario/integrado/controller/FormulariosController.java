@@ -92,7 +92,7 @@ public class FormulariosController extends AbstractController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                setWindow(visualizar.getScene().getWindow());
+                setWindow(tabela.getScene().getWindow());
             }
         });
     }
@@ -105,24 +105,6 @@ public class FormulariosController extends AbstractController {
     @Override
     public AbstractController getParentController() {
         return this.controller;
-    }
-    
-    /**
-     * Método para atribuir os dados exibidos na tabela
-     * 
-     */
-    private void populateTableView() {
-        aberto.setCellValueFactory(new PropertyValueFactory<Formulario, String>("aberto"));
-        id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
-        titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
-        
-//        this.dados = FXCollections.observableArrayList(formularioBusiness.show());
-//        tabela.setItems(this.dados);
-
-//         REMOVER EM PRODUÇÃO
-        fakeData();
-
-        this.filtro.addAll(this.dados);
     }
    
     @FXML
@@ -162,6 +144,24 @@ public class FormulariosController extends AbstractController {
                     "http://formulario-integrado.com/formulario/"
                     + tabela.getSelectionModel().getSelectedItem().getId()));
         }
+    }
+    
+    /**
+     * Método para atribuir os dados exibidos na tabela
+     * 
+     */
+    private void populateTableView() {
+        aberto.setCellValueFactory(new PropertyValueFactory<Formulario, String>("aberto"));
+        id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
+        titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
+        
+//        this.dados = FXCollections.observableArrayList(formularioBusiness.show());
+//        tabela.setItems(this.dados);
+
+//         REMOVER EM PRODUÇÃO
+        fakeData();
+
+        this.filtro.addAll(this.dados);
     }
     
     /**
