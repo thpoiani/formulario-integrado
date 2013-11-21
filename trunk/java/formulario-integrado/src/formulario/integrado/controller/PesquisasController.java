@@ -3,9 +3,7 @@ package formulario.integrado.controller;
 import formulario.integrado.business.IRespostaBusiness;
 import formulario.integrado.business.RespostaBusiness;
 import formulario.integrado.model.Aluno;
-import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Resposta;
-import java.sql.Array;
 import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -118,7 +116,9 @@ public class PesquisasController extends AbstractController {
     private boolean validarFiltro(Resposta resposta) {
         String filtro = pesquisar.getText().toLowerCase();
 
-        if (filtro == null || filtro.isEmpty()) return true;
+        if (filtro == null || filtro.isEmpty()) {
+            return true;
+        }
         
         // CORRIGIR
         return resposta.getResposta().toLowerCase().contains(filtro);
@@ -165,7 +165,7 @@ public class PesquisasController extends AbstractController {
         aluno2.setNome("poiani");
         aluno2.setProntuario("1108928");
         
-        ArrayList<Resposta> respostas = new ArrayList<Resposta>();
+        ArrayList<Resposta> respostas = new ArrayList<>();
         respostas.add(resposta1);
         respostas.add(resposta2);
         

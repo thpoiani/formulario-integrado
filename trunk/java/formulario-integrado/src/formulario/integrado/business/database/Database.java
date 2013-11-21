@@ -1,6 +1,7 @@
 package formulario.integrado.business.database;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Database {
     private Database() {}
@@ -22,7 +23,7 @@ public class Database {
 				default:
 					throw new RuntimeException("Não foi possível se conectar com o banco de dados.");
 			}
-		} catch (Exception e) {
+		} catch (SQLException | RuntimeException e) {
 			throw new RuntimeException("Falha na conexão com o banco de dados.");
 		}
 	}

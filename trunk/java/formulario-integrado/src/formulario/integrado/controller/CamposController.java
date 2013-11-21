@@ -123,7 +123,9 @@ public class CamposController extends AbstractController {
     private boolean validarFiltro(Campo campo) {
         String filtro = pesquisar.getText().toLowerCase();
 
-        if (filtro == null || filtro.isEmpty()) return true;
+        if (filtro == null || filtro.isEmpty()) {
+            return true;
+        }
         
         return campo.getTitulo().toLowerCase().contains(filtro);
     }
@@ -164,7 +166,7 @@ public class CamposController extends AbstractController {
         campo2.setTitulo("poiani");
         campo2.setTipo(tipo);
         
-        ArrayList<Campo> campos = new ArrayList<Campo>();
+        ArrayList<Campo> campos = new ArrayList<>();
         campos.add(campo1);
         campos.add(campo2);
 
