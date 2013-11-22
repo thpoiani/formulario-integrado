@@ -44,4 +44,9 @@ public abstract class Model implements IModel {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+    
+    @Override
+    public int getId(){
+        throw new UnsupportedOperationException();
+    }
 }
