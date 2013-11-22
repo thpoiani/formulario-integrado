@@ -140,7 +140,7 @@ public class FormularioController extends AbstractController {
 
         if (formulario.isValid()) {
             try {
-                this.formularioBusiness.add(formulario);
+                this.formularioBusiness.save(formulario);
                 getParentController().show();
                 super.close();
 
