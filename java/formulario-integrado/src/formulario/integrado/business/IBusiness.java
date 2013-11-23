@@ -8,7 +8,7 @@ public interface IBusiness<T extends IModel> {
     public void openConnection();
     public void closeConnection();
     
-    public IModel find(int id);
+    public T find(int id);
     
     public void add(T model);
     public void add(List<T> model);

@@ -28,7 +28,7 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public IModel find(int id) {
+    public T find(int id) {
         String sql = null;
         Statement ps = null;
         try {
