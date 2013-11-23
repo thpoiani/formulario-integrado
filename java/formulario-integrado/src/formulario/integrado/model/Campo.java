@@ -1,6 +1,7 @@
 package formulario.integrado.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Campo extends Model {
     
@@ -11,6 +12,8 @@ public class Campo extends Model {
     private boolean status;
     private int ordem;
     private Date data;
+    
+    private List<Grupo> grupos;
     
     private int categoriaId;
     private Categoria categoria;
@@ -160,13 +163,6 @@ public class Campo extends Model {
 
     /**
      * @return the tipo
-     */ 
-//    public Tipo getTipo() {
-//        return tipo;
-//    }
-    
-    /**
-     * @return the tipo
      */
     public String getTipo() {
         return tipo.getDescricao();
@@ -178,6 +174,16 @@ public class Campo extends Model {
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
+
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
+    
+    
 
     @Override
     public boolean validate() {
