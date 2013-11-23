@@ -1,12 +1,12 @@
 package formulario.integrado.business;
 
-import formulario.integrado.model.IModel;
 import formulario.integrado.model.Tipo;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
-public class TipoBusiness extends Business implements ITipoBusiness {
+public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
+
     private Statement sta;
     private PreparedStatement ps;
     private String sql = "";
@@ -15,10 +15,11 @@ public class TipoBusiness extends Business implements ITipoBusiness {
     public List<Tipo> show() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    @Override
     public void add(Tipo tipo) {
         try {
-            sql = "insert into tipo(id, descricao) values (" + tipo.getId() + ", '" + tipo.getDescricao()+ "');";
+            sql = "insert into tipo(id, descricao) values (" + tipo.getId() + ", '" + tipo.getDescricao() + "');";
             this.ps = connection.prepareStatement(sql);
             ps.execute();
             System.setErr(null);
@@ -27,9 +28,10 @@ public class TipoBusiness extends Business implements ITipoBusiness {
         }
     }
 
+    @Override
     public void update(Tipo tipo) {
         try {
-            sql = "update tipo set id = " + tipo.getId()+ ", descricao = '" + tipo.getDescricao() 
+            sql = "update tipo set id = " + tipo.getId() + ", descricao = '" + tipo.getDescricao()
                     + "' where id = " + tipo.getId() + ";";;
             this.sta = connection.createStatement();
             ps.executeUpdate(sql);
@@ -40,6 +42,7 @@ public class TipoBusiness extends Business implements ITipoBusiness {
         }
     }
 
+    @Override
     public void remove(Tipo tipo) {
         try {
             sql = "";
@@ -51,20 +54,4 @@ public class TipoBusiness extends Business implements ITipoBusiness {
             e.getMessage();
         }
     }
-
-    @Override
-    public void add(IModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(IModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(IModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-        
 }
