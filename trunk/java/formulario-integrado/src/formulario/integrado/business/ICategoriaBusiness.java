@@ -4,7 +4,7 @@ import formulario.integrado.model.Campo;
 import formulario.integrado.model.Categoria;
 import java.util.List;
 
-public interface ICategoriaBusiness extends IBusiness {
+public interface ICategoriaBusiness extends IBusiness<Categoria> {
     public List<Categoria> show();
     public void moveDown(Campo campo);
     public void moveUp(Campo campo);
