@@ -1,6 +1,7 @@
 package formulario.integrado.business;
 
 import formulario.integrado.model.Campo;
+import formulario.integrado.model.Grupo;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
@@ -14,6 +15,11 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     @Override
     public List<Campo> show() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public List<Grupo> show(Campo capo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -59,4 +65,5 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
             e.getMessage();
         }
     }
+    
 }

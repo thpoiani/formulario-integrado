@@ -214,6 +214,10 @@ public class CategoriasController extends AbstractController {
         }
     }
 
+    /**
+     * Método com dados fictícios para homologação
+     * 
+     */
     private void fakeData() {
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
