@@ -185,8 +185,11 @@ public class CampoController extends AbstractController {
         if (campo.isValid()) {
             try {
 //                this.campoBusiness.save(campo);
-                System.out.println(campo);
-                getParentController().models.add(campo);
+                
+                if (getParentController().model == null) {
+                    getParentController().models.add(campo);
+                }
+                
                 getParentController().show();
                 super.close();
                 Dialog.showInfo("Campo", "Campo "
@@ -214,6 +217,7 @@ public class CampoController extends AbstractController {
 //        REMOVER EM PRODUCAO
         fakeData();
         displayTipoDescricaoOnComboBox();
+        tipo.getSelectionModel().selectFirst();
     }
 
     /**
@@ -248,8 +252,6 @@ public class CampoController extends AbstractController {
                 return cells;
             }
         });
-        
-        tipo.getSelectionModel().selectFirst();
     }
 
     /**
@@ -278,7 +280,9 @@ public class CampoController extends AbstractController {
 
         titulo.setText(campo.getTitulo());
         selectRadioButtonByTipo(campo.getTipo());
-
+        
+        tipo.setValue(campo.getTipoModel());
+        
         maxlength.setText(String.valueOf(campo.getMaxlength()));
         regex.setText(campo.getRegex());
     }
@@ -289,12 +293,12 @@ public class CampoController extends AbstractController {
      * @param String tipo
      */
     private void selectRadioButtonByTipo(String tipo) {
-        switch (tipo) {
-            case "Check":
+        switch (tipo.toLowerCase()) {
+            case "check":
                 setRadioSelected(false, true, false);
                 break;
 
-            case "Radio":
+            case "radio":
                 setRadioSelected(false, false, true);
                 break;
 
@@ -347,9 +351,22 @@ public class CampoController extends AbstractController {
 
         campo.setTitulo(titulo.getText());
         campo.setStatus(true);
-
-        campo.setGrupos(models);
-
+        campo.setTipo(tipo.getValue());
+        
+        if (!campo.getTipo().toLowerCase().equals("check") || !campo.getTipo().toLowerCase().equals("radio")) {
+            campo.setRegex(regex.getText());
+            
+            if (maxlength.getText().length() > 0) {
+                try {
+                    campo.setMaxlength(Integer.parseInt(maxlength.getText()));
+                } catch (Exception e) {
+                    campo.addErrors("maxlength");
+                }
+            }
+        } else {
+            campo.setGrupos(models);    
+        }
+        
         return campo;
     }
 
@@ -360,12 +377,17 @@ public class CampoController extends AbstractController {
      */
     private void showErrors(Campo campo) {
         titulo.setStyle(super.getClearStyle());
+        maxlength.setStyle(super.getClearStyle());
 
         Iterator<String> iterator = campo.createErrorIterator();
         while (iterator.hasNext()) {
             switch (iterator.next()) {
                 case "titulo":
                     titulo.setStyle(super.getErrorStyle());
+                    break;
+                    
+                case "maxlength":
+                    maxlength.setStyle(super.getErrorStyle());
                     break;
             }
         }
@@ -380,9 +402,9 @@ public class CampoController extends AbstractController {
         texto.setId(1);
         texto.setDescricao("Texto");
 
-        Tipo check = new Tipo();
-        check.setId(2);
-        check.setDescricao("Check");
+        Tipo inteiro = new Tipo();
+        inteiro.setId(2);
+        inteiro.setDescricao("Inteiro");
 
         Grupo grupo1 = new Grupo();
         grupo1.setId(1);
@@ -424,7 +446,7 @@ public class CampoController extends AbstractController {
 
         ArrayList<Tipo> tipos = new ArrayList<>();
         tipos.add(texto);
-        tipos.add(check);
+        tipos.add(inteiro);
 
         this.dados = FXCollections.observableArrayList(grupos);
         tabela.setItems(this.dados);

@@ -109,7 +109,7 @@ public class CategoriaController extends AbstractController {
     @FXML
     void desceAction(ActionEvent event) {
         if (campoIsSelected()) {
-            // categoriaBusiness.moveDown(categorias.getSelectionModel().getSelectedItem());
+            // categoriaBusiness.moveDown(campos.getSelectionModel().getSelectedItem());
             refreshListView();
         }
     }
@@ -117,6 +117,7 @@ public class CategoriaController extends AbstractController {
     @FXML
     void editarAction(ActionEvent event) {
         if (campoIsSelected()) {
+            this.model = campos.getSelectionModel().getSelectedItem();
             super.start("campo.fxml", "Campo", this);
             super.hide();
         }
@@ -124,6 +125,7 @@ public class CategoriaController extends AbstractController {
 
     @FXML
     void inserirAction(ActionEvent event) {
+        this.model = null;
         super.start("campo.fxml", "Campo", this);
         super.hide();
     }

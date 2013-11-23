@@ -167,6 +167,10 @@ public class Campo extends Model {
     public String getTipo() {
         return tipo.getDescricao();
     }
+    
+    public Tipo getTipoModel() {
+        return tipo;
+    }
 
     /**
      * @param tipo the tipo to set
@@ -193,6 +197,10 @@ public class Campo extends Model {
             if (this.titulo.length() > 50) {
                 super.addErrors("titulo");
             }
+        }
+        
+        if (this.maxlength > 99999) {
+            super.addErrors("maxlength");
         }
         
         return super.getErrors().isEmpty();
