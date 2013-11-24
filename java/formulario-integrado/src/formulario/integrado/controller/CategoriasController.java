@@ -4,6 +4,7 @@ import formulario.integrado.business.CategoriaBusiness;
 import formulario.integrado.business.ICategoriaBusiness;
 import formulario.integrado.model.Categoria;
 import formulario.integrado.vendor.Dialog;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.WindowEvent;
 
 public class CategoriasController extends AbstractController {
 
@@ -83,6 +85,7 @@ public class CategoriasController extends AbstractController {
             @Override
             public void run() {
                 setWindow(tabela.getScene().getWindow());
+                onShowRefreshTableView();
             }
         });
     }
@@ -135,12 +138,13 @@ public class CategoriasController extends AbstractController {
         id.setCellValueFactory(new PropertyValueFactory<Categoria, Integer>("id"));
         titulo.setCellValueFactory(new PropertyValueFactory<Categoria, String>("titulo"));
         
-//        this.dados = FXCollections.observableArrayList(categoriaBusiness.show());
-//        tabela.setItems(this.dados);
-
-//         REMOVER EM PRODUÇÃO
-        fakeData();
-
+        try {
+            this.dados = FXCollections.observableArrayList(categoriaBusiness.show());
+            tabela.setItems(this.dados);
+        } catch (SQLException e) {
+            Dialog.showError("Categorias", "Ocorreu algum problema na recuperação das categorias.");
+        }
+        
         this.filtro.addAll(this.dados);
     }
     
@@ -204,7 +208,7 @@ public class CategoriasController extends AbstractController {
      */
     private void remover(Categoria categoria) {
         try {
-            // this.categoriaBusiness.remove(categoria);
+            this.categoriaBusiness.remove(categoria);
             this.dados.remove(categoria);
             this.filtro.remove(categoria);
 
@@ -215,27 +219,36 @@ public class CategoriasController extends AbstractController {
     }
 
     /**
-     * Método com dados fictícios para homologação
-     * 
+     * Método para adicionar um Listener de onShowing. Quando exibir a tela,
+     * atualiza a lista de categorias
+     *
      */
-    private void fakeData() {
-        Categoria categoria1 = new Categoria();
-        categoria1.setId(1);
-        categoria1.setTitulo("categoria 1");
-        categoria1.setDescricao("descricao 1");
-
-        Categoria categoria2 = new Categoria();
-        categoria2.setId(2);
-        categoria2.setTitulo("categoria 2");
-        categoria2.setDescricao("descricao 2");
-
-        ArrayList<Categoria> categorias = new ArrayList<>();
-        categorias.add(categoria1);
-        categorias.add(categoria2);
-
-        dados = FXCollections.observableArrayList(categorias);
-        tabela.setItems(dados);
+    private void onShowRefreshTableView() {
+        getWindow().setOnShowing(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                refreshTableView();
+            }
+        });
     }
+
+    /**
+     * Método para atualizar lista de categorias
+     *
+     */
+    @SuppressWarnings("unchecked")
+    private void refreshTableView() {
+        try {
+            tabela.setItems(null);
+            
+            this.dados = FXCollections.observableArrayList(this.categoriaBusiness.show());
+            tabela.setItems(this.dados);
+            this.filtro.addAll(this.dados);
+        } catch (Exception e) {
+            Dialog.showError("Categoria", "Ocorreu algum problema na recuperação das categorias.");
+        }
+    }
+
     
     /**
      * Classe privada com implementação do evento de remoção de formulário
