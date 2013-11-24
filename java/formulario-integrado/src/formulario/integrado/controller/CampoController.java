@@ -5,9 +5,11 @@ import formulario.integrado.business.ICampoBusiness;
 import formulario.integrado.business.ITipoBusiness;
 import formulario.integrado.business.TipoBusiness;
 import formulario.integrado.model.Campo;
+import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Grupo;
 import formulario.integrado.model.Tipo;
 import formulario.integrado.vendor.Dialog;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -123,9 +125,9 @@ public class CampoController extends AbstractController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                setWindow(titulo.getScene().getWindow());
-
-                if (getParentController().model != null) {
+                setWindow(salvar.getScene().getWindow());
+                
+                if (getParentController().model != null && getParentController().model instanceof Campo) {
                     // estado de edição
                     populateModel((Campo) getParentController().model);
                 } else {
@@ -183,21 +185,22 @@ public class CampoController extends AbstractController {
         Campo campo = assemblyRequest();
 
         if (campo.isValid()) {
-            try {
-//                this.campoBusiness.save(campo);
-                
-                if (getParentController().model == null) {
-                    getParentController().models.add(campo);
+            if (getParentController().model != null) {
+                try {
+                    this.campoBusiness.save(campo);
+                } catch (Exception e) {
+                    Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
                 }
-                
-                getParentController().show();
-                super.close();
-                Dialog.showInfo("Campo", "Campo "
-                        + (getParentController().model == null ? "cadastrado" : "alterado")
-                        + " com sucesso");
-            } catch (Exception e) {
-                Dialog.showError("Campo", "Ocorreu algum problema na persistência do campo.");
+            } else {
+                getParentController().models.add(campo);
             }
+            
+            getParentController().show();
+            super.close();
+
+            Dialog.showInfo("Campo", "Campo "
+                    + (getParentController().model == null ? "cadastrado" : "alterado")
+                    + " com sucesso");
         }
 
         this.showErrors(campo);
@@ -210,14 +213,19 @@ public class CampoController extends AbstractController {
         }
     }
 
+    /**
+     * Método para atribuir os dados exibidos na combobox
+     * 
+     */
     private void populateComboBox() {
-//        this.tipos = FXCollections.observableArrayList(tipoBusiness.show());
-//        tipo.setItems(this.tipos);
-
-//        REMOVER EM PRODUCAO
-        fakeData();
-        displayTipoDescricaoOnComboBox();
-        tipo.getSelectionModel().selectFirst();
+        try {
+            this.tipos = FXCollections.observableArrayList(tipoBusiness.show());
+            tipo.setItems(this.tipos);
+            displayTipoDescricaoOnComboBox();
+            tipo.getSelectionModel().selectFirst();
+        } catch (SQLException ex) {
+            Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos tipos.");
+        }
     }
 
     /**
@@ -258,16 +266,19 @@ public class CampoController extends AbstractController {
      * Método para atribuir os dados exibidos na tabela
      *
      */
+    @SuppressWarnings("unchecked")
     private void populateTableView() {
         tabelaId.setCellValueFactory(new PropertyValueFactory<Grupo, Integer>("id"));
         tabelaTipo.setCellValueFactory(new PropertyValueFactory<Grupo, String>("tipo"));
         tabelaTitulo.setCellValueFactory(new PropertyValueFactory<Grupo, String>("titulo"));
 
-//        this.dados = FXCollections.observableArrayList(campoBusiness.show((Campo) this.model));
-//        tabela.setItems(this.dados);
+        if (this.models != null) {
+            this.dados = FXCollections.observableArrayList(this.models);
+            tabela.setItems(this.dados);
+        }
 
 //         REMOVER EM PRODUÇÃO
-        fakeData();
+        // fakeData();
     }
 
     /**
@@ -279,7 +290,7 @@ public class CampoController extends AbstractController {
         models = campo.getGrupos();
 
         titulo.setText(campo.getTitulo());
-        selectRadioButtonByTipo(campo.getTipo());
+        selectRadioButtonByTipo(campo.getTipoModel().getDescricao());
         
         tipo.setValue(campo.getTipoModel());
         
@@ -342,11 +353,15 @@ public class CampoController extends AbstractController {
     private Campo assemblyRequest() {
         Campo campo;
 
-        if (getParentController().model != null) {
+        if (getParentController().model != null && getParentController().model instanceof Campo) {
             campo = (Campo) getParentController().model;
         } else {
             campo = new Campo();
             campo.setData(new Date());
+            
+            if (getParentController().model instanceof Categoria) {
+                campo.setCategoria((Categoria) getParentController().model);
+            }
         }
 
         campo.setTitulo(titulo.getText());
@@ -406,50 +421,50 @@ public class CampoController extends AbstractController {
         inteiro.setId(2);
         inteiro.setDescricao("Inteiro");
 
-        Grupo grupo1 = new Grupo();
-        grupo1.setId(1);
-        grupo1.setTitulo("grupo 1");
-        grupo1.setTipo(texto);
-
-        Grupo grupo2 = new Grupo();
-        grupo2.setId(2);
-        grupo2.setTitulo("grupo 2");
-        grupo2.setTipo(texto);
-
-        Grupo grupo3 = new Grupo();
-        grupo3.setId(3);
-        grupo3.setTitulo("grupo 3");
-        grupo3.setTipo(texto);
-
-        Grupo grupo4 = new Grupo();
-        grupo4.setId(4);
-        grupo4.setTitulo("grupo 4");
-        grupo4.setTipo(texto);
-
-        Grupo grupo5 = new Grupo();
-        grupo5.setId(5);
-        grupo5.setTitulo("grupo 5");
-        grupo5.setTipo(texto);
-
-        Grupo grupo6 = new Grupo();
-        grupo6.setId(6);
-        grupo6.setTitulo("grupo 6");
-        grupo6.setTipo(texto);
-
-        ArrayList<Grupo> grupos = new ArrayList<>();
-        grupos.add(grupo1);
-        grupos.add(grupo2);
-        grupos.add(grupo3);
-        grupos.add(grupo4);
-        grupos.add(grupo5);
-        grupos.add(grupo6);
-
+//        Grupo grupo1 = new Grupo();
+//        grupo1.setId(1);
+//        grupo1.setTitulo("grupo 1");
+//        grupo1.setTipo(texto);
+//
+//        Grupo grupo2 = new Grupo();
+//        grupo2.setId(2);
+//        grupo2.setTitulo("grupo 2");
+//        grupo2.setTipo(texto);
+//
+//        Grupo grupo3 = new Grupo();
+//        grupo3.setId(3);
+//        grupo3.setTitulo("grupo 3");
+//        grupo3.setTipo(texto);
+//
+//        Grupo grupo4 = new Grupo();
+//        grupo4.setId(4);
+//        grupo4.setTitulo("grupo 4");
+//        grupo4.setTipo(texto);
+//
+//        Grupo grupo5 = new Grupo();
+//        grupo5.setId(5);
+//        grupo5.setTitulo("grupo 5");
+//        grupo5.setTipo(texto);
+//
+//        Grupo grupo6 = new Grupo();
+//        grupo6.setId(6);
+//        grupo6.setTitulo("grupo 6");
+//        grupo6.setTipo(texto);
+//
+//        ArrayList<Grupo> grupos = new ArrayList<>();
+//        grupos.add(grupo1);
+//        grupos.add(grupo2);
+//        grupos.add(grupo3);
+//        grupos.add(grupo4);
+//        grupos.add(grupo5);
+//        grupos.add(grupo6);
+//
         ArrayList<Tipo> tipos = new ArrayList<>();
         tipos.add(texto);
         tipos.add(inteiro);
 
-        this.dados = FXCollections.observableArrayList(grupos);
-        tabela.setItems(this.dados);
+//        this.dados = FXCollections.observableArrayList(grupos);
+//        tabela.setItems(this.dados);
 
         this.tipos = FXCollections.observableArrayList(tipos);
         this.tipo.setItems(this.tipos);

@@ -260,6 +260,9 @@ public class FormulariosController extends AbstractController {
             this.dados = FXCollections.observableArrayList(this.formularioBusiness.show());
             tabela.setItems(this.dados);
             this.filtro.addAll(this.dados);
+            
+            pesquisar.setText("");
+            reorderTableView();
         } catch (Exception e) {
             Dialog.showError("Formulário", "Ocorreu algum problema na recuperação dos formulários.");
         }

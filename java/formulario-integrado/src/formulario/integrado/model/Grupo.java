@@ -104,6 +104,10 @@ public class Grupo extends Model {
     public String getTipo() {
         return tipo.getDescricao();
     }
+    
+    public Tipo getTipoModel() {
+        return tipo;
+    }
 
     /**
      * @param tipo the tipo to set

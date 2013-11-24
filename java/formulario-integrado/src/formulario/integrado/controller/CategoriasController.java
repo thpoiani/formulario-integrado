@@ -120,7 +120,7 @@ public class CategoriasController extends AbstractController {
         if (categoriaIsSelected()) {
             Dialog.buildConfirmation(
                     "Remover categoria",
-                    "Deseja remover a categoria'" 
+                    "Deseja remover a categoria '" 
                     + tabela.getSelectionModel().getSelectedItem().getTitulo() + "'?")
                     .addYesButton(new removerEvent())
                     .addNoButton(null)
@@ -139,7 +139,7 @@ public class CategoriasController extends AbstractController {
         titulo.setCellValueFactory(new PropertyValueFactory<Categoria, String>("titulo"));
         
         try {
-            this.dados = FXCollections.observableArrayList(categoriaBusiness.show());
+            this.dados = FXCollections.observableArrayList(this.categoriaBusiness.show());
             tabela.setItems(this.dados);
         } catch (SQLException e) {
             Dialog.showError("Categorias", "Ocorreu algum problema na recuperação das categorias.");
@@ -244,7 +244,11 @@ public class CategoriasController extends AbstractController {
             this.dados = FXCollections.observableArrayList(this.categoriaBusiness.show());
             tabela.setItems(this.dados);
             this.filtro.addAll(this.dados);
+            
+            pesquisar.setText("");
+            reorderTableView();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             Dialog.showError("Categoria", "Ocorreu algum problema na recuperação das categorias.");
         }
     }

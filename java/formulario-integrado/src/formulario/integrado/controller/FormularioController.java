@@ -244,8 +244,7 @@ public class FormularioController extends AbstractController {
             }    
         } else {
             categorias.setItems(FXCollections.observableArrayList(models));
-        }
-        
+        }        
     }
 
     /**
