@@ -2,20 +2,42 @@ package formulario.integrado.business;
 
 import formulario.integrado.model.Campo;
 import formulario.integrado.model.Categoria;
+import formulario.integrado.model.Categoria;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaBusiness extends Business<Categoria> implements ICategoriaBusiness {
 
-    private Statement sta;
     private PreparedStatement ps;
-    private String sql = "";
+    private String sql;
+    private ResultSet rs;
 
     @Override
-    public List<Categoria> show() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Categoria> show() throws SQLException{
+        super.openConnection();
+        
+        ArrayList<Categoria> categoria = new ArrayList<>();
+        this.rs = null;
+        
+        this.sql = "SELECT cat.id, cat.titulo, cat.descricao, cat.status, cat.data "
+                 + "FROM categoria cat WHERE cat.status = 1;";
+        
+        this.ps = connection.prepareStatement(this.sql);
+        this.rs = this.ps.executeQuery();
+        
+        while (rs.next()) {
+            categoria.add(assembly(rs));
+        }
+        
+        // verificar se possui categoria
+        
+        super.closeConnection();
+        
+        return categoria;
     }
 
     @Override
@@ -109,5 +131,23 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
         } catch (Exception e) {
             e.getMessage();
         }*/
+    }
+    
+    /**
+     * Método para popular Categoria
+     * 
+     * @param ResultSet rs
+     * @return Categoria
+     * @throws SQLException 
+     */
+    private Categoria assembly(ResultSet rs) throws SQLException {
+        Categoria categoria = new Categoria();
+        categoria.setId(rs.getInt(1));
+        categoria.setTitulo(rs.getString(2));
+        categoria.setDescricao(rs.getString(3));
+        categoria.setStatus(rs.getBoolean(4));        
+        categoria.setData(super.setCurrentDate(rs.getString(5)));
+        
+        return categoria;
     }
 }
