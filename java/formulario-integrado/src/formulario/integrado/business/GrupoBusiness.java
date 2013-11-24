@@ -30,7 +30,7 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
             grupo.add(assembly(rs));
         }
         
-        // verificar se possui categoria
+        // verificar se possui grupo
         
         super.closeConnection();
         

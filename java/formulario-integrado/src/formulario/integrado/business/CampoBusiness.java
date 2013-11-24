@@ -31,7 +31,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
             campo.add(assembly(rs));
         }
         
-        // verificar se possui categoria
+        // verificar se possui campo
         
         super.closeConnection();
         
