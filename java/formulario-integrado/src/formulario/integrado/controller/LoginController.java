@@ -3,6 +3,8 @@ package formulario.integrado.controller;
 import formulario.integrado.business.ILoginBusiness;
 import formulario.integrado.business.LoginBusiness;
 import formulario.integrado.model.Login;
+import formulario.integrado.vendor.Dialog;
+import java.sql.SQLException;
 import java.util.Iterator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,12 +46,17 @@ public class LoginController extends AbstractController {
         Login login = assemblyRequest();
 
         if (login.isValid()) {
-//            if (this.loginBusiness.isAuthenticated(login)) {
-            super.start("principal.fxml", "Principal");
-            super.close();
-//            } else {
-//                Dialog.showError("Erro de autenticação", "Prontuário ou senha incorretos.");
-//            }
+            try {
+                if (this.loginBusiness.isAuthenticated(login)) {
+                    super.start("principal.fxml", "Principal");
+                    super.close();
+                } else {
+                    Dialog.showError("Erro de autenticação", "Prontuário ou senha incorretos.");
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                Dialog.showError("Login", "Falha em estabelecer conexão com o banco de dados.");
+            }
         }
 
         this.showErrors(login);
