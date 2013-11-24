@@ -27,11 +27,17 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     public void add(Campo campo) throws SQLException{
         super.openConnection();
         
-        this.sql = "INSERT INTO campo () values ()";
+        this.sql = "INSERT INTO campo (titulo, maxlength, regex, status, ordem, data, categoriaId, tipoId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         this.ps.setString(1, campo.getTitulo());
-        
+        this.ps.setInt(2, campo.getMaxlength());
+        this.ps.setString(3, campo.getRegex());
+        this.ps.setBoolean(4, campo.isStatus());
+        this.ps.setInt(5, campo.getOrdem());
+        this.ps.setString(6, super.getCurrentDate(campo.getData()));
+        this.ps.setInt(7, campo.getCategoriaId());
+        this.ps.setInt(8, campo.getTipoId());
         
         this.ps.executeUpdate();
         
@@ -50,7 +56,27 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     }
 
     @Override
-    public void update(Campo campo) {
+    public void update(Campo campo) throws SQLException{
+        super.openConnection();
+        
+        this.sql = "UPDATE campo SET titulo = ?, maxlength = ?, regex = ?, status = ?, ordem = ?, data = ?, "
+                + "categoriaId = ?, tipoId = ? WHERE id = ?;";
+        this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    
+        this.ps.setString(1, campo.getTitulo());
+        this.ps.setInt(2, campo.getMaxlength());
+        this.ps.setString(3, campo.getRegex());
+        this.ps.setBoolean(4, campo.isStatus());
+        this.ps.setInt(5, campo.getOrdem());
+        this.ps.setString(6, super.getCurrentDate(campo.getData()));
+        this.ps.setInt(7, campo.getCategoriaId());
+        this.ps.setInt(8, campo.getTipoId());
+        this.ps.setInt(9, campo.getId());
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
+        /*
         try {
             sql = "update campo set id = " + campo.getId() + ", titulo = '" + campo.getTitulo() + "', maxlength = " + campo.getMaxlength()
                     + ", regex = '" + campo.getRegex() + "', status = " + campo.isStatus() + ", ordem = '" + campo.getOrdem() + "', data = "
@@ -62,11 +88,23 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
             System.setErr(null);
         } catch (Exception e) {
             e.getMessage();
-        }
+        }*/
     }
 
     @Override
-    public void remove(Campo campo) {
+    public void remove(Campo campo) throws SQLException{
+        super.openConnection();
+        
+        this.sql = "UPDATE campo SET status = ? WHERE id = ?;";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setBoolean(1, campo.isStatus());
+        this.ps.setInt(2, campo.getId());
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
+        /*
         try {
             sql = "update campo set status = " + campo.isStatus() + " where id = " + campo.getId() + ";";
             this.sta = connection.createStatement();
@@ -75,7 +113,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
             System.setErr(null);
         } catch (Exception e) {
             e.getMessage();
-        }
+        }*/
     }
     
 }

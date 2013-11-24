@@ -21,7 +21,7 @@ public class AlunoBusiness extends Business<Aluno> implements IAlunoBusiness {
     public void add(Aluno aluno) throws SQLException{
         super.openConnection();
         
-        this.sql = "";
+        this.sql = "INSERT INTO aluno (prontuario, nome) values (?, ?);";
         this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         this.ps.setString(1, aluno.getProntuario());
@@ -44,29 +44,12 @@ public class AlunoBusiness extends Business<Aluno> implements IAlunoBusiness {
     }
 
     @Override
-    public void update(Aluno aluno) {
-        try {
-            sql = "update aluno set id = " + aluno.getId() + ", prontuario = " + aluno.getProntuario()
-                    + ", nome = '" + aluno.getNome() + "' where id = " + aluno.getId() + ";";
-            this.sta = connection.createStatement();
-            ps.executeUpdate(sql);
-            ps.close();
-            System.setErr(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+    public void update(Aluno aluno) throws SQLException{
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void remove(Aluno aluno) {
-        try {
-            sql = "";
-            this.sta = connection.createStatement();
-            ps.executeUpdate(sql);
-            ps.close();
-            System.setErr(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+    public void remove(Aluno aluno) throws SQLException{
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

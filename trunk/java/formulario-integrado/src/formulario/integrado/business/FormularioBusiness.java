@@ -75,7 +75,7 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
         
         this.ps.setString(1, formulario.getTitulo());
         this.ps.setBoolean(2, formulario.isAberto());
-        this.ps.setBoolean(3, formulario.isStatus());
+        this.ps.setBoolean(3, formulario.isStatus());        
         this.ps.setInt(4, formulario.getId());
         
         this.ps.executeUpdate();
