@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface IFormularioBusiness extends IBusiness<Formulario> {
     public List<Formulario> show() throws SQLException;
+    public void add(Formulario formulario, Categoria categoria) throws SQLException;
+    public void remove(Formulario formulario, Categoria categoria) throws SQLException;
     public void moveDown(Categoria categoria);
     public void moveUp(Categoria categoria);
 }

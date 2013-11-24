@@ -1,14 +1,15 @@
 package formulario.integrado.controller;
 
 import formulario.integrado.business.CategoriaBusiness;
+import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.ICategoriaBusiness;
+import formulario.integrado.business.IFormularioBusiness;
 import formulario.integrado.model.Categoria;
+import formulario.integrado.model.Formulario;
 import formulario.integrado.vendor.Dialog;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +25,8 @@ public class CategoriasListarController extends AbstractController {
     private AbstractController controller;
     
     private ICategoriaBusiness categoriaBusiness;
+    
+    private IFormularioBusiness formularioBusiness;
     
     private ObservableList<Categoria> dados = FXCollections.observableArrayList();
     
@@ -47,6 +50,7 @@ public class CategoriasListarController extends AbstractController {
     
     public CategoriasListarController() {
         this.categoriaBusiness = new CategoriaBusiness();
+        this.formularioBusiness = new FormularioBusiness();
     }    
 
     @Override
@@ -89,8 +93,18 @@ public class CategoriasListarController extends AbstractController {
     @SuppressWarnings("unchecked")
     void inserirAction(ActionEvent event) {
         if (categoriaIsSelected()) {
-            getParentController().models.add(tabela.getSelectionModel().getSelectedItem());;
+            if (getParentController().model != null) {
+                try {
+                    this.formularioBusiness.add((Formulario) getParentController().model, tabela.getSelectionModel().getSelectedItem());
+                } catch (SQLException ex) {
+                    Dialog.showError("Formulário", "Ocorreu algum problema na inserção da categoria.");
+                }
+            } else {
+                getParentController().models.add(tabela.getSelectionModel().getSelectedItem());
+            }
+            
             getParentController().show();
+            Dialog.showInfo("Formulário", "Categoria inserida com sucesso");
             super.close();
         }
     }
@@ -120,11 +134,13 @@ public class CategoriasListarController extends AbstractController {
     private void populateTableView() {
         try {
             List<Categoria> categorias = categoriaBusiness.show();
+
             if (getParentController().models != null) {
                 categorias.removeAll(getParentController().models);
             } else {
                 getParentController().models = new ArrayList<>();
             }
+            
             this.dados = FXCollections.observableArrayList(categorias);
             tabela.setItems(this.dados);
         } catch (SQLException ex) {
