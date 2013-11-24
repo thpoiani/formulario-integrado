@@ -5,6 +5,8 @@ import formulario.integrado.model.IModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,16 +21,16 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
 
     @Override
     public void openConnection() {
-        connection = Database.getInstance("integrado");
+        connection = Database.getInstance("interativo");
     }
 
     @Override
     public void closeConnection() {
-        Database.close("integrado");
+        Database.close("interativo");
     }
 
     @Override
-    public T find(int id) {
+    public T find(int id) throws SQLException {
         String sql = null;
         Statement ps = null;
         try {
@@ -44,7 +46,7 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public void add(List<T> model) {
+    public void add(List<T> model) throws SQLException {
         Iterator<T> iterator = model.iterator();
         while (iterator.hasNext()) {
             add(iterator.next());
@@ -52,7 +54,7 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public void update(List<T> model) {
+    public void update(List<T> model) throws SQLException {
         Iterator<T> iterator = model.iterator();
         while (iterator.hasNext()) {
             update(iterator.next());
@@ -60,7 +62,7 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public void save(T model) {
+    public void save(T model) throws SQLException {
         if (model.getId() > 0) {
             update(model);
         } else {
@@ -69,7 +71,7 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public void save(List<T> model) {
+    public void save(List<T> model) throws SQLException {
         Iterator<T> iterator = model.iterator();
         while (iterator.hasNext()) {
             save(iterator.next());
@@ -77,10 +79,20 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public void remove(List<T> model) {
+    public void remove(List<T> model) throws SQLException {
         Iterator<T> iterator = model.iterator();
         while (iterator.hasNext()) {
             remove(iterator.next());
         }
+    }
+    
+    /**
+     * Método para retornar data no formato de datetime de banco de dados
+     * 
+     * @return String
+     */
+    protected String getCurrentDate(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
     }
 }

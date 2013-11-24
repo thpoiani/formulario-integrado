@@ -2,7 +2,9 @@ package formulario.integrado.business;
 
 import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Formulario;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -28,17 +30,20 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
     }
 
     @Override
-    public void add(Formulario formulario) {
-        try {
-            sql = "insert into formulario(id, titulo, aberto, status, data) values ("
-                    + formulario.getId() + ", '" + formulario.getTitulo() + "', " + formulario.getAberto()
-                    + ", " + formulario.isStatus() + ", " + formulario.getData() + ");";
-            this.ps = connection.prepareStatement(sql);
-            ps.execute();
-            System.setErr(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+    public void add(Formulario formulario) throws SQLException {
+        super.openConnection();
+
+        this.sql = "INSERT INTO formulario (titulo, aberto, status, data) VALUES (?,?,?,?);";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setString(1, formulario.getTitulo());
+        this.ps.setBoolean(2, formulario.isAberto());
+        this.ps.setBoolean(3, formulario.isStatus());
+        this.ps.setString(4, super.getCurrentDate(formulario.getData()));
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
     }
 
     @Override
