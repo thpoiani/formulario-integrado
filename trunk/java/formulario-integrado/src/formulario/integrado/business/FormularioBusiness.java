@@ -23,7 +23,7 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
         this.rs = null;
         
         this.sql = "SELECT f.id, f.titulo, f.status, f.aberto, f.data "
-                 + "FROM formulario f WHERE f.status = 1";
+                 + "FROM formulario f WHERE f.status = 1;";
         
         this.ps = connection.prepareStatement(this.sql);
         this.rs = this.ps.executeQuery();
