@@ -143,7 +143,7 @@ public class FormularioController extends AbstractController {
                 this.formularioBusiness.save(formulario);
                 getParentController().show();
                 super.close();
-
+                
                 Dialog.showInfo("Formulário", "Formulário "
                         + (getParentController().model == null ? "cadastrado" : "alterado")
                         + " com sucesso");
