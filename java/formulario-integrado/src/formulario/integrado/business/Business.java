@@ -97,6 +97,11 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
         return format.format(date);
     }
     
+    /**
+     * Método para retornar datetime de banco de dados para Date
+     * 
+     * @return String
+     */
     protected Date setCurrentDate(String date) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

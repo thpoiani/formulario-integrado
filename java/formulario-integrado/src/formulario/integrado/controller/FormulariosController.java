@@ -224,7 +224,7 @@ public class FormulariosController extends AbstractController {
      */
     private void remover(Formulario formulario) {
         try {
-            // this.formularioBusiness.remove(formulario);
+            this.formularioBusiness.remove(formulario);
             this.dados.remove(formulario);
             this.filtro.remove(formulario);
 
