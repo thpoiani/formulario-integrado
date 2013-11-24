@@ -129,7 +129,19 @@ public class FormularioController extends AbstractController {
     @FXML
     void retirarAction(ActionEvent event) {
         if (categoriaIsSelected()) {
-            models.remove(categorias.getSelectionModel().getSelectedItem());
+            if ((Formulario) getParentController().model != null) {
+                try {
+                    this.formularioBusiness.remove((Formulario) getParentController().model, categorias.getSelectionModel().getSelectedItem());
+
+                    Dialog.showInfo("Categoria", "Categoria removida com sucesso");
+                } catch (Exception e) {
+                    Dialog.showError("Categoria", "Ocorreu algum problema na remoçao da categoria.");
+                }
+            } else {
+                models.remove(categorias.getSelectionModel().getSelectedItem());
+                Dialog.showInfo("Categoria", "Categoria removida com sucesso");
+            }
+            
             refreshListView();
         }
     }
@@ -178,6 +190,7 @@ public class FormularioController extends AbstractController {
      * @param formulario
      */
     private void populateModel(Formulario formulario) {
+        model = formulario;
         models = formulario.getCategorias();
 
         titulo.setText(formulario.getTitulo());
@@ -220,7 +233,19 @@ public class FormularioController extends AbstractController {
     @SuppressWarnings("unchecked")
     private void refreshListView() {
         categorias.setItems(null);
-        categorias.setItems(FXCollections.observableArrayList(models));
+        
+        if (getParentController().model != null) {
+            try {
+                Formulario formulario = this.formularioBusiness.find(getParentController().model.getId());
+                this.models = formulario.getCategorias();
+                categorias.setItems(FXCollections.observableArrayList(this.models));
+            } catch (Exception e) {
+                Dialog.showError("Formulário", "Ocorreu algum problema na recuperação das categorias.");
+            }    
+        } else {
+            categorias.setItems(FXCollections.observableArrayList(models));
+        }
+        
     }
 
     /**
