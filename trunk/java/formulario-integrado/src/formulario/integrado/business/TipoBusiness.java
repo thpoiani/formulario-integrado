@@ -1,6 +1,5 @@
 package formulario.integrado.business;
 
-import formulario.integrado.model.Formulario;
 import formulario.integrado.model.Tipo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +13,28 @@ public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
     private ResultSet rs;
     private PreparedStatement ps;
     private String sql;
+    
+    @Override
+    public Tipo find(int id) throws SQLException{
+        super.openConnection();
+        
+        Tipo tipo = null;
+        this.rs = null;
+        
+        this.sql = "SELECT t.id, t.descricao FROM tipo t WHERE t.id = ?;";
+        
+        this.ps = connection.prepareStatement(this.sql);
+        this.ps.setInt(1, id);
+        this.rs = this.ps.executeQuery();
+        
+        if (rs.next()) {
+            tipo = assembly(rs);
+        }
+        
+        super.closeConnection();
+        
+        return tipo;
+    }
 
     @Override
     public List<Tipo> show() throws SQLException{
@@ -22,7 +43,7 @@ public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
         ArrayList<Tipo> tipo = new ArrayList<>();
         this.rs = null;
         
-        this.sql = "SELECT * FROM tipo;";
+        this.sql = "SELECT t.id, t.descricao FROM tipo t;";
         
         this.ps = connection.prepareStatement(this.sql);
         this.rs = this.ps.executeQuery();

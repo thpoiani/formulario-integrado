@@ -1,10 +1,13 @@
 package formulario.integrado.controller;
 
+import formulario.integrado.business.CampoBusiness;
 import formulario.integrado.business.CategoriaBusiness;
+import formulario.integrado.business.ICampoBusiness;
 import formulario.integrado.business.ICategoriaBusiness;
 import formulario.integrado.model.Campo;
 import formulario.integrado.model.Categoria;
 import formulario.integrado.vendor.Dialog;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -25,6 +28,8 @@ public class CategoriaController extends AbstractController {
     private AbstractController controller;
     
     private ICategoriaBusiness categoriaBusiness;
+    
+    private ICampoBusiness campoBusiness;
     
     @FXML
     private ListView<Campo> campos;
@@ -58,6 +63,7 @@ public class CategoriaController extends AbstractController {
 
     public CategoriaController() {
         this.categoriaBusiness = new CategoriaBusiness();
+        this.campoBusiness = new CampoBusiness();
     }
 
     @Override
@@ -76,8 +82,8 @@ public class CategoriaController extends AbstractController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                setWindow(titulo.getScene().getWindow());
-
+                setWindow(salvar.getScene().getWindow());
+                
                 if (getParentController().model != null) {
                     // estado de edição
                     populateModel((Categoria) getParentController().model);
@@ -125,7 +131,12 @@ public class CategoriaController extends AbstractController {
 
     @FXML
     void inserirAction(ActionEvent event) {
-        this.model = null;
+        if (getParentController().model != null) {
+            this.model = getParentController().model;
+        } else {
+            this.model = null;        
+        }
+        
         super.start("campo.fxml", "Campo", this);
         super.hide();
     }
@@ -133,7 +144,17 @@ public class CategoriaController extends AbstractController {
     @FXML
     void retirarAction(ActionEvent event) {
         if (campoIsSelected()) {
-            models.remove(campos.getSelectionModel().getSelectedItem());
+            if (getParentController().model != null) {
+                try {
+                    this.campoBusiness.remove(campos.getSelectionModel().getSelectedItem());                    
+                    Dialog.showInfo("Categoria", "Campo removido com sucesso");
+                } catch (Exception e) {
+                    Dialog.showError("Categoria", "Ocorreu algum problema na remoção do campo.");
+                }
+            } else {
+                models.remove(campos.getSelectionModel().getSelectedItem());
+                Dialog.showInfo("Categoria", "Campo removido com sucesso");
+            }
             refreshListView();
         }
     }
@@ -223,7 +244,18 @@ public class CategoriaController extends AbstractController {
     @SuppressWarnings("unchecked")
     private void refreshListView() {
         campos.setItems(null);
-        campos.setItems(FXCollections.observableArrayList(models));
+        
+        if (models != null) {
+            if (getParentController().model != null) {
+                try {
+                    campos.setItems(FXCollections.observableArrayList(this.campoBusiness.show((Categoria) getParentController().model)));
+                } catch (SQLException ex) {
+                    Dialog.showError("Categoria", "Ocorreu algum problema na recuperação dos campos.");
+                }
+            } else {
+                campos.setItems(FXCollections.observableArrayList(models));
+            }
+        }
     }
     
     /**
