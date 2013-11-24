@@ -5,6 +5,7 @@ import formulario.integrado.model.IModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -94,5 +95,16 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     protected String getCurrentDate(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
+    }
+    
+    protected Date setCurrentDate(String date) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return format.parse(date);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        
+        return null;
     }
 }

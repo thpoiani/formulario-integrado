@@ -2,7 +2,6 @@ package formulario.integrado.controller;
 
 import formulario.integrado.business.FormularioBusiness;
 import formulario.integrado.business.IFormularioBusiness;
-import formulario.integrado.model.Categoria;
 import formulario.integrado.model.Formulario;
 import formulario.integrado.vendor.Dialog;
 import java.awt.Desktop;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Date;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.WindowEvent;
 
 public class FormulariosController extends AbstractController {
 
@@ -93,6 +92,7 @@ public class FormulariosController extends AbstractController {
             @Override
             public void run() {
                 setWindow(tabela.getScene().getWindow());
+                onShowRefreshTableView();
             }
         });
     }
@@ -155,13 +155,14 @@ public class FormulariosController extends AbstractController {
         id.setCellValueFactory(new PropertyValueFactory<Formulario, Integer>("id"));
         titulo.setCellValueFactory(new PropertyValueFactory<Formulario, String>("titulo"));
         
-        //this.dados = FXCollections.observableArrayList(formularioBusiness.show());
-        //tabela.setItems(this.dados);
-
-//         REMOVER EM PRODUÇÃO
-        fakeData();
-
-        this.filtro.addAll(this.dados);
+        try {
+            this.dados = FXCollections.observableArrayList(formularioBusiness.show());
+            tabela.setItems(this.dados);
+            this.filtro.addAll(this.dados);
+        } catch (Exception e) {
+            Dialog.showError("Formulário", "Ocorreu algum problema na recuperação dos formulários.");
+            this.close();
+        }
     }
     
     /**
@@ -230,48 +231,36 @@ public class FormulariosController extends AbstractController {
             Dialog.showInfo("Formulário", "Formulário removido com sucesso");
         } catch (Exception e) {
             Dialog.showError("Formulário", "Ocorreu algum problema na remoção do formulário.");
+            this.close();
         }
+    }
+    
+    /**
+     * Método para adicionar um Listener de onShowing. Quando exibir a tela,
+     * atualiza a lista de categorias
+     *
+     */
+    private void onShowRefreshTableView() {
+        getWindow().setOnShowing(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                refreshTableView();
+            }
+        });
     }
 
     /**
-     * Método com dados fictícios para homologação
-     * 
+     * Método para atualizar lista de categorias
+     *
      */
-    private void fakeData() {
-        Formulario formulario1 = new Formulario();
-        formulario1.setId(1);
-        formulario1.setTitulo("thiago");
-        formulario1.setAberto(true);
-        formulario1.setData(new Date());
-        formulario1.setStatus(false);
-
-        Categoria categoria1 = new Categoria();
-        categoria1.setId(1);
-        categoria1.setTitulo("categoria 1");
-        categoria1.setDescricao("descricao 1");
-
-        Categoria categoria2 = new Categoria();
-        categoria2.setId(2);
-        categoria2.setTitulo("categoria 2");
-        categoria2.setDescricao("descricao 2");
-
-        ArrayList<Categoria> categorias = new ArrayList<>();
-        categorias.add(categoria1);
-        categorias.add(categoria2);
-
-        formulario1.setCategorias(categorias);
-
-        Formulario formulario2 = new Formulario();
-        formulario2.setId(2);
-        formulario2.setTitulo("poiani");
-        formulario2.setAberto(false);
-
-        ArrayList<Formulario> formularios = new ArrayList<>();
-        formularios.add(formulario1);
-        formularios.add(formulario2);
-
-        dados = FXCollections.observableArrayList(formularios);
-        tabela.setItems(dados);
+    @SuppressWarnings("unchecked")
+    private void refreshTableView() {
+        try {
+            tabela.setItems(null);
+            tabela.setItems(FXCollections.observableArrayList(this.formularioBusiness.show()));
+        } catch (Exception e) {
+            Dialog.showError("Formulário", "Ocorreu algum problema na recuperação dos formulários.");
+        }
     }
 
     /**
