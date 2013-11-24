@@ -2,6 +2,7 @@ package formulario.integrado.business;
 
 import formulario.integrado.model.Aluno;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -17,7 +18,19 @@ public class AlunoBusiness extends Business<Aluno> implements IAlunoBusiness {
     }
 
     @Override
-    public void add(Aluno aluno) {
+    public void add(Aluno aluno) throws SQLException{
+        super.openConnection();
+        
+        this.sql = "";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setString(1, aluno.getProntuario());
+        this.ps.setString(2, aluno.getNome());
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
+        /*
         try {
             sql = "insert into aluno(id, prontuario, nome) values (" + aluno.getId()
                     + ", " + aluno.getProntuario()
@@ -27,7 +40,7 @@ public class AlunoBusiness extends Business<Aluno> implements IAlunoBusiness {
             System.setErr(null);
         } catch (Exception e) {
             e.getMessage();
-        }
+        }*/
     }
 
     @Override

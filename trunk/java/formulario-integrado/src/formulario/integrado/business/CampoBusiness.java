@@ -3,6 +3,7 @@ package formulario.integrado.business;
 import formulario.integrado.model.Campo;
 import formulario.integrado.model.Grupo;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -23,8 +24,19 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     }
 
     @Override
-    public void add(Campo campo) {
-        try {
+    public void add(Campo campo) throws SQLException{
+        super.openConnection();
+        
+        this.sql = "INSERT INTO campo () values ()";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setString(1, campo.getTitulo());
+        
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
+        /*try {
             sql = "insert into campo(id, titulo, maxlength, regex, status, ordem, data, categoriaId, tipoId) values ("
                     + campo.getId() + ", '" + campo.getTitulo() + "', " + campo.getMaxlength() + ", '" + campo.getRegex()
                     + "', " + campo.isStatus() + ", " + campo.getOrdem() + ", " + campo.getData() + ", " + campo.getCategoriaId()
@@ -34,7 +46,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
             System.setErr(null);
         } catch (Exception e) {
             e.getMessage();
-        }
+        }*/
     }
 
     @Override

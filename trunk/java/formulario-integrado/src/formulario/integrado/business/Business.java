@@ -39,7 +39,7 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
         } catch (SQLException ex) {
             Logger.getLogger(Business.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+            
         //throw new UnsupportedOperationException("Not supported yet.");
         return null;
 
