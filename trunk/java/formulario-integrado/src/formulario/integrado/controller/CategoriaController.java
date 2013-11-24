@@ -144,7 +144,7 @@ public class CategoriaController extends AbstractController {
         
         if (categoria.isValid()) {
             try {
-                // this.categoriaBusiness.save(categoria);
+                this.categoriaBusiness.save(categoria);
                 getParentController().show();
                 super.close();
 

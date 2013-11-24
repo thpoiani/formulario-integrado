@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FormularioBusiness extends Business<Formulario> implements IFormularioBusiness {
@@ -29,7 +30,22 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
         this.rs = this.ps.executeQuery();
         
         while (rs.next()) {
-            formularios.add(assembly(rs));
+            ArrayList<Categoria> categorias = new ArrayList<>();
+
+            String query = "SELECT c.id, c.titulo, c.descricao, c.status, c.data "
+                        + "FROM formulario f "
+                        + "INNER JOIN formulario_categoria fc ON f.id = fc.formularioId AND f.id = ? "
+                        + "INNER JOIN categoria c ON c.id = fc.categoriaId AND c.status = 1";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, rs.getInt(1));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()) {
+                categorias.add(assemblyCategoria(resultSet));
+            }
+            
+            formularios.add(assemblyFormulario(rs, categorias));
         }
         
         // verificar se possui categoria
@@ -62,6 +78,20 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
         this.ps.setString(4, super.getCurrentDate(formulario.getData()));
         
         this.ps.executeUpdate();
+        
+        this.rs = ps.getGeneratedKeys();
+        this.rs.next();
+        int id = this.rs.getInt(1);
+                
+        for (Iterator<Categoria> categorias = formulario.getCategorias().iterator(); categorias.hasNext();) {
+            String query  = "INSERT INTO formulario_categoria (formularioId, categoriaId) VALUES (?,?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, categorias.next().getId());
+            
+            preparedStatement.executeUpdate();
+        }
         
         super.closeConnection();
     }
@@ -105,7 +135,7 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
      * @return Formulario
      * @throws SQLException 
      */
-    private Formulario assembly(ResultSet rs) throws SQLException {
+    private Formulario assemblyFormulario(ResultSet rs, ArrayList<Categoria> categorias) throws SQLException {
         Formulario formulario = new Formulario();
         formulario.setId(rs.getInt(1));
         formulario.setTitulo(rs.getString(2));
@@ -113,6 +143,28 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
         formulario.setAberto(rs.getBoolean(4));
         formulario.setData(super.setCurrentDate(rs.getString(5)));
         
+        if (categorias != null) {
+            formulario.setCategorias(categorias);
+        }
+        
         return formulario;
+    }
+    
+    /**
+     * Método para popular Categoria
+     * 
+     * @param ResultSet rs
+     * @return Categoria
+     * @throws SQLException 
+     */
+    private Categoria assemblyCategoria(ResultSet resultSet) throws SQLException {
+        Categoria categoria = new Categoria();
+        categoria.setId(resultSet.getInt(1));
+        categoria.setTitulo(resultSet.getString(2));
+        categoria.setDescricao(resultSet.getString(3));
+        categoria.setStatus(resultSet.getBoolean(4));        
+        categoria.setData(super.setCurrentDate(resultSet.getString(5)));
+        
+        return categoria;
     }
 }

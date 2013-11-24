@@ -3,7 +3,12 @@ package formulario.integrado.controller;
 import formulario.integrado.business.CategoriaBusiness;
 import formulario.integrado.business.ICategoriaBusiness;
 import formulario.integrado.model.Categoria;
+import formulario.integrado.vendor.Dialog;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,51 +118,18 @@ public class CategoriasListarController extends AbstractController {
      *
      */
     private void populateTableView() {
-//        List<Categoria> categorias = categoriaBusiness.show();
-//        if (getParentController().models != null) {
-//            categorias.removeAll(getParentController().models);
-//        } else {
-//            getParentController().models = new ArrayList<>();
-//        }
-//        this.dados = FXCollections.observableArrayList(categorias);
-//        tabela.setItems(this.dados);
-
-        fakeData();
-    }
-
-    /**
-     * Método com dados fictícios para homologação
-     * 
-     */
-    private void fakeData() {
-        Categoria categoria1 = new Categoria();
-        categoria1.setId(1);
-        categoria1.setTitulo("categoria 1");
-        categoria1.setDescricao("descricao 1");
-
-        Categoria categoria2 = new Categoria();
-        categoria2.setId(2);
-        categoria2.setTitulo("categoria 2");
-        categoria2.setDescricao("descricao 2");
-
-        Categoria categoria3 = new Categoria();
-        categoria3.setId(3);
-        categoria3.setTitulo("categoria 3");
-        categoria3.setDescricao("descricao 3");
-
-        ArrayList<Categoria> categorias = new ArrayList<>();
-        categorias.add(categoria1);
-        categorias.add(categoria2);
-        categorias.add(categoria3);
-
-        if (getParentController().models != null) {
-            categorias.removeAll(getParentController().models);
-        } else {
-            getParentController().models = new ArrayList<>();
+        try {
+            List<Categoria> categorias = categoriaBusiness.show();
+            if (getParentController().models != null) {
+                categorias.removeAll(getParentController().models);
+            } else {
+                getParentController().models = new ArrayList<>();
+            }
+            this.dados = FXCollections.observableArrayList(categorias);
+            tabela.setItems(this.dados);
+        } catch (SQLException ex) {
+            Dialog.showError("Categoria", "Ocorreu algum problema na recuperação das categorias.");
         }
-        
-        dados = FXCollections.observableArrayList(categorias);
-        tabela.setItems(dados);
     }
 
 }
