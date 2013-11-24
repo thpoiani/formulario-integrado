@@ -3,23 +3,43 @@ package formulario.integrado.business;
 import formulario.integrado.model.Campo;
 import formulario.integrado.model.Grupo;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
 
-    private Statement sta;
+    private ResultSet rs;
     private PreparedStatement ps;
-    private String sql = "";
+    private String sql;
 
     @Override
-    public List<Campo> show() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Campo> show() throws SQLException{
+        super.openConnection();
+        
+        ArrayList<Campo> campo = new ArrayList<>();
+        this.rs = null;
+        
+        this.sql = "SELECT * FROM campo WHERE status = 1;";
+        
+        this.ps = connection.prepareStatement(this.sql);
+        this.rs = this.ps.executeQuery();
+        
+        while (rs.next()) {
+            campo.add(assembly(rs));
+        }
+        
+        // verificar se possui categoria
+        
+        super.closeConnection();
+        
+        return campo;
     }
     
     @Override
-    public List<Grupo> show(Campo capo) {
+    public List<Grupo> show(Campo campo)throws SQLException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -114,6 +134,28 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         } catch (Exception e) {
             e.getMessage();
         }*/
+    }
+    
+    /**
+     * Método para popular um Formulário
+     * 
+     * @param ResultSet rs
+     * @return Campo
+     * @throws SQLException 
+     */
+    private Campo assembly(ResultSet rs) throws SQLException {
+        Campo campo = new Campo();
+        campo.setId(rs.getInt(1));
+        campo.setTitulo(rs.getString(2));
+        campo.setMaxlength(rs.getInt(3));
+        campo.setRegex(rs.getString(4));
+        campo.setStatus(rs.getBoolean(5));
+        campo.setOrdem(rs.getInt(6));
+        campo.setData(super.setCurrentDate(rs.getString(7)));
+        campo.setCategoriaId(rs.getInt(8));
+        campo.setTipoId(rs.getInt(9));
+        
+        return campo;
     }
     
 }

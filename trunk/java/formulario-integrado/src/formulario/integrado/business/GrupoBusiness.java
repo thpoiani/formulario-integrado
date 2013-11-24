@@ -1,20 +1,40 @@
 package formulario.integrado.business;
 
 import formulario.integrado.model.Grupo;
+import formulario.integrado.model.Campo;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
 
-    private Statement sta;
+    private ResultSet rs;
     private PreparedStatement ps;
-    private String sql = "";
+    private String sql;
 
-    @Override
-    public List<Grupo> show() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Grupo> show(Campo campo) throws SQLException{
+        super.openConnection();
+        
+        ArrayList<Grupo> grupo = new ArrayList<>();
+        this.rs = null;
+        
+        this.sql = "SELECT * FROM grupo WHERE campoId = " + campo.getId() + ";";
+        
+        this.ps = connection.prepareStatement(this.sql);        
+        this.rs = this.ps.executeQuery();
+        
+        while (rs.next()) {
+            grupo.add(assembly(rs));
+        }
+        
+        // verificar se possui categoria
+        
+        super.closeConnection();
+        
+        return grupo;
     }
 
     @Override
@@ -78,5 +98,28 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
     @Override
     public void remove(Grupo grupo) throws SQLException{
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    /**
+     * Método para popular Grupo
+     * 
+     * @param ResultSet rs
+     * @return Grupo
+     * @throws SQLException 
+     */
+    private Grupo assembly(ResultSet rs) throws SQLException {
+        Grupo grupo = new Grupo();
+        grupo.setId(rs.getInt(1));
+        grupo.setTitulo(rs.getString(2));
+        grupo.setData(super.setCurrentDate(rs.getString(3)));
+        grupo.setCampoId(rs.getInt(4));
+        grupo.setTipoId(rs.getInt(5));
+        
+        return grupo;
+    }
+
+    @Override
+    public List<Grupo> show() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

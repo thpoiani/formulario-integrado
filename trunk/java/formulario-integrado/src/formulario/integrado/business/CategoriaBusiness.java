@@ -2,7 +2,6 @@ package formulario.integrado.business;
 
 import formulario.integrado.model.Campo;
 import formulario.integrado.model.Categoria;
-import formulario.integrado.model.Categoria;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
