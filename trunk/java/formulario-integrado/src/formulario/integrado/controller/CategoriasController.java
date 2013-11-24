@@ -176,7 +176,7 @@ public class CategoriasController extends AbstractController {
     /**
      * Método para validar o filtro com os dados existentes
      * 
-     * @param Formulario formulario
+     * @param Categoria categoria
      * @return boolean
      */
     private boolean matchesFilter(Categoria categoria) {
