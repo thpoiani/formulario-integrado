@@ -47,10 +47,26 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
     }
 
     @Override
-    public void update(Formulario formulario) {
-        try {
+    public void update(Formulario formulario) throws SQLException{
+        
+        super.openConnection();
+        
+        this.sql = "UPDATE formulario SET titulo = ?, aberto = ?, status = ?, data = ? WHERE id = ?;";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setString(1, formulario.getTitulo());
+        this.ps.setBoolean(2, formulario.isAberto());
+        this.ps.setBoolean(3, formulario.isStatus());
+        this.ps.setString(4, super.getCurrentDate(formulario.getData()));
+        this.ps.setInt(5, formulario.getId());
+        
+        this.ps.executeUpdate();
+        super.closeConnection();
+       
+        
+      /*  try {
             sql = "update formulario set id = " + formulario.getId() + ", titulo = '" + formulario.getTitulo() + "', aberto = '"
-                    + formulario.getAberto() + "', status = " + formulario.isStatus() + ", data = " + formulario.getData()
+                    + formulario.isAberto() + "', status = '" + formulario.isStatus() + "', data = " + formulario.getData()
                     + " where id = " + formulario.getId() + ";";
             this.sta = connection.createStatement();
             ps.executeUpdate(sql);
@@ -58,11 +74,24 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
             System.setErr(null);
         } catch (Exception e) {
             e.getMessage();
-        }
+        }*/
     }
 
     @Override
-    public void remove(Formulario formulario) {
+    public void remove(Formulario formulario) throws SQLException {
+        
+        super.openConnection();
+        
+        this.sql = "UPDATE formulario SET status = ? WHERE id = ?;";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setBoolean(1, formulario.isStatus());
+        this.ps.setInt(2, formulario.getId());
+        
+        this.ps.executeUpdate();
+        super.closeConnection();
+        
+        /*
         try {
             sql = "update formulario set status = " + formulario.isStatus() + " where id = " + formulario.getId() + ";";
             this.sta = connection.createStatement();
@@ -71,6 +100,6 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
             System.setErr(null);
         } catch (Exception e) {
             e.getMessage();
-        }
+        }*/
     }
 }
