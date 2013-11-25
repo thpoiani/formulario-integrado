@@ -51,9 +51,9 @@
         </Pane>
         <Pane id="textoAberto" fx:id="grupoPane" layoutX="76.0" layoutY="126.0" prefHeight="220.0" prefWidth="520.0" visible="false">
           <children>
-            <TableView fx:id="tabela" layoutX="14.0" layoutY="10.0" prefHeight="200.0" prefWidth="492.0">
+            <TableView fx:id="tabela" layoutX="105.0" layoutY="10.0" prefHeight="200.0" prefWidth="256.0" visible="true">
               <columns>
-                <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="492.0" resizable="false" text="Título" fx:id="tabelaTitulo" />
+                <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="255.0" resizable="false" text="Título" fx:id="tabelaTitulo" />
               </columns>
             </TableView>
           </children>
