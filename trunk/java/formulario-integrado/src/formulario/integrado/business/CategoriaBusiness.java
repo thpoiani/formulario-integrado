@@ -132,11 +132,7 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
 
            preparedStatement.setString(1, campo.getTitulo());
            
-           if (campo.getMaxlength() > 0) {
-               preparedStatement.setInt(2, campo.getMaxlength());   
-           } else {
-               preparedStatement.setNull(3, Types.INTEGER);
-           }
+           preparedStatement.setInt(2, campo.getMaxlength());
            
            if (!campo.getRegex().isEmpty()) {
                preparedStatement.setString(3, campo.getRegex());
