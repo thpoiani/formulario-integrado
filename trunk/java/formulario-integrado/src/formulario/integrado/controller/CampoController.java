@@ -83,12 +83,6 @@ public class CampoController extends AbstractController {
     private TableView<Grupo> tabela;
     
     @FXML
-    private TableColumn<Grupo, Integer> tabelaId;
-    
-    @FXML
-    private TableColumn<Grupo, String> tabelaTipo;
-    
-    @FXML
     private TableColumn<Grupo, String> tabelaTitulo;
     
     @FXML
@@ -125,8 +119,6 @@ public class CampoController extends AbstractController {
         assert remover != null : "fx:id=\"remover\" was not injected: check your FXML file 'campo.fxml'.";
         assert salvar != null : "fx:id=\"salvar\" was not injected: check your FXML file 'campo.fxml'.";
         assert tabela != null : "fx:id=\"tabela\" was not injected: check your FXML file 'campo.fxml'.";
-        assert tabelaId != null : "fx:id=\"tabelaId\" was not injected: check your FXML file 'campo.fxml'.";
-        assert tabelaTipo != null : "fx:id=\"tabelaTipo\" was not injected: check your FXML file 'campo.fxml'.";
         assert tabelaTitulo != null : "fx:id=\"tabelaTitulo\" was not injected: check your FXML file 'campo.fxml'.";
         assert textoAberto != null : "fx:id=\"textoAberto\" was not injected: check your FXML file 'campo.fxml'.";
         assert textoPane != null : "fx:id=\"textoPane\" was not injected: check your FXML file 'campo.fxml'.";
@@ -173,6 +165,7 @@ public class CampoController extends AbstractController {
     @FXML
     void editarAction(ActionEvent event) {
         if (grupoPane.isVisible() && grupoIsSelected()) {
+            this.model = tabela.getSelectionModel().getSelectedItem();
             super.start("grupo.fxml", "Grupo", this);
             super.hide();
         }
@@ -181,6 +174,12 @@ public class CampoController extends AbstractController {
     @FXML
     void inserirAction(ActionEvent event) {
         if (grupoPane.isVisible()) {
+            if (getParentController().model != null) {
+                this.model = getParentController().model;
+            } else {
+                this.model = null;
+            }
+
             super.start("grupo.fxml", "Grupo", this);
             super.hide();
         }
@@ -196,7 +195,19 @@ public class CampoController extends AbstractController {
     @FXML
     void removerAction(ActionEvent event) {
         if (grupoPane.isVisible() && grupoIsSelected()) {
+            if (getParentController().model != null) {
+                try {
+                    this.grupoBusiness.remove(tabela.getSelectionModel().getSelectedItem());                    
+                    Dialog.showInfo("Campo", "Grupo removido com sucesso");
+                } catch (Exception e) {
+                    Dialog.showError("Campo", "Ocorreu algum problema na remoção do grupo.");
+                }
+            } else {
+                models.remove(tabela.getSelectionModel().getSelectedItem());
+                Dialog.showInfo("Categoria", "Campo removido com sucesso");
+            }
             
+            refreshTableView();
         }
     }
     
@@ -315,8 +326,6 @@ public class CampoController extends AbstractController {
      */
     @SuppressWarnings("unchecked")
     private void populateTableView() {
-        tabelaId.setCellValueFactory(new PropertyValueFactory<Grupo, Integer>("id"));
-        tabelaTipo.setCellValueFactory(new PropertyValueFactory<Grupo, String>("tipo"));
         tabelaTitulo.setCellValueFactory(new PropertyValueFactory<Grupo, String>("titulo"));
 
         if (this.models != null) {
@@ -491,10 +500,10 @@ public class CampoController extends AbstractController {
         if (models != null) {
             if (getParentController().model != null) {
                 try {
-                    this.models = this.campoBusiness.show((Categoria)getParentController().model);
+                    this.models = this.grupoBusiness.show((Campo)getParentController().model);
                     tabela.setItems(FXCollections.observableArrayList(this.models));
                 } catch (SQLException ex) {
-                    Dialog.showError("Categoria", "Ocorreu algum problema na recuperação dos campos.");
+                    Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos grupos.");
                 }
             } else {
                 tabela.setItems(FXCollections.observableArrayList(models));

@@ -134,7 +134,10 @@ public class GrupoController extends AbstractController {
         
         grupo.setTitulo(titulo.getText());
         grupo.setStatus(true);
-        grupo.setCampoId(getParentController().model.getId());
+        
+        if (getParentController().model instanceof Campo) {
+            grupo.setCampoId(getParentController().model.getId());
+        }
         
         return grupo;
     }
