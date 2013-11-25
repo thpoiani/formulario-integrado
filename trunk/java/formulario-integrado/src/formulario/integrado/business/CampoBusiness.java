@@ -73,7 +73,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         
         this.sql = "UPDATE campo SET titulo = ?, maxlength = ?, regex = ?, status = ?, ordem = ?, data = ?, "
                 + "categoriaId = ?, tipoId = ? WHERE id = ?;";
-        this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        this.ps = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                     
         this.ps.setString(1, campo.getTitulo());
         this.ps.setInt(2, campo.getMaxlength());
@@ -81,7 +81,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         this.ps.setBoolean(4, campo.isStatus());
         this.ps.setInt(5, campo.getOrdem());
         this.ps.setString(6, super.getCurrentDate(campo.getData()));
-        this.ps.setInt(7, campo.getCategoria().getId());
+        this.ps.setInt(7, campo.getCategoriaId());
         this.ps.setInt(8, campo.getTipoModel().getId());
         this.ps.setInt(9, campo.getId());
         
