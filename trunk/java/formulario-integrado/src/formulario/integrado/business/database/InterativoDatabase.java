@@ -5,11 +5,11 @@ import java.sql.SQLException;
 class InterativoDatabase {
 
     private final static String ADAPTER = "mysql";
-    private final static String HOST = "localhost";
+    private final static String HOST = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
     private final static String PORT = "3306";
     private final static String DATABASE = "interativo";
-    private final static String USERNAME = "root";
-    private final static String PASSWORD = "henrique";
+    private final static String USERNAME = "interativo";
+    private final static String PASSWORD = "interativo";
     
     private static java.sql.Connection connection;
 
