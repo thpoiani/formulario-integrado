@@ -12,10 +12,6 @@ import java.util.List;
 
 public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
 
-    private ResultSet rs;
-    private PreparedStatement ps;
-    private String sql;
-
     @Override
     public Campo find(int id) throws SQLException {
         super.openConnection();

@@ -76,10 +76,9 @@ public class Tipo extends Model {
         return true;
     }
     
-    
-    
     @Override
     public String toString() {
         return this.descricao;
     }
+    
 }

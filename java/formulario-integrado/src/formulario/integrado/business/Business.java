@@ -2,6 +2,7 @@ package formulario.integrado.business;
 
 import formulario.integrado.business.database.Database;
 import formulario.integrado.model.IModel;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -13,7 +14,8 @@ import java.util.List;
 abstract class Business<T extends IModel> implements IBusiness<T> {
 
     protected java.sql.Connection connection;
-    protected ResultSet result = null;
+    protected PreparedStatement ps;
+    protected ResultSet rs = null;
     protected String sql;
     protected String table;
 
