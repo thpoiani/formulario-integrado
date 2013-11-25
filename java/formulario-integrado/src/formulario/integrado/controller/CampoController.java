@@ -150,7 +150,6 @@ public class CampoController extends AbstractController {
     @FXML
     void unicaEscolhaAction(ActionEvent event) {
         if (unicaEscolha.isSelected()) {
-            super.start("grupo.fxml", "Grupo", this);
             setPaneVisible(false, true, true);
             super.hide();
         }
@@ -173,7 +172,6 @@ public class CampoController extends AbstractController {
     @FXML
     void multiplaEscolhaAction(ActionEvent event) {
         if (multiplaEscolha.isSelected()) {
-            super.start("grupo.fxml", "Grupo", this);
             setPaneVisible(false, true, true);
             super.hide();
         }
@@ -286,9 +284,6 @@ public class CampoController extends AbstractController {
             this.dados = FXCollections.observableArrayList(this.models);
             tabela.setItems(this.dados);
         }
-
-//         REMOVER EM PRODUÇÃO
-        // fakeData();
     }
 
     /**

@@ -21,16 +21,16 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
         ArrayList<Grupo> grupo = new ArrayList<>();
         this.rs = null;
         
-        this.sql = "SELECT * FROM grupo WHERE campoId = " + campo.getId() + ";";
+        this.sql = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
+                 + "FROM grupo g WHERE g.status = true AND g.campoId = ?;";
         
         this.ps = connection.prepareStatement(this.sql);        
+        this.ps.setInt(1, campo.getId());
         this.rs = this.ps.executeQuery();
         
         while (rs.next()) {
             grupo.add(assembly(rs));
         }
-        
-        // verificar se possui grupo
         
         super.closeConnection();
         
@@ -41,63 +41,51 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
     public void add(Grupo grupo) throws SQLException{
         super.openConnection();
         
-        this.sql = "INSERT INTO grupo (titulo, data, campoId, tipoId) VALUES (?, ?, ?, ?);";
+        this.sql = "INSERT INTO grupo (titulo, data, ordem, status, campoId) VALUES (?, ?, ?, ?, ?);";
         this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         this.ps.setString(1, grupo.getTitulo());
         this.ps.setString(2, super.getCurrentDate(grupo.getData()));
-        this.ps.setInt(3, grupo.getCampoId());
-        this.ps.setInt(4, grupo.getTipoId());
+        this.ps.setInt(3, grupo.getOrdem());
+        this.ps.setBoolean(4, grupo.isStatus());
+        this.ps.setInt(5, grupo.getCampoId());
         
         this.ps.executeUpdate();
         
         super.closeConnection();
-        /*
-        try {
-            sql = "insert into grupo(id, titulo, data, campoId, tipoId) values ("
-                    + grupo.getId() + ", '" + grupo.getTitulo() + "', " + grupo.getData()
-                    + ", " + grupo.getCampoId() + ", " + grupo.getTipoId() + ");";
-            this.ps = connection.prepareStatement(sql);
-            ps.execute();
-            System.setErr(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }*/
     }
 
     @Override
     public void update(Grupo grupo) throws SQLException{
         super.openConnection();
         
-        this.sql = "UPDATE grupo SET titulo = ?, campoId = ?, tipoId = ? WHERE id = ?;";
+        this.sql = "UPDATE grupo SET titulo = ?, ordem = ?, status = ?, campoId = ? WHERE id = ?;";
         this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         this.ps.setString(1, grupo.getTitulo());
-        this.ps.setInt(2, grupo.getCampoId());
-        this.ps.setInt(3, grupo.getTipoId());
-        this.ps.setInt(4, grupo.getId());
+        this.ps.setInt(2, grupo.getOrdem());
+        this.ps.setBoolean(3, grupo.isStatus());
+        this.ps.setInt(4, grupo.getCampoId());
+        this.ps.setInt(5, grupo.getId());
         
         this.ps.executeUpdate();
         
         super.closeConnection();
-        
-        /*
-        try {
-            sql = "update grupo set id = " + grupo.getId() + ", titulo = '" + grupo.getTitulo() + "', data = "
-                    + grupo.getData() + ", campoId = " + grupo.getCampoId() + ", tipoId = " + grupo.getTipoId()
-                    + " where id = " + grupo.getId() + ";";;
-            this.sta = connection.createStatement();
-            ps.executeUpdate(sql);
-            ps.close();
-            System.setErr(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }*/
     }
 
     @Override
     public void remove(Grupo grupo) throws SQLException{
-        throw new UnsupportedOperationException("Not supported yet.");
+        super.openConnection();
+        
+        this.sql = "UPDATE grupo SET status = ? WHERE id = ?;";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setBoolean(1, false);
+        this.ps.setInt(2, grupo.getId());
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
     }
     
     /**
@@ -109,11 +97,13 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
      */
     private Grupo assembly(ResultSet rs) throws SQLException {
         Grupo grupo = new Grupo();
+        
         grupo.setId(rs.getInt(1));
         grupo.setTitulo(rs.getString(2));
         grupo.setData(super.setCurrentDate(rs.getString(3)));
-        grupo.setCampoId(rs.getInt(4));
-        grupo.setTipoId(rs.getInt(5));
+        grupo.setOrdem(rs.getInt(4));
+        grupo.setStatus(rs.getBoolean(5));
+        grupo.setCampoId(rs.getInt(6));
         
         return grupo;
     }
