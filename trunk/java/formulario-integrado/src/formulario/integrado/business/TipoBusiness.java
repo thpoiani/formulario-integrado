@@ -35,6 +35,37 @@ public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
         
         return tipo;
     }
+    
+    @Override
+    public Tipo getCheck() throws SQLException{
+        return getType("Check");
+    }
+    
+    @Override
+    public Tipo getRadio() throws SQLException{
+        return getType("Radio");
+    }
+    
+    private Tipo getType(String descricao) throws SQLException {
+        super.openConnection();
+        
+        Tipo tipo = null;
+        this.rs = null;
+        
+        this.sql = "SELECT t.id, t.descricao FROM tipo t WHERE t.descricao = ?;";
+        
+        this.ps = connection.prepareStatement(this.sql);
+        this.ps.setString(1, descricao);
+        this.rs = this.ps.executeQuery();
+        
+        if (rs.next()) {
+            tipo = assembly(rs);
+        }
+        
+        super.closeConnection();
+        
+        return tipo;
+    }
 
     @Override
     public List<Tipo> show() throws SQLException{
