@@ -230,9 +230,6 @@ public class CampoController extends AbstractController {
     private void populateComboBox() {
         try {
             this.tipos = FXCollections.observableArrayList(tipoBusiness.show());
-            this.tipos.remove(new Tipo("Radio"));
-            this.tipos.remove(new Tipo("Check"));
-            
             tipo.setItems(this.tipos);
             displayTipoDescricaoOnComboBox();
             tipo.getSelectionModel().selectFirst();
@@ -306,8 +303,11 @@ public class CampoController extends AbstractController {
         
         try {
             Tipo tipoModel = this.tipoBusiness.find(campo.getTipoId());
-            selectRadioButtonByTipo(tipoModel);   
-            tipo.setValue(tipo.getItems().get(tipo.getItems().indexOf(tipoModel)));
+            selectRadioButtonByTipo(tipoModel);
+            
+            if (tipo.getItems().indexOf(tipoModel) != -1) {
+                tipo.setValue(tipo.getItems().get(tipo.getItems().indexOf(tipoModel)));
+            }
         } catch (SQLException ex) {
             Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos tipos.");
         }

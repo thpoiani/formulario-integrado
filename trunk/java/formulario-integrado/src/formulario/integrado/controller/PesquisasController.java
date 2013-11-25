@@ -2,7 +2,6 @@ package formulario.integrado.controller;
 
 import formulario.integrado.business.IRespostaBusiness;
 import formulario.integrado.business.RespostaBusiness;
-import formulario.integrado.model.Aluno;
 import formulario.integrado.model.Resposta;
 import java.util.ArrayList;
 import javafx.application.Platform;
@@ -82,10 +81,8 @@ public class PesquisasController extends AbstractController {
 
 //        this.dados = FXCollections.observableArrayList(respostaBusiness.show());
 //        tabela.setItems(this.dados);
-
-        testeTabela();
         
-        this.filtro.addAll(this.dados);
+//        this.filtro.addAll(this.dados);
 
         pesquisar.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -144,33 +141,6 @@ public class PesquisasController extends AbstractController {
     @Override
     public AbstractController getParentController() {
         return this.controller;
-    }
-
-    private void testeTabela() {
-        Resposta resposta1 = new Resposta();
-        resposta1.setAlunoId(1);
-        resposta1.setCampoId(1);
-        
-        Resposta resposta2 = new Resposta();
-        resposta1.setAlunoId(2);
-        resposta1.setCampoId(2);
-        
-        Aluno aluno1 = new Aluno();
-        aluno1.setId(1);
-        aluno1.setNome("thiago");
-        aluno1.setProntuario("1101587");
-        
-        Aluno aluno2 = new Aluno();
-        aluno2.setId(2);
-        aluno2.setNome("poiani");
-        aluno2.setProntuario("1108928");
-        
-        ArrayList<Resposta> respostas = new ArrayList<>();
-        respostas.add(resposta1);
-        respostas.add(resposta2);
-        
-        dados = FXCollections.observableArrayList(resposta1);
-        tabela.setItems(dados);
     }
 
 }
