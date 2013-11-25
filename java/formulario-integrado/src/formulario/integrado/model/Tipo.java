@@ -7,6 +7,12 @@ public class Tipo extends Model {
     private int id;
     private String descricao;
 
+    public Tipo() {}
+    
+    public Tipo(String descricao) {
+        this.descricao = descricao;
+    }
+
     /**
      * @return the id
      */

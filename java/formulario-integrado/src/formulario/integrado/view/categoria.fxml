@@ -12,9 +12,9 @@
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
       <children>
         <Label layoutX="14.0" layoutY="33.0" text="Título" />
-        <TextField fx:id="titulo" layoutX="80.0" layoutY="30.0" prefWidth="506.0000999999975" />
+        <TextField fx:id="titulo" layoutX="80.0" layoutY="30.0" prefWidth="506.0000999999975" promptText="Título da categoria" />
         <Label layoutX="14.0" layoutY="97.0" text="Descrição" />
-        <TextField fx:id="descricao" layoutX="80.0" layoutY="94.0" prefWidth="506.0000999999975" />
+        <TextField fx:id="descricao" layoutX="80.0" layoutY="94.0" prefWidth="506.0000999999975" promptText="Breve descrição sobre essa categoria" />
         <Label layoutX="14.0" layoutY="166.0" prefWidth="61.0" text="Campos" />
         <ListView fx:id="campos" editable="false" layoutX="80.0" layoutY="166.0" orientation="VERTICAL" prefHeight="111.99990000000253" prefWidth="220.0" />
         <Button id="formulario" fx:id="inserir" layoutX="476.0" layoutY="166.0" mnemonicParsing="false" onAction="#inserirAction" prefHeight="26.0" prefWidth="110.0" styleClass="btn, btn-success" text="Inserir Campo" />

@@ -230,6 +230,9 @@ public class CampoController extends AbstractController {
     private void populateComboBox() {
         try {
             this.tipos = FXCollections.observableArrayList(tipoBusiness.show());
+            this.tipos.remove(new Tipo("Radio"));
+            this.tipos.remove(new Tipo("Check"));
+            
             tipo.setItems(this.tipos);
             displayTipoDescricaoOnComboBox();
             tipo.getSelectionModel().selectFirst();
@@ -323,14 +326,17 @@ public class CampoController extends AbstractController {
         switch (tipo.getDescricao().toLowerCase()) {
             case "check":
                 setRadioSelected(false, true, false);
+                setPaneVisible(false, true, true);
                 break;
 
             case "radio":
                 setRadioSelected(false, false, true);
+                setPaneVisible(false, true, true);
                 break;
 
             default:
                 setRadioSelected(true, false, false);
+                setPaneVisible(true, false, false);
         }
     }
 

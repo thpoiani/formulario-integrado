@@ -13,7 +13,7 @@
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
       <children>
         <Label layoutX="14.0" layoutY="33.0" text="Título" />
-        <TextField fx:id="titulo" layoutX="80.0" layoutY="30.0" prefWidth="506.0000999999975" promptText="título" />
+        <TextField fx:id="titulo" layoutX="80.0" layoutY="30.0" prefWidth="506.0000999999975" promptText="Título do campo" />
         <RadioButton fx:id="textoAberto" layoutX="80.0" layoutY="85.0" mnemonicParsing="false" onAction="#textoAbertoAction" selected="true" text="Texto Aberto">
           <toggleGroup>
             <ToggleGroup fx:id="radio" />
@@ -26,9 +26,17 @@
         <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="true" layoutX="267.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar Grupo" visible="false" wrapText="false" />
         <Pane id="textoAberto" fx:id="textoAbertoPane" layoutX="66.0" layoutY="116.0" prefHeight="220.0" prefWidth="520.0" visible="true">
           <children>
-            <Label layoutX="14.0" layoutY="56.0" text="Tamanho Máximo" />
+            <Label layoutX="14.0" layoutY="56.0" text="Tamanho Máximo">
+              <tooltip>
+                <Tooltip text="Tamanho máximo de caracteres inseridos nesse campo" wrapText="false" />
+              </tooltip>
+            </Label>
             <TextField id="titulo" fx:id="maxlength" layoutX="116.0" layoutY="53.0" prefWidth="91.99997792968497" />
-            <Label layoutX="14.0" layoutY="94.0" text="Expressão Regular" />
+            <Label layoutX="14.0" layoutY="94.0" text="Expressão Regular">
+              <tooltip>
+                <Tooltip autoHide="false" text="Notação para representar padrões para validação" />
+              </tooltip>
+            </Label>
             <TextField id="titulo" fx:id="regex" layoutX="116.0" layoutY="91.0" prefWidth="91.99997792968497" />
             <ComboBox fx:id="tipo" layoutX="302.0" layoutY="53.0" prefHeight="21.0" prefWidth="155.0" promptText="Tipo" visibleRowCount="5">
               <items>
