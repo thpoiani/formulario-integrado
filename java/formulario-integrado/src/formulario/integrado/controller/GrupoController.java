@@ -125,7 +125,7 @@ public class GrupoController extends AbstractController {
     private Grupo assemblyRequest() {
         Grupo grupo;
         
-        if (getParentController().model != null) {
+        if (getParentController().model != null && getParentController().model instanceof Grupo) {
             grupo = (Grupo) getParentController().model;
         } else {
             grupo = new Grupo();
