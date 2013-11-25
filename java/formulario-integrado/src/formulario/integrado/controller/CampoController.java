@@ -394,6 +394,15 @@ public class CampoController extends AbstractController {
         unicaEscolha.setSelected(isMultiplaEscolha);
         multiplaEscolha.setSelected(isUnicaEscolha);
     }
+    
+    /**
+     * Método para retonrar se o texto aberto está selecionado
+     * 
+     * return boolean
+     */
+    private boolean textoIsSelected() {
+        return textoAberto.isSelected();
+    }
 
     /**
      * Método para tornar visível Pane específico
@@ -435,7 +444,7 @@ public class CampoController extends AbstractController {
         campo.setTipo(tipo.getValue());
         campo.setTipoId(tipo.getValue().getId());
         
-        if (!campo.getTipo().toLowerCase().equals("check") || !campo.getTipo().toLowerCase().equals("radio")) {
+        if (textoIsSelected()) {
             campo.setRegex(regex.getText());
             
             if (maxlength.getText().length() > 0) {
@@ -445,8 +454,12 @@ public class CampoController extends AbstractController {
                     campo.addErrors("maxlength");
                 }
             }
+            
+            campo.setGrupos(null);
         } else {
             campo.setGrupos(models);
+            campo.setMaxlength(0);
+            campo.setRegex(null);
         }
         
         return campo;
