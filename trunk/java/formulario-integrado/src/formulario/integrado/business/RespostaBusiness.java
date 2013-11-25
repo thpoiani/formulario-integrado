@@ -80,4 +80,9 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
         
         return resposta;
     }
+
+    @Override
+    public Resposta find(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

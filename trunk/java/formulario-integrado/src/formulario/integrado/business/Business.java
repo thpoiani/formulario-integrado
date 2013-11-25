@@ -31,21 +31,6 @@ abstract class Business<T extends IModel> implements IBusiness<T> {
     }
 
     @Override
-    public T find(int id) throws SQLException {
-        String sql = null;
-        Statement ps = null;
-        try {
-            ps = connection.createStatement();
-            result = ps.executeQuery(sql);
-        } catch (SQLException ex) {
-            Logger.getLogger(Business.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return null;
-
-    }
-
-    @Override
     public void add(List<T> model) throws SQLException {
         Iterator<T> iterator = model.iterator();
         while (iterator.hasNext()) {

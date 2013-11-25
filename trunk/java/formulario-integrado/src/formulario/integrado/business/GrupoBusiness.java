@@ -122,4 +122,9 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
     public List<Grupo> show() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Grupo find(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
