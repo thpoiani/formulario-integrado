@@ -52,10 +52,7 @@ public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
         
         while (rs.next()) {
             tipo.add(assembly(rs));
-        }
-        
-//        tipo.remove(new Tipo("Radio"));
-//        tipo.remove(new Tipo("Check"));
+        }       
         
         // verificar se possui tipo
         

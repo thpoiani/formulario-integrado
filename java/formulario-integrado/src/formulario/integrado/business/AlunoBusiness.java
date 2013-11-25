@@ -50,17 +50,6 @@ public class AlunoBusiness extends Business<Aluno> implements IAlunoBusiness {
         this.ps.executeUpdate();
         
         super.closeConnection();
-        /*
-        try {
-            sql = "insert into aluno(id, prontuario, nome) values (" + aluno.getId()
-                    + ", " + aluno.getProntuario()
-                    + ", '" + aluno.getNome() + "');";
-            this.ps = connection.prepareStatement(sql);
-            ps.execute();
-            System.setErr(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }*/
     }
 
     @Override
