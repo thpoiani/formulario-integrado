@@ -126,7 +126,6 @@ public class CampoController extends AbstractController {
         assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'campo.fxml'.";
         assert unicaEscolha != null : "fx:id=\"unicaEscolha\" was not injected: check your FXML file 'campo.fxml'.";
 
-        populateTableView();
         populateComboBox();
 
         Platform.runLater(new Runnable() {
@@ -141,6 +140,7 @@ public class CampoController extends AbstractController {
                     models = new ArrayList<>();
                 }
                 
+                populateTableView();
                 onShowRefreshTableView();
             }
         });
@@ -446,7 +446,7 @@ public class CampoController extends AbstractController {
                 }
             }
         } else {
-            campo.setGrupos(models);    
+            campo.setGrupos(models);
         }
         
         return campo;
@@ -507,6 +507,7 @@ public class CampoController extends AbstractController {
                 }
             } else {
                 tabela.setItems(FXCollections.observableArrayList(models));
+                tabela.getSortOrder();
             }
         }
     }
