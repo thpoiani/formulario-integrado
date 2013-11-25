@@ -15,8 +15,7 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
 
     private PreparedStatement ps;
     private String sql;
-    private ResultSet rs;
-    
+    private ResultSet rs;    
     
     @Override
     public Categoria find(int id) throws SQLException {
