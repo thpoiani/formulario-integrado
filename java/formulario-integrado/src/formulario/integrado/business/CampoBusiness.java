@@ -16,6 +16,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     private PreparedStatement ps;
     private String sql;
 
+    @Override
     public Campo find(int id) throws SQLException {
         super.openConnection();
         
@@ -30,8 +31,8 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         this.rs = this.ps.executeQuery();
 
         
-        while (rs.next()) {
-            campo.add(assembly(rs));
+        if (rs.next()) {
+            campo = assembly(rs);
         }
         
         super.closeConnection();
