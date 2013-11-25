@@ -59,7 +59,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         
         return campo;
     }
-    
+
     @Override
     public void add(Campo campo) throws SQLException{
         super.openConnection();
