@@ -42,7 +42,7 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     }
     
     @Override
-    public List<Grupo> show(Campo campo)throws SQLException{
+    public List<Grupo> show(Campo campo) throws SQLException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -134,7 +134,8 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         ArrayList<Campo> campo = new ArrayList<>();
         this.rs = null;
         
-        this.sql = "SELECT * FROM campo WHERE status = 1 AND id = ?;";
+        this.sql = "SELECT c.id, c.titulo, c.maxlength, c.regex, c.status, "
+                 + "c.ordem, c.data, c.categoriaId, c.tipoId FROM campo c WHERE c.status = 1 AND c.categoriaId = ?;";
         
         this.ps = connection.prepareStatement(this.sql);
         this.ps.setInt(1, categoria.getId());
@@ -143,8 +144,6 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         while (rs.next()) {
             campo.add(assembly(rs));
         }
-        
-        // verificar se possui campo
         
         super.closeConnection();
         

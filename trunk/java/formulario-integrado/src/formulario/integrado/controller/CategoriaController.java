@@ -248,7 +248,8 @@ public class CategoriaController extends AbstractController {
         if (models != null) {
             if (getParentController().model != null) {
                 try {
-                    campos.setItems(FXCollections.observableArrayList(this.campoBusiness.show((Categoria) getParentController().model)));
+                    this.models = this.campoBusiness.show((Categoria)getParentController().model);
+                    campos.setItems(FXCollections.observableArrayList(this.models));
                 } catch (SQLException ex) {
                     Dialog.showError("Categoria", "Ocorreu algum problema na recuperação dos campos.");
                 }
