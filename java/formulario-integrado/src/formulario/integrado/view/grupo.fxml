@@ -13,7 +13,7 @@
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="110.0" prefWidth="200.0">
       <children>
         <Button id="loginButton" fx:id="salvar" cancelButton="false" defaultButton="true" layoutX="134.0" layoutY="80.0" mnemonicParsing="false" onAction="#salvarAction" styleClass="btn, btn-success" text="Salvar" wrapText="false" />
-        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+        <Button id="loginButton" fx:id="cancelar" cancelButton="true" defaultButton="false" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
         <Label layoutX="14.0" layoutY="33.0" text="Título" />
         <TextField id="titulo1" fx:id="titulo" layoutX="51.0" layoutY="30.0" prefWidth="135.0" />
       </children>

@@ -15,6 +15,7 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
     private PreparedStatement ps;
     private String sql;
 
+    @Override
     public List<Grupo> show(Campo campo) throws SQLException{
         super.openConnection();
         
@@ -110,11 +111,28 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
 
     @Override
     public List<Grupo> show() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        super.openConnection();
+        
+        ArrayList<Grupo> grupo = new ArrayList<>();
+        this.rs = null;
+        
+        this.sql = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
+                 + "FROM grupo g WHERE g.status = true;";
+        
+        this.ps = connection.prepareStatement(this.sql);        
+        this.rs = this.ps.executeQuery();
+        
+        while (rs.next()) {
+            grupo.add(assembly(rs));
+        }
+        
+        super.closeConnection();
+        
+        return grupo;
     }
 
     @Override
     public Grupo find(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -22,9 +22,9 @@
         <RadioButton fx:id="multiplaEscolha" layoutX="280.0" layoutY="85.0" mnemonicParsing="false" onAction="#multiplaEscolhaAction" text="Múltipla Escolha" toggleGroup="$radio" />
         <RadioButton id="UnicaEsciolha" fx:id="unicaEscolha" layoutX="494.0" layoutY="85.0" mnemonicParsing="false" onAction="#unicaEscolhaAction" text="Única Escolha" toggleGroup="$radio" />
         <Button id="loginButton" fx:id="salvar" cancelButton="false" defaultButton="true" layoutX="534.0" layoutY="365.0" mnemonicParsing="false" onAction="#salvarAction" styleClass="btn, btn-success" text="Salvar" wrapText="false" />
-        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
-        <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="true" layoutX="267.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar Grupo" visible="false" wrapText="false" />
-        <Pane id="textoAberto" fx:id="textoAbertoPane" layoutX="66.0" layoutY="116.0" prefHeight="220.0" prefWidth="520.0" visible="true">
+        <Button id="loginButton" fx:id="cancelar" cancelButton="true" defaultButton="false" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+        <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="false" layoutX="289.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar" visible="false" wrapText="false" />
+        <Pane id="textoAberto" fx:id="textoPane" layoutX="66.0" layoutY="116.0" prefHeight="220.0" prefWidth="520.0" visible="true">
           <children>
             <Label layoutX="14.0" layoutY="56.0" text="Tamanho Máximo">
               <tooltip>
@@ -49,7 +49,7 @@
             </ComboBox>
           </children>
         </Pane>
-        <Pane id="textoAberto" fx:id="multiplaEscolhaPane" layoutX="76.0" layoutY="126.0" prefHeight="220.0" prefWidth="520.0" visible="false">
+        <Pane id="textoAberto" fx:id="grupoPane" layoutX="76.0" layoutY="126.0" prefHeight="220.0" prefWidth="520.0" visible="false">
           <children>
             <TableView fx:id="tabela" layoutX="14.0" layoutY="10.0" prefHeight="200.0" prefWidth="492.0">
               <columns>
@@ -60,6 +60,8 @@
             </TableView>
           </children>
         </Pane>
+        <Button id="loginButton" fx:id="inserir" cancelButton="false" defaultButton="false" layoutX="346.0" layoutY="365.0" mnemonicParsing="false" onAction="#inserirAction" styleClass="btn, btn-success" text="Inserir" visible="false" wrapText="false" />
+        <Button id="loginButton" fx:id="remover" cancelButton="false" defaultButton="false" layoutX="214.0" layoutY="365.0" mnemonicParsing="false" onAction="#removerAction" styleClass="btn, btn-success" text="Retirar" visible="false" wrapText="false" />
       </children>
       <stylesheets>
         <URL value="@../../../assets/styles.css" />

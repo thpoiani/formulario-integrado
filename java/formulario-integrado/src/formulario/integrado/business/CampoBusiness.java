@@ -78,11 +78,6 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
     }
     
     @Override
-    public List<Grupo> show(Campo campo) throws SQLException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void add(Campo campo) throws SQLException{
         super.openConnection();
         
