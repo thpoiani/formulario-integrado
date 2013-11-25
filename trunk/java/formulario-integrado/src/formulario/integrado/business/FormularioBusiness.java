@@ -86,8 +86,6 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
             formularios.add(assemblyFormulario(rs, categorias));
         }
         
-        // verificar se possui categoria
-        
         super.closeConnection();
         
         return formularios;

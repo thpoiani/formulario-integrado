@@ -30,9 +30,8 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         this.ps.setInt(1, id);
         this.rs = this.ps.executeQuery();
 
-        
         if (rs.next()) {
-            campo = assembly(rs);
+            campo = assemblyCampo(rs);
         }
         
         super.closeConnection();
@@ -53,24 +52,8 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         this.rs = this.ps.executeQuery();
         
         while (rs.next()) {
-            ArrayList<Categoria> categorias = new ArrayList<>();
-
-            String query = "SELECT c.id, c.titulo, c.maxlength, c.regex, c.status, c.ordem, c.data, c.categoriaId, c.tipoId "
-                        + "FROM campo c "
-                        + "INNER JOIN categoria cat ON cat.id = c.categoriaId AND c.status = 1";
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, rs.getInt(1));
-            ResultSet resultSet = preparedStatement.executeQuery();
-            
-            while (resultSet.next()) {
-                categorias.add(assemblyCategoria(resultSet, categorias));
-            }
-            
-            campo.add(assembly(rs));
+            campo.add(assemblyCampo(rs));
         }
-        
-        // verificar se possui campo
         
         super.closeConnection();
         
@@ -136,28 +119,6 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         super.closeConnection();
     }
     
-    /**
-     * Método para popular um Formulário
-     * 
-     * @param ResultSet rs
-     * @return Campo
-     * @throws SQLException 
-     */
-    private Campo assembly(ResultSet rs) throws SQLException {
-        Campo campo = new Campo();
-        campo.setId(rs.getInt(1));
-        campo.setTitulo(rs.getString(2));
-        campo.setMaxlength(rs.getInt(3));
-        campo.setRegex(rs.getString(4));
-        campo.setStatus(rs.getBoolean(5));
-        campo.setOrdem(rs.getInt(6));
-        campo.setData(super.setCurrentDate(rs.getString(7)));
-        campo.setCategoriaId(rs.getInt(8));
-        campo.setTipoId(rs.getInt(9));
-        
-        return campo;
-    }
-
     @Override
     public List<Campo> show(Categoria categoria) throws SQLException {
         super.openConnection();
@@ -173,30 +134,84 @@ public class CampoBusiness extends Business<Campo> implements ICampoBusiness {
         this.rs = this.ps.executeQuery();
         
         while (rs.next()) {
-            campo.add(assembly(rs));
+            ArrayList<Grupo> grupos = new ArrayList<>();
+            
+            String query = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
+                        + "FROM grupo g WHERE g.status = 1 AND g.campoId = ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, rs.getInt(1));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()) {
+                grupos.add(assemblyGrupo(resultSet));
+            }
+            
+            campo.add(assemblyCampo(rs, grupos));
         }
         
         super.closeConnection();
         
         return campo;
     }
-    
+
     /**
-     * Método para popular Categoria
+     * Método para popular um Formulário
      * 
      * @param ResultSet rs
-     * @return Categoria
+     * @return Campo
      * @throws SQLException 
      */
-    private Categoria assemblyCategoria(ResultSet resultSet, ArrayList<Categoria> categorias) throws SQLException {
-        Categoria categoria = new Categoria();
-        categoria.setId(resultSet.getInt(1));
-        categoria.setTitulo(resultSet.getString(2));
-        categoria.setDescricao(resultSet.getString(3));
-        categoria.setStatus(resultSet.getBoolean(4));        
-        categoria.setData(super.setCurrentDate(resultSet.getString(5)));
+    private Campo assemblyCampo(ResultSet rs) throws SQLException {
+        Campo campo = new Campo();
+        campo.setId(rs.getInt(1));
+        campo.setTitulo(rs.getString(2));
+        campo.setMaxlength(rs.getInt(3));
+        campo.setRegex(rs.getString(4));
+        campo.setStatus(rs.getBoolean(5));
+        campo.setOrdem(rs.getInt(6));
+        campo.setData(super.setCurrentDate(rs.getString(7)));
+        campo.setCategoriaId(rs.getInt(8));
+        campo.setTipoId(rs.getInt(9));
         
-        return categoria;
+        return campo;
     }
     
+    /**
+     * Método para popular um Formulário
+     * 
+     * @param ResultSet rs
+     * @return Campo
+     * @throws SQLException 
+     */
+    private Campo assemblyCampo(ResultSet rs, ArrayList<Grupo> grupos) throws SQLException {
+        Campo campo = assemblyCampo(rs);
+        
+        if (grupos != null) {
+            campo.setGrupos(grupos);
+        }
+        
+        return campo;
+    }
+    
+    /**
+     * Método para popular Grupo
+     * 
+     * @param ResultSet rs
+     * @return Grupo
+     * @throws SQLException 
+     */
+    private Grupo assemblyGrupo(ResultSet rs) throws SQLException {
+        Grupo grupo = new Grupo();
+        
+        grupo.setId(rs.getInt(1));
+        grupo.setTitulo(rs.getString(2));
+        grupo.setData(super.setCurrentDate(rs.getString(3)));
+        grupo.setOrdem(rs.getInt(4));
+        grupo.setStatus(rs.getBoolean(5));
+        grupo.setCampoId(rs.getInt(6));
+        
+        return grupo;
+    }
+
 }

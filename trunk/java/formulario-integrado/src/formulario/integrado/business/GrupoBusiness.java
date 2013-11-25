@@ -23,7 +23,7 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
         this.rs = null;
         
         this.sql = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
-                 + "FROM grupo g WHERE g.status = true AND g.campoId = ?;";
+                 + "FROM grupo g WHERE g.status = 1 AND g.campoId = ?;";
         
         this.ps = connection.prepareStatement(this.sql);        
         this.ps.setInt(1, campo.getId());
@@ -89,6 +89,33 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
         super.closeConnection();
     }
     
+    @Override
+    public List<Grupo> show() throws SQLException {
+        super.openConnection();
+        
+        ArrayList<Grupo> grupo = new ArrayList<>();
+        this.rs = null;
+        
+        this.sql = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
+                 + "FROM grupo g WHERE g.status = 1;";
+        
+        this.ps = connection.prepareStatement(this.sql);        
+        this.rs = this.ps.executeQuery();
+        
+        while (rs.next()) {
+            grupo.add(assembly(rs));
+        }
+        
+        super.closeConnection();
+        
+        return grupo;
+    }
+
+    @Override
+    public Grupo find(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
     /**
      * Método para popular Grupo
      * 
@@ -109,30 +136,4 @@ public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
         return grupo;
     }
 
-    @Override
-    public List<Grupo> show() throws SQLException {
-        super.openConnection();
-        
-        ArrayList<Grupo> grupo = new ArrayList<>();
-        this.rs = null;
-        
-        this.sql = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
-                 + "FROM grupo g WHERE g.status = true;";
-        
-        this.ps = connection.prepareStatement(this.sql);        
-        this.rs = this.ps.executeQuery();
-        
-        while (rs.next()) {
-            grupo.add(assembly(rs));
-        }
-        
-        super.closeConnection();
-        
-        return grupo;
-    }
-
-    @Override
-    public Grupo find(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

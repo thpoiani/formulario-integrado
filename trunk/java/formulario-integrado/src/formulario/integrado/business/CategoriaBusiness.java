@@ -2,6 +2,7 @@ package formulario.integrado.business;
 
 import formulario.integrado.model.Campo;
 import formulario.integrado.model.Categoria;
+import formulario.integrado.model.Grupo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,32 +122,45 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
        
        this.rs = ps.getGeneratedKeys();
        this.rs.next();
-       int id = this.rs.getInt(1);
+       int idCategoria = this.rs.getInt(1);
        
        for (Iterator<Campo> campos = categoria.getCampos().iterator(); campos.hasNext();) {
            Campo campo = campos.next();
+           ResultSet resultSetCampo = null;
            
-           String query  = "INSERT INTO campo (titulo, maxlength, regex, status, "
+           String queryCampo  = "INSERT INTO campo (titulo, maxlength, regex, status, "
                    + "ordem, data, categoriaId, tipoId) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-           PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+           PreparedStatement preparedStatementCampo = connection.prepareStatement(queryCampo, Statement.RETURN_GENERATED_KEYS);
 
-           preparedStatement.setString(1, campo.getTitulo());
-           
-           preparedStatement.setInt(2, campo.getMaxlength());
-           
-           if (!campo.getRegex().isEmpty()) {
-               preparedStatement.setString(3, campo.getRegex());
-           } else {
-               preparedStatement.setNull(3, Types.VARCHAR);
-           }
-           
-           preparedStatement.setBoolean(4, campo.isStatus());
-           preparedStatement.setInt(5, campo.getOrdem());
-           preparedStatement.setString(6, super.getCurrentDate(campo.getData()));
-           preparedStatement.setInt(7, id);
-           preparedStatement.setInt(8, campo.getTipoModel().getId());
+           preparedStatementCampo.setString(1, campo.getTitulo());
+           preparedStatementCampo.setInt(2, campo.getMaxlength());
+           preparedStatementCampo.setString(3, campo.getRegex());
+           preparedStatementCampo.setBoolean(4, campo.isStatus());
+           preparedStatementCampo.setInt(5, campo.getOrdem());
+           preparedStatementCampo.setString(6, super.getCurrentDate(campo.getData()));
+           preparedStatementCampo.setInt(7, idCategoria);
+           preparedStatementCampo.setInt(8, campo.getTipoModel().getId());
 
-           preparedStatement.executeUpdate();
+           preparedStatementCampo.executeUpdate();
+           
+           resultSetCampo = preparedStatementCampo.getGeneratedKeys();
+           resultSetCampo.next();
+           int idCampo = resultSetCampo.getInt(1);
+           
+           for (Iterator<Grupo> grupos = campo.getGrupos().iterator(); grupos.hasNext();) {
+               Grupo grupo = grupos.next();
+               
+               String queryGrupo = "INSERT INTO grupo (titulo, data, ordem, status, campoId) VALUES (?, ?, ?, ?, ?);";
+               PreparedStatement preparedStatementGrupo = connection.prepareStatement(queryGrupo, Statement.RETURN_GENERATED_KEYS);
+        
+               preparedStatementGrupo.setString(1, grupo.getTitulo());
+               preparedStatementGrupo.setString(2, super.getCurrentDate(grupo.getData()));
+               preparedStatementGrupo.setInt(3, grupo.getOrdem());
+               preparedStatementGrupo.setBoolean(4, grupo.isStatus());
+               preparedStatementGrupo.setInt(5, idCampo);
+                
+               preparedStatementGrupo.executeUpdate();
+             }
         }
        
        super.closeConnection();
