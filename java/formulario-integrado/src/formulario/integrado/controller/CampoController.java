@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -185,14 +187,16 @@ public class CampoController extends AbstractController {
         Campo campo = assemblyRequest();
 
         if (campo.isValid()) {
-            if (getParentController().model != null) {
+            if (getParentController().model != null && ((Campo) getParentController().model).getCategoriaId() > 0) {
                 try {
                     this.campoBusiness.save(campo);
                 } catch (Exception e) {
                     Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
                 }
             } else {
-                getParentController().models.add(campo);
+                if (getParentController().model == null) {
+                    getParentController().models.add(campo);
+                }
             }
             
             getParentController().show();
@@ -290,7 +294,7 @@ public class CampoController extends AbstractController {
         models = campo.getGrupos();
 
         titulo.setText(campo.getTitulo());
-        selectRadioButtonByTipo(campo.getTipoModel().getDescricao());
+        selectRadioButtonByTipo(campo.getTipoModel());
         
         tipo.setValue(campo.getTipoModel());
         
@@ -303,8 +307,8 @@ public class CampoController extends AbstractController {
      *
      * @param String tipo
      */
-    private void selectRadioButtonByTipo(String tipo) {
-        switch (tipo.toLowerCase()) {
+    private void selectRadioButtonByTipo(Tipo tipo) {
+        switch (tipo.getDescricao().toLowerCase()) {
             case "check":
                 setRadioSelected(false, true, false);
                 break;
@@ -367,6 +371,7 @@ public class CampoController extends AbstractController {
         campo.setTitulo(titulo.getText());
         campo.setStatus(true);
         campo.setTipo(tipo.getValue());
+        campo.setTipoId(tipo.getValue().getId());
         
         if (!campo.getTipo().toLowerCase().equals("check") || !campo.getTipo().toLowerCase().equals("radio")) {
             campo.setRegex(regex.getText());

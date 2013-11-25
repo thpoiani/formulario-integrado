@@ -45,4 +45,9 @@ public class Tipo extends Model {
         
         return super.getErrors().isEmpty();
     }
+    
+    @Override
+    public String toString() {
+        return this.descricao;
+    }
 }
