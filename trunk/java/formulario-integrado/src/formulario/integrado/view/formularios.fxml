@@ -11,7 +11,7 @@
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
       <children>
-        <TextField id="titulo" fx:id="pesquisar" layoutX="80.0" layoutY="14.0" prefWidth="505.999977929685" />
+        <TextField id="titulo" fx:id="pesquisar" layoutX="80.0" layoutY="14.0" prefWidth="505.999977929685" promptText="Pesquise por formulários pelo título" />
         <TableView fx:id="tabela" disable="false" focusTraversable="true" layoutX="14.0" layoutY="50.0" prefHeight="300.0" prefWidth="572.0" tableMenuButtonVisible="false" visible="true">
           <columns>
             <TableColumn editable="false" prefWidth="75.0" resizable="false" text="ID" fx:id="id" />
