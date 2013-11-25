@@ -4,14 +4,11 @@ import formulario.integrado.business.database.Database;
 import formulario.integrado.model.IModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 abstract class Business<T extends IModel> implements IBusiness<T> {
 
