@@ -15,8 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -335,6 +333,21 @@ public class CampoController extends AbstractController {
             tabela.setItems(this.dados);
         }
     }
+    
+    
+    /**
+     * Método para popular combobox e selecionar Pane visível, 
+     * de acordo com o tipo
+     * 
+     * @param Tipo tipo 
+     */
+    private void populateByTipo(Tipo tipo) {
+        selectRadioButtonByTipo(tipo);
+
+        if (this.tipo.getItems().indexOf(tipo) != -1) {
+            this.tipo.setValue(this.tipo.getItems().get(this.tipo.getItems().indexOf(tipo)));
+        }
+    }
 
     /**
      * Método para popular campos quando o Campo for para edição
@@ -346,10 +359,14 @@ public class CampoController extends AbstractController {
 
         titulo.setText(campo.getTitulo());
         
-        selectRadioButtonByTipo(campo.getTipoModel());
-
-        if (tipo.getItems().indexOf(campo.getTipoModel()) != -1) {
-            tipo.setValue(tipo.getItems().get(tipo.getItems().indexOf(campo.getTipoModel() )));
+        if (campo.getTipoModel() != null) {
+            populateByTipo(campo.getTipoModel());
+        } else {
+            try {
+                populateByTipo(this.tipoBusiness.find(campo.getTipoId()));
+            } catch (SQLException ex) {
+                Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos tipos.");
+            }
         }
 
         maxlength.setText(String.valueOf(campo.getMaxlength()));
@@ -388,8 +405,8 @@ public class CampoController extends AbstractController {
      */
     private void setRadioSelected(boolean isTextoAberto, boolean isMultiplaEscolha, boolean isUnicaEscolha) {
         textoAberto.setSelected(isTextoAberto);
-        unicaEscolha.setSelected(isMultiplaEscolha);
-        multiplaEscolha.setSelected(isUnicaEscolha);
+        unicaEscolha.setSelected(isUnicaEscolha);
+        multiplaEscolha.setSelected(isMultiplaEscolha);
     }
     
     /**
@@ -456,8 +473,6 @@ public class CampoController extends AbstractController {
         campo.setTitulo(titulo.getText());
         campo.setStatus(true);
         
-        
-        
         if (textoIsSelected()) {
             campo.setRegex(regex.getText());
             
@@ -477,10 +492,15 @@ public class CampoController extends AbstractController {
             campo.setGrupos(models);
             
             try {
+                Tipo tipo;
                 if (unicaEscolhaIsSelected()) {
-                        campo.setTipo(this.tipoBusiness.getRadio());
+                    tipo = this.tipoBusiness.getRadio();
+                    campo.setTipo(tipo);
+                    campo.setTipoId(tipo.getId());
                 } else if (multiplaEscolhaIsSelected()) {
-                    campo.setTipo(this.tipoBusiness.getCheck());
+                    tipo = this.tipoBusiness.getCheck();
+                    campo.setTipo(tipo);
+                    campo.setTipoId(tipo.getId());
                 }
             } catch (SQLException ex) {
                 Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos tipos.");

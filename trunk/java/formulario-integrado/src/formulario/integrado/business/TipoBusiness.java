@@ -46,6 +46,13 @@ public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
         return getType("Radio");
     }
     
+    /**
+     * Método para retornar Tipo pela descrição
+     * 
+     * @param descricao
+     * @return Tipo
+     * @throws SQLException 
+     */
     private Tipo getType(String descricao) throws SQLException {
         super.openConnection();
         
