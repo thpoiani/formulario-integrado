@@ -26,7 +26,7 @@
         </RadioButton>
         <RadioButton fx:id="fechado" layoutX="18.0" layoutY="299.0" mnemonicParsing="false" text="Formulário Fechado" toggleGroup="$ativo" />
         <Button id="loginButton" fx:id="salvar" cancelButton="false" defaultButton="true" layoutX="534.0" layoutY="365.0" mnemonicParsing="false" onAction="#salvarAction" styleClass="btn, btn-success" text="Salvar" wrapText="false" />
-        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+        <Button id="loginButton" fx:id="cancelar" cancelButton="true" defaultButton="false" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
       </children>
     </Pane>
   </children>

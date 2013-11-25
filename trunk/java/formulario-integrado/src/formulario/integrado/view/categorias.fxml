@@ -19,8 +19,8 @@
           </columns>
         </TableView>
         <Button id="loginButton" fx:id="remover" cancelButton="false" defaultButton="true" layoutX="518.0" layoutY="365.0" mnemonicParsing="false" onAction="#removerAction" styleClass="btn, btn-success" text="Remover" wrapText="false" />
-        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
-        <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="true" layoutX="275.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar" wrapText="false" />
+        <Button id="loginButton" fx:id="cancelar" cancelButton="true" defaultButton="false" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+        <Button id="loginButton" fx:id="editar" cancelButton="false" defaultButton="false" layoutX="275.0" layoutY="365.0" mnemonicParsing="false" onAction="#editarAction" styleClass="btn, btn-success" text="Editar" wrapText="false" />
         <Label layoutX="14.0" layoutY="18.0" text="Pesquisar" />
         <TextField id="titulo" fx:id="pesquisar" layoutX="80.0" layoutY="15.0" prefWidth="505.999977929685" promptText="Pesquise por categorias pelo título ou descrição" />
       </children>

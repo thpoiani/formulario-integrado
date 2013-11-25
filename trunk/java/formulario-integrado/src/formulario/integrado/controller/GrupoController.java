@@ -2,36 +2,22 @@ package formulario.integrado.controller;
 
 import formulario.integrado.business.GrupoBusiness;
 import formulario.integrado.business.IGrupoBusiness;
-import formulario.integrado.business.ITipoBusiness;
-import formulario.integrado.business.TipoBusiness;
+import formulario.integrado.model.Campo;
 import formulario.integrado.model.Grupo;
-import formulario.integrado.model.Tipo;
 import formulario.integrado.vendor.Dialog;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.util.Callback;
 
 public class GrupoController extends AbstractController {
     
     private AbstractController controller;
     
     private IGrupoBusiness grupoBusiness;
-    
-    private ITipoBusiness tipoBusiness;
-    
-    private ObservableList<Tipo> tipos = FXCollections.observableArrayList();
     
     @FXML
     private Button cancelar;
@@ -43,7 +29,6 @@ public class GrupoController extends AbstractController {
     private TextField titulo;
 
     public GrupoController() {
-        this.tipoBusiness = new TipoBusiness();
         this.grupoBusiness = new GrupoBusiness();
     }
 
@@ -59,11 +44,11 @@ public class GrupoController extends AbstractController {
             public void run() {
                 setWindow(salvar.getScene().getWindow());
                 
-                if (getParentController().models != null) {
+                if (getParentController().model != null) {
                     // estado de edição
-                    populateModel(getParentController().models);
-                } else {
-                    models = new ArrayList<>();
+                    if (getParentController().model instanceof Grupo) {
+                        populateModel((Grupo) getParentController().model);
+                    }
                 }
             }
         });
@@ -86,36 +71,61 @@ public class GrupoController extends AbstractController {
     }
 
     @FXML
+    @SuppressWarnings("unchecked")
     void salvarAction(ActionEvent event) {
         Grupo grupo = assemblyRequest();
         
-        try {
-//            this.grupoBusiness.save(grupo);
-
-//            getParentController().models.add(grupos);
+        if (grupo.isValid()) {
+            if (getParentController().model != null && getParentController().model instanceof Grupo) {
+                if (((Grupo) getParentController().model).getCampoId() > 0) {
+                    try {
+                        this.grupoBusiness.save(grupo);
+                    } catch (Exception e) {
+                        Dialog.showError("Grupo", "Ocorreu algum problema na persistência do grupo.");
+                    }
+                }
+            } else {
+                if (getParentController().model == null) {
+                    getParentController().models.add(grupo);
+                } else if (getParentController().model instanceof Campo) {
+                    try {
+                        this.grupoBusiness.save(grupo);
+                    } catch (Exception e) {
+                        Dialog.showError("Grupo", "Ocorreu algum problema na persistência do grupo.");
+                    }
+                }
+            }
+            
             getParentController().show();
             super.close();
 
             Dialog.showInfo("Grupo", "Grupo "
-                    + (getParentController().model == null ? "cadastrado" : "alterado")
-                    + " com sucesso");
-        } catch (Exception e) {
-            Dialog.showError("Grupo", "Ocorreu algum problema na persistência do grupo.");
+                        + (getParentController().model == null ? "cadastrado" : "alterado")
+                        + " com sucesso");
         }
+        
+        this.showErrors(grupo);
+        
     }
     
-    
-    @SuppressWarnings("unchecked")
-    private void populateModel(List<Grupo> models) {
-//        Grupo grupo = models.get(0);
-//        titulo.setText(grupo.getTitulo());
-//        tipo1.setValue(grupo.getTipoModel());
+    /**
+     * Método para popular campos quando o Grupo for para edição
+     *
+     * @param Grupo grupo
+     */
+    private void populateModel(Grupo grupo) {
+        titulo.setText(grupo.getTitulo());
     }
 
+    /**
+     * Método para recuperar dados inseridos pelo usuário
+     *
+     * @return Grupo
+     */
     private Grupo assemblyRequest() {
         Grupo grupo;
         
-        if (getParentController().models != null) {
+        if (getParentController().model != null) {
             grupo = (Grupo) getParentController().model;
         } else {
             grupo = new Grupo();
@@ -124,7 +134,26 @@ public class GrupoController extends AbstractController {
         
         grupo.setTitulo(titulo.getText());
         grupo.setStatus(true);
+        grupo.setCampoId(getParentController().model.getId());
         
         return grupo;
+    }
+    
+    /**
+     * Método para colorir borda de campos inválidos
+     *
+     * @param Grupo grupo
+     */
+    private void showErrors(Grupo grupo) {
+        titulo.setStyle(super.getClearStyle());
+
+        Iterator<String> iterator = grupo.createErrorIterator();
+        while (iterator.hasNext()) {
+            switch (iterator.next()) {
+                case "titulo":
+                    titulo.setStyle(super.getErrorStyle());
+                    break;
+            }
+        }
     }
 }

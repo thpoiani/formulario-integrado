@@ -9,16 +9,16 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="formulario.integrado.controller.PrincipalController">
   <children>
-    <SplitPane dividerPositions="0.4419642857142857" focusTraversable="true" layoutX="0.0" prefHeight="400.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <SplitPane disable="false" dividerPositions="0.4419642857142857" focusTraversable="true" layoutX="0.0" pickOnBounds="false" prefHeight="400.0" prefWidth="450.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="split-pane, left" />
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="132.0">
           <children>
-            <Button fx:id="formulario" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#formularioAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Novo Formulário" />
-            <Button fx:id="formularios" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#formulariosAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Editar Formulário" />
-            <Button fx:id="categoria" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#categoriaAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Nova Categoria" />
-            <Button fx:id="categorias" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#categoriasAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn-success, btn" text="Editar Categoria" />
-            <Button fx:id="respostas" layoutX="13.0" layoutY="327.0" mnemonicParsing="false" onAction="#respostasAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Respostas" />
+            <Button fx:id="formulario" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#formularioAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Novo Formulário" underline="true" />
+            <Button fx:id="formularios" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#formulariosAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Editar Formulário" underline="true" />
+            <Button fx:id="categoria" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#categoriaAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Nova Categoria" underline="true" />
+            <Button fx:id="categorias" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#categoriasAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn-success, btn" text="Editar Categoria" underline="true" />
+            <Button fx:id="respostas" layoutX="13.0" layoutY="327.0" mnemonicParsing="false" onAction="#respostasAction" prefHeight="40.0" prefWidth="220.0" styleClass="btn, btn-success" text="Respostas" underline="true" />
           </children>
         </AnchorPane>
       </items>

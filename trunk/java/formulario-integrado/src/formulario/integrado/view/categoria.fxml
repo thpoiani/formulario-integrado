@@ -23,7 +23,7 @@
         <Button id="formulario" fx:id="sobe" layoutX="343.0" layoutY="166.0" mnemonicParsing="false" onAction="#sobeAction" prefHeight="40.0" prefWidth="110.0" styleClass="btn, btn-success" text="Sobe" />
         <Button id="formulario" fx:id="desce" layoutX="343.0" layoutY="238.0" mnemonicParsing="false" onAction="#desceAction" prefHeight="40.0" prefWidth="110.0" styleClass="btn, btn-success" text="Desce" />
         <Button id="loginButton" fx:id="salvar" cancelButton="false" defaultButton="true" layoutX="534.0" layoutY="365.0" mnemonicParsing="false" onAction="#salvarAction" styleClass="btn, btn-success" text="Salvar" wrapText="false" />
-        <Button id="loginButton" fx:id="cancelar" cancelButton="false" defaultButton="true" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
+        <Button id="loginButton" fx:id="cancelar" cancelButton="true" defaultButton="false" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btn, btn-success" text="Cancelar" wrapText="false" />
       </children>
     </Pane>
   </children>

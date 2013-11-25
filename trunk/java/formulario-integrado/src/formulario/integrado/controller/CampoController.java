@@ -1,7 +1,9 @@
 package formulario.integrado.controller;
 
 import formulario.integrado.business.CampoBusiness;
+import formulario.integrado.business.GrupoBusiness;
 import formulario.integrado.business.ICampoBusiness;
+import formulario.integrado.business.IGrupoBusiness;
 import formulario.integrado.business.ITipoBusiness;
 import formulario.integrado.business.TipoBusiness;
 import formulario.integrado.model.Campo;
@@ -17,6 +19,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -29,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
 public class CampoController extends AbstractController {
@@ -39,34 +43,39 @@ public class CampoController extends AbstractController {
     
     private ITipoBusiness tipoBusiness;
     
+    private IGrupoBusiness grupoBusiness;
+    
     private ObservableList<Grupo> dados = FXCollections.observableArrayList();
     
     private ObservableList<Tipo> tipos = FXCollections.observableArrayList();
     
     @FXML
-    private RadioButton unicaEscolha;
-    
-    @FXML
     private Button cancelar;
-    
+
     @FXML
     private Button editar;
-    
+
+    @FXML
+    private Pane grupoPane;
+
+    @FXML
+    private Button inserir;
+
     @FXML
     private TextField maxlength;
-    
+
     @FXML
     private RadioButton multiplaEscolha;
-    
-    @FXML
-    private Pane multiplaEscolhaPane;
-    
+
     @FXML
     private ToggleGroup radio;
-    
+
     @FXML
     private TextField regex;
-    
+
+    @FXML
+    private Button remover;
+
     @FXML
     private Button salvar;
     
@@ -84,40 +93,46 @@ public class CampoController extends AbstractController {
     
     @FXML
     private RadioButton textoAberto;
-    
+
     @FXML
-    private Pane textoAbertoPane;
+    private Pane textoPane;
     
     @FXML
     private ComboBox<Tipo> tipo;
     
     @FXML
     private TextField titulo;
+    
+    @FXML
+    private RadioButton unicaEscolha;
 
     public CampoController() {
         this.campoBusiness = new CampoBusiness();
         this.tipoBusiness = new TipoBusiness();
+        this.grupoBusiness = new GrupoBusiness();
     }
 
     @Override
     void initialize() {
-        assert unicaEscolha != null : "fx:id=\"UnicaEscolha\" was not injected: check your FXML file 'campo.fxml'.";
         assert cancelar != null : "fx:id=\"cancelar\" was not injected: check your FXML file 'campo.fxml'.";
         assert editar != null : "fx:id=\"editar\" was not injected: check your FXML file 'campo.fxml'.";
+        assert grupoPane != null : "fx:id=\"grupoPane\" was not injected: check your FXML file 'campo.fxml'.";
+        assert inserir != null : "fx:id=\"inserir\" was not injected: check your FXML file 'campo.fxml'.";
         assert maxlength != null : "fx:id=\"maxlength\" was not injected: check your FXML file 'campo.fxml'.";
         assert multiplaEscolha != null : "fx:id=\"multiplaEscolha\" was not injected: check your FXML file 'campo.fxml'.";
-        assert multiplaEscolhaPane != null : "fx:id=\"multiplaEscolhaPane\" was not injected: check your FXML file 'campo.fxml'.";
         assert radio != null : "fx:id=\"radio\" was not injected: check your FXML file 'campo.fxml'.";
         assert regex != null : "fx:id=\"regex\" was not injected: check your FXML file 'campo.fxml'.";
+        assert remover != null : "fx:id=\"remover\" was not injected: check your FXML file 'campo.fxml'.";
         assert salvar != null : "fx:id=\"salvar\" was not injected: check your FXML file 'campo.fxml'.";
         assert tabela != null : "fx:id=\"tabela\" was not injected: check your FXML file 'campo.fxml'.";
         assert tabelaId != null : "fx:id=\"tabelaId\" was not injected: check your FXML file 'campo.fxml'.";
         assert tabelaTipo != null : "fx:id=\"tabelaTipo\" was not injected: check your FXML file 'campo.fxml'.";
         assert tabelaTitulo != null : "fx:id=\"tabelaTitulo\" was not injected: check your FXML file 'campo.fxml'.";
         assert textoAberto != null : "fx:id=\"textoAberto\" was not injected: check your FXML file 'campo.fxml'.";
-        assert textoAbertoPane != null : "fx:id=\"textoAbertoPane\" was not injected: check your FXML file 'campo.fxml'.";
+        assert textoPane != null : "fx:id=\"textoPane\" was not injected: check your FXML file 'campo.fxml'.";
         assert tipo != null : "fx:id=\"tipo\" was not injected: check your FXML file 'campo.fxml'.";
         assert titulo != null : "fx:id=\"titulo\" was not injected: check your FXML file 'campo.fxml'.";
+        assert unicaEscolha != null : "fx:id=\"unicaEscolha\" was not injected: check your FXML file 'campo.fxml'.";
 
         populateTableView();
         populateComboBox();
@@ -133,6 +148,8 @@ public class CampoController extends AbstractController {
                 } else {
                     models = new ArrayList<>();
                 }
+                
+                onShowRefreshTableView();
             }
         });
     }
@@ -146,15 +163,7 @@ public class CampoController extends AbstractController {
     public AbstractController getParentController() {
         return this.controller;
     }
-
-    @FXML
-    void unicaEscolhaAction(ActionEvent event) {
-        if (unicaEscolha.isSelected()) {
-            setPaneVisible(false, true, true);
-            super.hide();
-        }
-    }
-
+    
     @FXML
     void cancelarAction(ActionEvent event) {
         getParentController().show();
@@ -163,7 +172,15 @@ public class CampoController extends AbstractController {
 
     @FXML
     void editarAction(ActionEvent event) {
-        if (multiplaEscolhaPane.isVisible()) {
+        if (grupoPane.isVisible() && grupoIsSelected()) {
+            super.start("grupo.fxml", "Grupo", this);
+            super.hide();
+        }
+    }
+    
+    @FXML
+    void inserirAction(ActionEvent event) {
+        if (grupoPane.isVisible()) {
             super.start("grupo.fxml", "Grupo", this);
             super.hide();
         }
@@ -172,11 +189,17 @@ public class CampoController extends AbstractController {
     @FXML
     void multiplaEscolhaAction(ActionEvent event) {
         if (multiplaEscolha.isSelected()) {
-            setPaneVisible(false, true, true);
-            super.hide();
+            setPaneVisible(false, true);
         }
     }
-
+    
+    @FXML
+    void removerAction(ActionEvent event) {
+        if (grupoPane.isVisible() && grupoIsSelected()) {
+            
+        }
+    }
+    
     @FXML
     @SuppressWarnings("unchecked")
     void salvarAction(ActionEvent event) {
@@ -188,7 +211,7 @@ public class CampoController extends AbstractController {
                     try {
                         this.campoBusiness.save(campo);
                     } catch (Exception e) {
-                        Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
+                        Dialog.showError("Categoria", "Ocorreu algum problema na persistência do campo.");
                     }
                 }
             } else {
@@ -198,7 +221,7 @@ public class CampoController extends AbstractController {
                     try {
                         this.campoBusiness.save(campo);
                     } catch (Exception e) {
-                        Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
+                        Dialog.showError("Categoria", "Ocorreu algum problema na persistência do campo.");
                     }
                 }
             }
@@ -217,8 +240,24 @@ public class CampoController extends AbstractController {
     @FXML
     void textoAbertoAction(ActionEvent event) {
         if (textoAberto.isSelected()) {
-            setPaneVisible(true, false, false);
+            setPaneVisible(true, false);
         }
+    }
+    
+    @FXML
+    void unicaEscolhaAction(ActionEvent event) {
+        if (unicaEscolha.isSelected()) {
+            setPaneVisible(false, true);
+        }
+    }
+    
+    /**
+     * Método para verificar se algum grupo está selecionada
+     *
+     * @return boolean
+     */
+    private boolean grupoIsSelected() {
+        return tabela.getSelectionModel().getSelectedItem() != null;
     }
 
     /**
@@ -307,7 +346,6 @@ public class CampoController extends AbstractController {
             Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos tipos.");
         }
         
-        
         maxlength.setText(String.valueOf(campo.getMaxlength()));
         regex.setText(campo.getRegex());
     }
@@ -321,17 +359,17 @@ public class CampoController extends AbstractController {
         switch (tipo.getDescricao().toLowerCase()) {
             case "check":
                 setRadioSelected(false, true, false);
-                setPaneVisible(false, true, true);
+                setPaneVisible(false, true);
                 break;
 
             case "radio":
                 setRadioSelected(false, false, true);
-                setPaneVisible(false, true, true);
+                setPaneVisible(false, true);
                 break;
 
             default:
                 setRadioSelected(true, false, false);
-                setPaneVisible(true, false, false);
+                setPaneVisible(true, false);
         }
     }
 
@@ -351,14 +389,15 @@ public class CampoController extends AbstractController {
     /**
      * Método para tornar visível Pane específico
      *
-     * @param isTextAbertoPane
-     * @param isMultiplaEscolhaPane
-     * @param isEditarButton
+     * @param isTextoPane
+     * @param isGrupoPane
      */
-    private void setPaneVisible(boolean isTextAbertoPane, boolean isMultiplaEscolhaPane, boolean isEditarButton) {
-        textoAbertoPane.setVisible(isTextAbertoPane);
-        multiplaEscolhaPane.setVisible(isMultiplaEscolhaPane);
-        editar.setVisible(isEditarButton);
+    private void setPaneVisible(boolean isTextoPane, boolean isGrupoPane) {
+        textoPane.setVisible(isTextoPane);
+        grupoPane.setVisible(isGrupoPane);
+        editar.setVisible(isGrupoPane);
+        inserir.setVisible(isGrupoPane);
+        remover.setVisible(isGrupoPane);
     }
 
     /**
@@ -423,6 +462,42 @@ public class CampoController extends AbstractController {
                 case "maxlength":
                     maxlength.setStyle(super.getErrorStyle());
                     break;
+            }
+        }
+    }
+    
+    /**
+     * Método para adicionar um Listener de onShowing. Quando exibir a tela,
+     * atualiza a lista de grupos
+     *
+     */
+    private void onShowRefreshTableView() {
+        getWindow().setOnShowing(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                refreshTableView();
+            }
+        });
+    }
+
+    /**
+     * Método para atualizar lista de categorias
+     *
+     */
+    @SuppressWarnings("unchecked")
+    private void refreshTableView() {
+        tabela.setItems(null);
+        
+        if (models != null) {
+            if (getParentController().model != null) {
+                try {
+                    this.models = this.campoBusiness.show((Categoria)getParentController().model);
+                    tabela.setItems(FXCollections.observableArrayList(this.models));
+                } catch (SQLException ex) {
+                    Dialog.showError("Categoria", "Ocorreu algum problema na recuperação dos campos.");
+                }
+            } else {
+                tabela.setItems(FXCollections.observableArrayList(models));
             }
         }
     }
