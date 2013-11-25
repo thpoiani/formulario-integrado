@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -74,18 +73,32 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
         while (rs.next()) {
             ArrayList<Campo> campos = new ArrayList<>();
 
-            String query = "SELECT cam.id, cam.titulo, cam.maxlength, cam.regex, cam.status, "
+            String queryCampo = "SELECT cam.id, cam.titulo, cam.maxlength, cam.regex, cam.status, "
                         + "cam.ordem, cam.data, cam.categoriaid, cam.tipoId "
                         + "FROM categoria cat "
                         + "INNER JOIN campo cam ON cam.categoriaId = cat.id AND cam.status = 1 "
                         + "WHERE cat.id = ?";
             
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, rs.getInt(1));
-            ResultSet resultSet = preparedStatement.executeQuery();
+            PreparedStatement preparedStatementCampo = connection.prepareStatement(queryCampo);
+            preparedStatementCampo.setInt(1, rs.getInt(1));
+            ResultSet resultSetCampo = preparedStatementCampo.executeQuery();
             
-            while (resultSet.next()) {
-                campos.add(this.assemblyCampo(resultSet));
+            while (resultSetCampo.next()) {
+                ArrayList<Grupo> grupos = new ArrayList<>();
+
+                String queryGrupo = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId  "
+                            + "FROM grupo g INNER JOIN campo c ON c.id = g.campoId AND c.id = ? "
+                            + "WHERE c.status = 1 AND g.status = 1;";
+
+                PreparedStatement preparedStatementGrupo = connection.prepareStatement(queryGrupo);
+                preparedStatementGrupo.setInt(1, rs.getInt(1));
+                ResultSet resultSetGrupo = preparedStatementGrupo.executeQuery();
+                
+                while (resultSetGrupo.next()) {
+                    grupos.add(assemblyGrupo(resultSetGrupo));
+                }
+                
+                campos.add(this.assemblyCampo(resultSetCampo, grupos));
             }
             
             categoria.add(assemblyCategoria(rs, campos));
@@ -241,5 +254,43 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
         campo.setTipoId(rs.getInt(9));
        
         return campo;
+    }
+    
+        /**
+     * Método para popular um Campo
+     * 
+     * @param ResultSet rs
+     * @return Campo
+     * @throws SQLException 
+     */
+    private Campo assemblyCampo(ResultSet rs, ArrayList<Grupo> grupos) throws SQLException {
+        Campo campo = assemblyCampo(rs);
+        
+        if (grupos != null) {
+            campo.setGrupos(grupos);
+        }
+       
+        return campo;
+    }
+    
+    
+    /**
+     * Método para popular Grupo
+     * 
+     * @param ResultSet rs
+     * @return Grupo
+     * @throws SQLException 
+     */
+    private Grupo assemblyGrupo(ResultSet rs) throws SQLException {
+        Grupo grupo = new Grupo();
+        
+        grupo.setId(rs.getInt(1));
+        grupo.setTitulo(rs.getString(2));
+        grupo.setData(super.setCurrentDate(rs.getString(3)));
+        grupo.setOrdem(rs.getInt(4));
+        grupo.setStatus(rs.getBoolean(5));
+        grupo.setCampoId(rs.getInt(6));
+        
+        return grupo;
     }
 }
