@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -187,15 +185,23 @@ public class CampoController extends AbstractController {
         Campo campo = assemblyRequest();
 
         if (campo.isValid()) {
-            if (getParentController().model != null && ((Campo) getParentController().model).getCategoriaId() > 0) {
-                try {
-                    this.campoBusiness.save(campo);
-                } catch (Exception e) {
-                    Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
+            if (getParentController().model != null && getParentController().model instanceof Campo) {
+                if (((Campo) getParentController().model).getCategoriaId() > 0) {
+                    try {
+                        this.campoBusiness.save(campo);
+                    } catch (Exception e) {
+                        Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
+                    }
                 }
             } else {
                 if (getParentController().model == null) {
                     getParentController().models.add(campo);
+                } else if (getParentController().model instanceof Categoria) {
+                    try {
+                        this.campoBusiness.save(campo);
+                    } catch (Exception e) {
+                        Dialog.showError("Categoria", "Ocorreu algum problema na inserção da campo.");
+                    }
                 }
             }
             
@@ -294,9 +300,15 @@ public class CampoController extends AbstractController {
         models = campo.getGrupos();
 
         titulo.setText(campo.getTitulo());
-        selectRadioButtonByTipo(campo.getTipoModel());
         
-        tipo.setValue(campo.getTipoModel());
+        try {
+            Tipo tipoModel = this.tipoBusiness.find(campo.getTipoId());
+            selectRadioButtonByTipo(tipoModel);   
+            tipo.setValue(tipo.getItems().get(tipo.getItems().indexOf(tipoModel)));
+        } catch (SQLException ex) {
+            Dialog.showError("Campo", "Ocorreu algum problema na recuperação dos tipos.");
+        }
+        
         
         maxlength.setText(String.valueOf(campo.getMaxlength()));
         regex.setText(campo.getRegex());
@@ -370,6 +382,7 @@ public class CampoController extends AbstractController {
 
         campo.setTitulo(titulo.getText());
         campo.setStatus(true);
+        
         campo.setTipo(tipo.getValue());
         campo.setTipoId(tipo.getValue().getId());
         
@@ -413,65 +426,4 @@ public class CampoController extends AbstractController {
         }
     }
 
-    /**
-     * Método com dados fictícios para homologação
-     *
-     */
-    private void fakeData() {
-        Tipo texto = new Tipo();
-        texto.setId(1);
-        texto.setDescricao("Texto");
-
-        Tipo inteiro = new Tipo();
-        inteiro.setId(2);
-        inteiro.setDescricao("Inteiro");
-
-//        Grupo grupo1 = new Grupo();
-//        grupo1.setId(1);
-//        grupo1.setTitulo("grupo 1");
-//        grupo1.setTipo(texto);
-//
-//        Grupo grupo2 = new Grupo();
-//        grupo2.setId(2);
-//        grupo2.setTitulo("grupo 2");
-//        grupo2.setTipo(texto);
-//
-//        Grupo grupo3 = new Grupo();
-//        grupo3.setId(3);
-//        grupo3.setTitulo("grupo 3");
-//        grupo3.setTipo(texto);
-//
-//        Grupo grupo4 = new Grupo();
-//        grupo4.setId(4);
-//        grupo4.setTitulo("grupo 4");
-//        grupo4.setTipo(texto);
-//
-//        Grupo grupo5 = new Grupo();
-//        grupo5.setId(5);
-//        grupo5.setTitulo("grupo 5");
-//        grupo5.setTipo(texto);
-//
-//        Grupo grupo6 = new Grupo();
-//        grupo6.setId(6);
-//        grupo6.setTitulo("grupo 6");
-//        grupo6.setTipo(texto);
-//
-//        ArrayList<Grupo> grupos = new ArrayList<>();
-//        grupos.add(grupo1);
-//        grupos.add(grupo2);
-//        grupos.add(grupo3);
-//        grupos.add(grupo4);
-//        grupos.add(grupo5);
-//        grupos.add(grupo6);
-//
-        ArrayList<Tipo> tipos = new ArrayList<>();
-        tipos.add(texto);
-        tipos.add(inteiro);
-
-//        this.dados = FXCollections.observableArrayList(grupos);
-//        tabela.setItems(this.dados);
-
-        this.tipos = FXCollections.observableArrayList(tipos);
-        this.tipo.setItems(this.tipos);
-    }
 }

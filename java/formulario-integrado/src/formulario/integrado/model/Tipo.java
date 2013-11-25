@@ -1,5 +1,7 @@
 package formulario.integrado.model;
 
+import java.util.Objects;
+
 public class Tipo extends Model {
     
     private int id;
@@ -45,6 +47,30 @@ public class Tipo extends Model {
         
         return super.getErrors().isEmpty();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tipo other = (Tipo) obj;
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     @Override
     public String toString() {

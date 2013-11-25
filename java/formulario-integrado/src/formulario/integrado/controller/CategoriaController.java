@@ -134,7 +134,7 @@ public class CategoriaController extends AbstractController {
         if (getParentController().model != null) {
             this.model = getParentController().model;
         } else {
-            this.model = null;        
+            this.model = null;
         }
         
         super.start("campo.fxml", "Campo", this);
