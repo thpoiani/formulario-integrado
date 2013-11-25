@@ -12,10 +12,6 @@ import java.util.List;
 
 public class FormularioBusiness extends Business<Formulario> implements IFormularioBusiness {
 
-    private PreparedStatement ps;
-    private ResultSet rs;
-    private String sql;
-    
     @Override
     public Formulario find(int id) throws SQLException {
         super.openConnection();
@@ -92,16 +88,6 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
     }
     
     @Override
-    public void moveDown(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void moveUp(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void add(Formulario formulario) throws SQLException {
         super.openConnection();
 
@@ -165,6 +151,49 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
     }
     
     /**
+     * Método para remover relacionamento de categoria com formulário
+     */
+    @Override
+    public void remove(Formulario formulario, Categoria categoria) throws SQLException {
+        super.openConnection();
+        
+        this.sql = "DELETE FROM formulario_categoria WHERE categoriaId = ? AND formularioId = ?";
+        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        this.ps.setInt(1, categoria.getId());
+        this.ps.setInt(2, formulario.getId());
+        
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
+    }
+    
+    @Override
+    public void add(Formulario formulario, Categoria categoria) throws SQLException {
+        super.openConnection();
+        
+        this.sql = "INSERT INTO formulario_categoria (formularioId, categoriaId) VALUES (?,?);";
+        this.ps = connection.prepareStatement(this.sql, Statement.RETURN_GENERATED_KEYS);
+
+        this.ps.setInt(1, formulario.getId());
+        this.ps.setInt(2, categoria.getId());
+
+        this.ps.executeUpdate();
+        
+        super.closeConnection();
+    }
+    
+    @Override
+    public void moveDown(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void moveUp(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    /**
      * Método para popular um Formulário
      * 
      * @param ResultSet rs
@@ -202,38 +231,5 @@ public class FormularioBusiness extends Business<Formulario> implements IFormula
         categoria.setData(super.setCurrentDate(resultSet.getString(5)));
         
         return categoria;
-    }
-
-    /**
-     * Método para remover relacionamento de categoria com formulário
-     */
-    @Override
-    public void remove(Formulario formulario, Categoria categoria) throws SQLException {
-        super.openConnection();
-        
-        this.sql = "DELETE FROM formulario_categoria WHERE categoriaId = ? AND formularioId = ?";
-        this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        
-        this.ps.setInt(1, categoria.getId());
-        this.ps.setInt(2, formulario.getId());
-        
-        this.ps.executeUpdate();
-        
-        super.closeConnection();
-    }
-    
-    @Override
-    public void add(Formulario formulario, Categoria categoria) throws SQLException {
-        super.openConnection();
-        
-        this.sql = "INSERT INTO formulario_categoria (formularioId, categoriaId) VALUES (?,?);";
-        this.ps = connection.prepareStatement(this.sql, Statement.RETURN_GENERATED_KEYS);
-
-        this.ps.setInt(1, formulario.getId());
-        this.ps.setInt(2, categoria.getId());
-
-        this.ps.executeUpdate();
-        
-        super.closeConnection();
     }
 }

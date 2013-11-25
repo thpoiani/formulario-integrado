@@ -1,7 +1,6 @@
 package formulario.integrado.business;
 
 import formulario.integrado.model.Resposta;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RespostaBusiness extends Business<Resposta> implements IRespostaBusiness {
-
-    private ResultSet rs;
-    private PreparedStatement ps;
-    private String sql;
 
     @Override
     public List<Resposta> show() throws SQLException{
@@ -29,8 +24,6 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
         while (rs.next()) {
             resposta.add(assembly(rs));
         }
-        
-        // verificar se possui resposta
         
         super.closeConnection();
         
@@ -52,6 +45,11 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
         this.ps.executeUpdate();
         
         super.closeConnection();
+    }
+    
+    @Override
+    public Resposta find(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
@@ -80,9 +78,5 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
         
         return resposta;
     }
-
-    @Override
-    public Resposta find(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+    
 }

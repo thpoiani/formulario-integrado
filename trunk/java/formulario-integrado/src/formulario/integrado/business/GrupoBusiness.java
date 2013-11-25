@@ -2,7 +2,6 @@ package formulario.integrado.business;
 
 import formulario.integrado.model.Grupo;
 import formulario.integrado.model.Campo;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GrupoBusiness extends Business<Grupo> implements IGrupoBusiness {
-
-    private ResultSet rs;
-    private PreparedStatement ps;
-    private String sql;
 
     @Override
     public List<Grupo> show(Campo campo) throws SQLException{
