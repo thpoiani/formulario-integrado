@@ -90,7 +90,7 @@ public class CategoriaBusiness extends Business<Categoria> implements ICategoria
                             + "WHERE c.status = 1 AND g.status = 1;";
 
                 PreparedStatement preparedStatementGrupo = connection.prepareStatement(queryGrupo);
-                preparedStatementGrupo.setInt(1, rs.getInt(1));
+                preparedStatementGrupo.setInt(1, resultSetCampo.getInt(1));
                 ResultSet resultSetGrupo = preparedStatementGrupo.executeQuery();
                 
                 while (resultSetGrupo.next()) {

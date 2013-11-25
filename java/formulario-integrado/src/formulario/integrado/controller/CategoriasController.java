@@ -6,6 +6,7 @@ import formulario.integrado.model.Categoria;
 import formulario.integrado.vendor.Dialog;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -139,6 +140,7 @@ public class CategoriasController extends AbstractController {
         titulo.setCellValueFactory(new PropertyValueFactory<Categoria, String>("titulo"));
         
         try {
+            List<Categoria> categorias = this.categoriaBusiness.show();
             this.dados = FXCollections.observableArrayList(this.categoriaBusiness.show());
             tabela.setItems(this.dados);
         } catch (SQLException e) {
