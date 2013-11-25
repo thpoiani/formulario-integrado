@@ -43,14 +43,19 @@ public class TipoBusiness extends Business<Tipo> implements ITipoBusiness {
         ArrayList<Tipo> tipo = new ArrayList<>();
         this.rs = null;
         
-        this.sql = "SELECT t.id, t.descricao FROM tipo t;";
+        this.sql = "SELECT t.id, t.descricao FROM tipo t WHERE t.descricao <> ? AND t.descricao <> ?;";
         
         this.ps = connection.prepareStatement(this.sql);
+        this.ps.setString(1, "Radio");
+        this.ps.setString(2, "Check");
         this.rs = this.ps.executeQuery();
         
         while (rs.next()) {
             tipo.add(assembly(rs));
         }
+        
+//        tipo.remove(new Tipo("Radio"));
+//        tipo.remove(new Tipo("Check"));
         
         // verificar se possui tipo
         
