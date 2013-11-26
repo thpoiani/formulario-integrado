@@ -7,6 +7,9 @@ class IndexController extends Controller {
 	public function index() {
 		$this->setLayout(LAYOUT . '/layout.php');
 		$this->login = false;
-		validateForm();
+		//passar $_post txt user e senha para model ???
+
+		//chama assim o metodo ou so validateLogin() por conta do require_once???
+		IfspDatabase::getInstance->validateLogin();
 	}
 }
