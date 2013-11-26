@@ -6,5 +6,7 @@ class IndexController extends Controller {
 	public function index() {
 		$this->setLayout(LAYOUT . '/layout.php');
 		$this->login = false;
+		//if($_POST)
+		//print_r("teste");
 	}
 }

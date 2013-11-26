@@ -7,7 +7,7 @@
 </section>
 
 <section class="container vertical">
-    <form method="POST" id="Formulario" action="/formularios">
+    <form method="POST" id="Formulario">
         <fieldset>
             <article class="row mbm">
                 <div class="col-md-5 centered">
