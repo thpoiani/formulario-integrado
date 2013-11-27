@@ -8,13 +8,27 @@ class IndexController extends Controller {
 	public function index() {
 		$this->setLayout(LAYOUT . '/layout.php');
 		$this->login = false;
-		
-		$database = IfspDatabase::getInstance();
-        $database->getPrematriculaCredentials();
-        $database->connect();
 
+        if ($_POST) {
+    		$database = IfspDatabase::getInstance();
+            $database->getPrematriculaCredentials();
+            $database->connect();
+
+            $login = $this->assemblyRequest();
+        }
+	}
+
+    /**
+     * Método para retorno popular objeto Login com dados inseridos pelo usuário
+     *
+     * @return Login
+     */
+    private function assemblyRequest() {
         $login = new Login();
+
         $login->setUsername($_POST['prontuario']);
         $login->setPasswd($_POST['passwd']);
-	}
+
+        return $login;
+    }
 }
