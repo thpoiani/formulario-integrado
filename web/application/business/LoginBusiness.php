@@ -3,10 +3,13 @@
 	require_once(APPLICATION . '/models/Login.php');
 	//inicia conexão com banco
 
-	class LoginBussiness{
-		private $user;
-		private $passwd;
-		private $query;
+	class LoginBussiness extends IfspDatabase{
+		private $User;
+		private $UserPasswd;
+
+		
+
+		public function validateLogin(){
 
 		$database = IfspDatabase::getInstance();
         $database->getPrematriculaCredentials();
@@ -14,11 +17,9 @@
 
         $login = new Login();
         $user = $login->getUsername();
-        $passwd = $login->getPasswd();
+        $UserPasswd = $login->getPasswd();
 
-		$query = mysql_query("SELECT * FROM /*Colocar tabela aqui*/ WHERE /*Coluna de nome*/ = ''$user'' AND /*Coluna de senha*/ = ''$passwd''");
-
-		public function validateLogin(){
+		self::$query = mysql_query("SELECT * FROM /*Colocar tabela aqui*/ WHERE /*Coluna de nome*/ = ''$user'' AND /*Coluna de senha*/ = ''$UserPasswd''");
 	 
 		if(!result()) echo "Dados invalidos inválidos";
 		else {
@@ -32,7 +33,8 @@
 			$_SESSION[id] = $id;
 			$_SESSION[usuario] = $usuario;
 			//redirecionar para view formularios
-			Header("Location: view/formularios/index.php"); 
+			Header("Location: view/formularios/index.php");	
 		}
+		 $database->close();
 	}
 ?>
