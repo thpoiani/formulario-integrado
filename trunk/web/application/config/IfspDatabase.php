@@ -19,11 +19,11 @@ class IfspDatabase {
 
     // O método singleton
     public static function getInstance()    {
-        if (!isset(self::$instance)) {
-            self::$instance = new IfspDatabase();
+        if (null === static::$instance) {
+            static::$instance = new static;
         }
 
-        return self::$instance;
+        return static::$instance;;
     }
 
     public function getPrematriculaCredentials(){
