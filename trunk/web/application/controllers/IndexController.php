@@ -11,5 +11,7 @@ class IndexController extends Controller {
 
 		//chama assim o metodo ou so validateLogin() por conta do require_once???
 		$database = IfspDatabase::getInstance();
+        $database->getPrematriculaCredentials();
+        $database->connect();
 	}
 }
