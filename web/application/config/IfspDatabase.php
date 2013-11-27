@@ -27,28 +27,27 @@ class IfspDatabase {
     }
 
     public function getPrematriculaCredentials(){
-        $host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
-        $port = "3306";
-        $database = "prematricula";
-        $username = "prematricula";
-        $passwd = "prematricula";
+        self::$host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
+        self::$port = "3306";
+        self::$database = "prematricula";
+        self::$username = "prematricula";
+        self::$passwd = "prematricula";
     }
 
     public function getInteraticoCredentials(){
-        $host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
-        $port = "3306";
-        $database = "interativo";
-        $username = "interativo";
-        $passwd = "interativo";
+        self::$host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
+        self::$port = "3306";
+        self::$database = "interativo";
+        self::$username = "interativo";
+        self::$passwd = "interativo";
     }
 
     /**
-    * Metodo para conexaõ com o banco
+    * Metodo para conexão com o banco
     */
     public function connect() {
-        $this->conexao = mysql_connect($this->host, $this->user, $this->passwd);
-        $status = mysql_select_db($this->database, $this->connection);
-        return $status;
+        self::$connection = mysql_connect(self::$host, self::$username, self::$passwd);
+        return mysql_select_db(self::$database, self::$connection);
     }
 
     /**
