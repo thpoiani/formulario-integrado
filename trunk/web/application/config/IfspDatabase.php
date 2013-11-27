@@ -7,18 +7,18 @@ class IfspDatabase {
     private static $username = null;
     private static $passwd = null;
 
-    private static $connection    = null;
-    private static $query      = null;
+    private static $connection = null;
+    private static $query = null;
 
     // Guarda uma instância da classe
     private static $instance;
 
     private function __construct() {
-         self::getInterativoCredential();
+         self::getInterativoCredentials();
     }
 
     // O método singleton
-    public static function getInstance()    {
+    public static function getInstance() {
         if (null === static::$instance) {
             static::$instance = new static;
         }
@@ -34,7 +34,7 @@ class IfspDatabase {
         self::$passwd = "prematricula";
     }
 
-    public function getInteraticoCredentials(){
+    public function getInterativoCredentials(){
         self::$host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
         self::$port = "3306";
         self::$database = "interativo";
