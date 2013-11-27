@@ -14,7 +14,7 @@ class IfspDatabase {
     private static $instance;
 
     private function __construct() {
-
+         self::getInterativoCredential();
     }
 
     // O método singleton
