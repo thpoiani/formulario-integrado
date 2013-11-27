@@ -1,5 +1,6 @@
 <?php
 	require_once("IfspDatabase.php");
+	require_once(APPLICATION . '/models/Login.php');
 	//inicia conexão com banco
 
 	class LoginBussiness{
@@ -7,10 +8,13 @@
 		private $passwd;
 		private $query;
 
-		connect();
+		$database = IfspDatabase::getInstance();
+        $database->getPrematriculaCredentials();
+        $database->connect();
 
-		$user = $_POST[txtUser]; 
-		$passwd= $_POST[txtSenha];
+        $login = new Login();
+        $user = $login->getUsername();
+        $passwd = $login->getPasswd();
 
 		$query = mysql_query("SELECT * FROM /*Colocar tabela aqui*/ WHERE /*Coluna de nome*/ = ''$user'' AND /*Coluna de senha*/ = ''$passwd''");
 
