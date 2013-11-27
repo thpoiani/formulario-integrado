@@ -1,35 +1,30 @@
 <?php
 class IfspDatabase {
 
-    private $host = null;
-    private $port = null;
-    private $database = null;
-    private $username = null;
-    private $passwd = null;
- 
-    private $connection    = null;
-    private $query      = null;
+    private static $host = null;
+    private static $port = null;
+    private static $database = null;
+    private static $username = null;
+    private static $passwd = null;
+
+    private static $connection    = null;
+    private static $query      = null;
 
     // Guarda uma instância da classe
     private static $instance;
 
-    private function __construct(){
+    private function __construct() {
 
     }
 
-    // O método singleton 
-    //peguei esse exemplo na internet 
-    public static function getInstance() 
-    {
+    // O método singleton
+    public static function getInstance()    {
         if (!isset(self::$instance)) {
-            $c = __CLASS__;
-            self::$instance = new $c;
+            self::$instance = new IfspDatabase();
         }
 
         return self::$instance;
     }
-
-    //rola fazer assim a diferença dos bancos???
 
     public function getPrematriculaCredentials(){
         $host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
@@ -55,16 +50,16 @@ class IfspDatabase {
         $status = mysql_select_db($this->database, $this->connection);
         return $status;
     }
-    
+
     /**
-    * Metodo para conexão executar query 
+    * Metodo para conexão executar query
     * passada como parametro
     */
     public function query($query) {
         $this->query = mysql_query($query);
         return $this->query;
     }
- 
+
     /**
     * Metodo para recuperar
     * resultado da query
@@ -82,4 +77,3 @@ class IfspDatabase {
        }
     }
 }
-?>
