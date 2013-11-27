@@ -14,10 +14,7 @@ class IndexController extends Controller {
         $database->connect();
 
         $login = new Login();
-        $login->setUsername($_POST[txtUser]);
-        $login->setPasswd($_POST[txtPasswd]);
-
-
-
+        $login->setUsername($_POST['prontuario']);
+        $login->setPasswd($_POST['passwd']);
 	}
 }
