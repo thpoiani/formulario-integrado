@@ -1,7 +1,7 @@
 <?php
 require_once(APPLICATION . '/models/Model.php');
 
-class Login extends Model{
+class Login extends Model {
 	private $username;
 	private $passwd;
 

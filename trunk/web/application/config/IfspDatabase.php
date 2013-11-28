@@ -14,7 +14,7 @@ class IfspDatabase {
     private static $instance;
 
     private function __construct() {
-         self::getInterativoCredentials();
+        $this->getInterativoCredentials();
     }
 
     // O método singleton
@@ -46,8 +46,22 @@ class IfspDatabase {
     * Metodo para conexão com o banco
     */
     public function connect() {
-        self::$connection = mysql_connect(self::$host, self::$username, self::$passwd);
-        return mysql_select_db(self::$database, self::$connection);
+        try {
+            self::$connection = mysql_connect(self::$host, self::$username, self::$passwd);
+            return mysql_select_db(self::$database, self::$connection);
+        } catch (Exception $e) {
+            throw new Exception("Falha ao estabelecer conexão com o banco de dados.");
+        }
+    }
+
+    /**
+     * Método para retonrar a conexão
+     * @return Connection
+     */
+    public function getConnection() {
+        if (isset(self::$connection)) {
+            return self::$connection;
+        }
     }
 
     /**
@@ -55,8 +69,12 @@ class IfspDatabase {
     * passada como parametro
     */
     public function query($query) {
-        $this->query = mysql_query($query);
-        return $this->query;
+        try {
+            self::$query = mysql_query($query);
+            return self::$query;
+        } catch (Exception $e) {
+            throw new Exception("Falha ao executar query com o banco de dados.");
+        }
     }
 
     /**
@@ -64,15 +82,23 @@ class IfspDatabase {
     * resultado da query
     */
     public function result() {
-        return mysql_fetch_assoc($this->query);
+        try {
+            return mysql_fetch_array(self::$query);
+        } catch (Exception $e) {
+            throw new Exception("Falha ao recuperar resultados do banco de dados.");
+        }
     }
 
     /**
     * Metodo para encerrar a conexão com o banco
     */
     public function close(){
-       if($this->connection != null){
-        mysql_close($this->connection);
-       }
+        try {
+            if(self::$connection != null){
+                mysql_close(self::$connection);
+            }
+        } catch (Exception $e) {
+            throw new Exception("Falha ao fechar conexão com o banco de dados.");
+        }
     }
 }

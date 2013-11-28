@@ -28,10 +28,18 @@ class Controller {
 
 	/**
 	 * Método para retornar à view aos
-	 * @return [type] [description]
+	 * @return void
 	 */
 	public function getContent() {
 		require_once($this->_view);
 	}
+
+    /**
+     * Método para verificar se sessão existe
+     * @return boolean
+     */
+    public function isSession() {
+        return isset($_SESSION);
+    }
 
 }

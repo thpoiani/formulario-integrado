@@ -8,9 +8,9 @@
 <meta name="description" content="IFSP campus São Carlos Instituto Federal de Educação Ciência e Tenologia de São Paulo SCL ifsp">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/flat-ui.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/flat-ui.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 
 <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <link href="/humans.txt" rel="author" type="text/plain">
