@@ -6,9 +6,7 @@
 	class LoginBussiness extends IfspDatabase{
 		private $User;
 		private $UserPasswd;
-
-		
-
+ 
 		public function validateLogin(Login $login){
 
 			$this->database = IfspDatabase::getInstance();
@@ -18,10 +16,9 @@
 	        $user = $login->getUsername();
 	        $UserPasswd = $login->getPasswd();
 
-			self::$query = mysql_query("SELECT * FROM /*Colocar tabela aqui*/ WHERE /*Coluna de nome*/ = ''$user'' AND /*Coluna de senha*/ = ''$UserPasswd''");
+	        $this->database->query("SELECT * FROM /*Colocar tabela aqui*/ WHERE /*Coluna de nome*/ = ''$user'' AND /*Coluna de senha*/ = ''$UserPasswd''");
 		 
-			if(!result()) echo "Dados invalidos inválidos";
-			else {
+			if($this->database->result()) {
 				//PEGA OS DADOS 
 				$id = mysql_result($query, 0, /*coluna usuario*/); 
 				$usuario = mysql_result($query, 0, /*coluna senha*/);
