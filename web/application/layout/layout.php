@@ -15,7 +15,7 @@
 <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <link href="/humans.txt" rel="author" type="text/plain">
 
-<!--[if IE]>
+<!--[if lt IE 9]>
     <script type="text/javascript">
         var htmlshim='abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,mark,meter,nav,output,progress,section,summary,time,video'.split(',');
         var htmlshimtotal=htmlshim.length;
@@ -57,12 +57,11 @@
     </footer>
 </div>
 
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.10.2.min"><\/script>')</script>
 
-<script src="js/flatui-checkbox.js"></script>
-<script src="js/flatui-radio.js"></script>
-<script src="js/default.js"></script>
+<script src="/js/flatui-checkbox.js"></script>
+<script src="/js/flatui-radio.js"></script>
+<script src="/js/default.js"></script>
 </body>
 </html>

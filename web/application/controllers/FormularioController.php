@@ -14,11 +14,11 @@ class FormularioController extends Controller {
     }
 
     public function index() {
-		$this->setLayout(LAYOUT . '/layout.php');
+        $this->setLayout(LAYOUT . '/layout.php');
 
         // Formulario retorna à view
         $this->formulario = $this->business->find($_GET['id']);
-	}
+    }
 
     /**
      * Método para verificar se existe parametro id
