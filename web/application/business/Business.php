@@ -7,9 +7,10 @@ abstract class Business implements IBusiness {
 
     public function save(Model $model) {
         if ($model->getId() > 0) {
-            update($model);
+            $this->update($model);
         } else {
-            add($model);
+            $this->add($model);
         }
     }
+
 }

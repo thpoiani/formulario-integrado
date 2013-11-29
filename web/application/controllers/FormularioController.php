@@ -7,7 +7,7 @@ class FormularioController extends Controller {
     private $business;
 
     public function __construct() {
-        //if (!parent::isSession()) header("Location: /");
+        if (!parent::isSession()) header("Location: /");
         if (!$this->hasParameter()) header("Location: /formularios");
 
         $this->business = new FormularioBusiness();

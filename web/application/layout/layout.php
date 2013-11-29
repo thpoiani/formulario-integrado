@@ -30,7 +30,7 @@
         <div class="col-xs-3">
             <?php if (isset($this->login) && $this->login) { ?>
 
-            <p class="navbar-text align-left">Boa noite <a href="#" class="navbar-link" title="Usuário">Usuário</a></p>
+            <p class="navbar-text align-left"><?php echo $this->helperShowDate(); ?> <a href="#" class="navbar-link" title="<?php echo $_SESSION['nome']; ?>"><?php echo $_SESSION['nome']; ?></a></p>
             <?php } ?>
         </div>
 
@@ -41,7 +41,7 @@
         <div class="col-xs-3">
             <?php if (isset($this->login) && $this->login) { ?>
 
-            <p class="navbar-text align-right"><a href="/" class="navbar-link" title="Sair">Sair</a>
+            <p class="navbar-text align-right"><a href="/index/logout" class="navbar-link" title="Sair">Sair</a>
             <?php } ?>
         </div>
     </header>
