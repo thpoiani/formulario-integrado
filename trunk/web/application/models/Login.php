@@ -14,7 +14,7 @@ class Login extends Model {
     }
 
     public function getPasswd() {
-        return $passwd->passwd;
+        return $this->passwd;
     }
 
     public function setPasswd($passwd) {

@@ -5,11 +5,6 @@ require_once(APPLICATION . '/models/Formulario.php');
 
 class FormularioBusiness extends Business {
 
-    public function __construct() {
-        parent::$database = IfspDatabase::getInstance();
-        parent::$database->connect();
-    }
-
     /**
      * Método para adicionar formulário ao banco
      * @param Model $model Formulario
@@ -24,6 +19,9 @@ class FormularioBusiness extends Business {
      * @return Formulario formulario
      */
     public function find($id) {
+        parent::$database = IfspDatabase::getInstance();
+        parent::$database->connect();
+
         $formulario = new Formulario();
 
         $query = "SELECT f.id, f.titulo, f.aberto, f.status, f.data "
@@ -43,14 +41,15 @@ class FormularioBusiness extends Business {
     }
 
     public function __destruct() {
-        parent::$database->close();
+        if (isset(parent::$database) && parent::$database->getConnection()) {
+            parent::$database->close();
+        }
     }
 
     /**
      * Método para popular um Formulario
      * @param  Formulario $formulario
      * @param  row $resultado
-     * @return Formulario
      */
     private function assembly(Formulario $formulario, $resultado) {
         $formulario->setId($resultado['id']);

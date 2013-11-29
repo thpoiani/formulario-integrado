@@ -26,8 +26,18 @@
 
         <article class="row mbm">
             <div class="col-md-5 centered text-right">
+                <?php if (isset($this->message)) { ?>
+
+                <div class="pull-left">
+                    <p class="error"><?php echo $this->message; ?></p>
+                </div>
+                <?php } ?>
+
                 <input type="submit" class="btn btn-success" value="Login" title="Login">
             </div>
         </article>
+
     </form>
+
+
 </section>

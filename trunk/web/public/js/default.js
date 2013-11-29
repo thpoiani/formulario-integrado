@@ -3,6 +3,7 @@
  */
 $(function() {
     validate();
+    errorMessage();
 });
 
 /**
@@ -17,4 +18,13 @@ function validate() {
             $(this).parent().parent().removeClass('has-success').addClass('has-error');
         }
     });
+}
+
+/**
+ * Função para remoção de mensagem de erro
+ * @return void
+ */
+function errorMessage() {
+    $error = $('.error');
+    if ($error.length) $error.parent().fadeOut(5000);
 }

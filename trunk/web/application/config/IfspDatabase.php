@@ -50,7 +50,7 @@ class IfspDatabase {
             self::$connection = mysql_connect(self::$host, self::$username, self::$passwd);
             return mysql_select_db(self::$database, self::$connection);
         } catch (Exception $e) {
-            throw new Exception("Falha ao estabelecer conexão com o banco de dados.");
+            throw new Exception("Falha ao estabelecer conexão com o banco de dados");
         }
     }
 
@@ -73,7 +73,7 @@ class IfspDatabase {
             self::$query = mysql_query($query);
             return self::$query;
         } catch (Exception $e) {
-            throw new Exception("Falha ao executar query com o banco de dados.");
+            throw new Exception("Falha ao executar query com o banco de dados");
         }
     }
 
@@ -85,7 +85,7 @@ class IfspDatabase {
         try {
             return mysql_fetch_array(self::$query);
         } catch (Exception $e) {
-            throw new Exception("Falha ao recuperar resultados do banco de dados.");
+            throw new Exception("Falha ao recuperar resultados do banco de dados");
         }
     }
 
@@ -98,7 +98,7 @@ class IfspDatabase {
                 mysql_close(self::$connection);
             }
         } catch (Exception $e) {
-            throw new Exception("Falha ao fechar conexão com o banco de dados.");
+            throw new Exception("Falha ao fechar conexão com o banco de dados");
         }
     }
 }
