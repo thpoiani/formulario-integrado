@@ -21,5 +21,10 @@ class FormulariosController extends Controller{
 	public function index() {
 		$this->setLayout(LAYOUT . '/layout.php');
 	}
+
+	private function coresSortidas() {
+		$color = array("turquoise", "asbestos", "alizarin", "peterriver");
+        return shuffle($color);            
+	}
 }
 
