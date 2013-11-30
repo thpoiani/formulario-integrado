@@ -1,0 +1,39 @@
+<?php
+require_once('Business.php');
+require_once(APPLICATION . '/config/IfspDatabase.php');
+
+class FormularioBusiness extends Business {
+
+    public function validate(Login $login) {
+        parent::$database = IfspDatabase::getInstance();
+        parent::$database->getInterativoCredentials();
+        parent::$database->connect();
+
+      
+
+        parent::$database->query("SELECT * FROM ...");
+
+		if ($resultado = parent::$database->result()) {
+            return $this->assembly($aluno, $resultado);
+        } else {
+            throw new Exception("Falha de autenticação");
+        }
+	}
+
+
+
+    public function find($id) {
+        throw new Exception("Método não implementado - Interface");
+    }
+
+    public function update(Model $update) {
+        throw new Exception("Método não implementado - Interface");
+    }
+
+    public function __destruct() {
+        if (isset(parent::$database) && parent::$database->getConnection()) {
+            parent::$database->close();
+        }
+    }
+
+}
