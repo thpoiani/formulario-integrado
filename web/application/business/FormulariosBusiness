@@ -4,26 +4,25 @@ require_once(APPLICATION . '/config/IfspDatabase.php');
 
 class FormularioBusiness extends Business {
 
-    public function validate(Login $login) {
+    public function __construct() {
         parent::$database = IfspDatabase::getInstance();
         parent::$database->getInterativoCredentials();
-        parent::$database->connect();
-
-      
-
-        parent::$database->query("SELECT * FROM ...");
-
-		if ($resultado = parent::$database->result()) {
-            return $this->assembly($aluno, $resultado);
-        } else {
-            throw new Exception("Falha de autenticação");
-        }
+        parent::$database->query = "SELECT f.id, f.titulo, f.aberto, f.status, f.data FROM formulario f WHERE f.aberto = 1 AND f.status = 1";  
 	}
 
 
+    public function getFormsList(){
+        parent::$database->connect();
+        parent::$database->query($database->query);
+        $lista_form = parent::$database->result();
+        parent::$database->close();
+        return $lista_form;
+    }
 
     public function find($id) {
         throw new Exception("Método não implementado - Interface");
+        //metodo acima pode ser inserido aqui??
+
     }
 
     public function update(Model $update) {
