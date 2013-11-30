@@ -11,7 +11,7 @@ class FormulariosController extends Controller{
     public function __construct() {
         if (!parent::isSession()) header("Location: /");
 
-        $this->business = new FormulariosBusiness();
+       // $this->business = new FormulariosBusiness();
     }
 
     public function populateForms(){
