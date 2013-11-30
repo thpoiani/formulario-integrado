@@ -6,6 +6,7 @@ class FormulariosController extends Controller{
 
     private $business;
     private $formsList;
+    private $color;
 
     public function __construct() {
         if (!parent::isSession()) header("Location: /");
