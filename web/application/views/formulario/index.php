@@ -1,104 +1,89 @@
-    <section class="container vertical">
-        <form method="POST">
+
+<?php if (isset($this->formulario)) {  ?>
+
+    <section class="container vertical no-padding">
+        <article class="row mbm">
+            <div class="align-center">
+                <h6><?php echo utf8_encode($this->formulario->getTitulo()); ?></h6>
+            </div>
+        </article>
+    </section>
+
+    <form method="POST" action="/formulario/salvar">
+        <?php foreach ($this->formulario->getCategorias() as $categoria) { ?>
+
+        <section class="container vertical">
             <fieldset>
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="nome" title="Nome">Nome</label>
-						<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
-					</div>
-				</article>
+                <?php
+                foreach ($categoria->getCampos() as $campo) {
+                    switch ($campo->getTipo()->getDescricao()) {
+                        case 'Check':
+                    ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="prontuario" title="Prontuário">Prontuário</label>
-						<input type="text" class="form-control" name="prontuario" id="prontuario" placeholder="Prontuário">
-					</div>
-				</article>
+                <article class="row mbm">
+                    <div class="col-md-5 centered">
+                        <label><?php echo utf8_encode($campo->getTitulo()); ?></label>
+                        <?php foreach($campo->getGrupos() as $grupo) { ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="curso" title="Curso">Curso</label>
-						<input type="text" class="form-control" name="curso" id="curso" placeholder="Curso">
-					</div>
-				</article>
+                        <label class="checkbox cursor-pointer" title="<?php echo utf8_encode($grupo->getTitulo()) ?>">
+                            <input type="checkbox" name="<?php echo $grupo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="checkbox"><?php echo utf8_encode($grupo->getTitulo()) ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="semestre" title="Semestre">Semestre</label>
-						<input type="text" class="form-control" name="semestre" id="semestre" placeholder="Semestre">
-					</div>
-				</article>
+                        </label>
+                        <?php } ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="data_nascimento" title="Data de Nascimento">Data de Nascimento</label>
-						<input type="text" class="form-control" name="data_nascimento" id="data_nascimento" placeholder="Data de Nascimento">
-					</div>
-				</article>
+                    </div>
+                </article>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="rg" title="RG">RG</label>
-						<input type="text" class="form-control" name="rg" id="rg" placeholder="RG">
-					</div>
-				</article>
+                    <?php
+                        break;
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="cpf" title="CPF">CPF</label>
-						<input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
-					</div>
-				</article>
+                        case 'Radio':
+                    ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="email" title="Email">Email</label>
-						<input type="text" class="form-control" name="email" id="email" placeholder="Email">
-					</div>
-				</article>
+                <article class="row mbm">
+                    <div class="col-md-5 centered">
+                        <label><?php echo utf8_encode($campo->getTitulo()); ?></label>
+                        <?php foreach($campo->getGrupos() as $key => $grupo) { ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="idade" title="Idade">Idade</label>
-						<input type="text" class="form-control" name="idade" id="idade" placeholder="Idade">
-					</div>
-				</article>
+                        <label class="radio cursor-pointer" title="<?php echo utf8_encode($grupo->getTitulo()) ?>">
+                            <input type="radio" name="<?php echo $grupo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="radio"<?php echo $key == 0 ? " checked" : "" ?>><?php echo utf8_encode($grupo->getTitulo()) ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label for="naturalidade" title="Naturalidade">Naturalidade</label>
-						<input type="text" class="form-control" name="naturalidade" id="naturalidade" placeholder="Naturalidade">
-					</div>
-				</article>
+                        </label>
+                        <?php } ?>
 
-				<article class="row mbm">
-					<div class="col-md-5 centered">
-						<label>Estado civil</label>
+                    </div>
+                </article>
 
-						<label class="radio cursor-pointer" title="Solteiro">
-							<input type="radio" name="estado_civil" value="1" data-toggle="radio" checked>Solteiro
-						</label>
+                    <?php
+                        break;
 
-						<label class="radio cursor-pointer" title="Casado/mora com companheiro">
-							<input type="radio" name="estado_civil" value="2" data-toggle="radio">Casado/mora com companheiro
-						</label>
+                        default:
+                    ?>
 
-						<label class="radio cursor-pointer" title="Separado/divorciado">
-							<input type="radio" name="estado_civil" value="3" data-toggle="radio">Separado/divorciado
-						</label>
+                <article class="row mbm">
+                    <div class="col-md-5 centered">
+                        <label for="<?php echo $campo->getId(); ?>" title="<?php echo utf8_encode($campo->getTitulo()); ?>"><?php echo utf8_encode($campo->getTitulo()); ?></label>
+                        <input type="text" class="form-control" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>" placeholder="<?php echo utf8_encode($campo->getTitulo()); ?>"<?php echo ($campo->getMaxlength() > 0 ? ' maxlength="' . $campo->getMaxlength() . '"' : ''); ?><?php echo (strlen($campo->getRegex()) > 0 ? ' pattern="' . utf8_encode($campo->getRegex()) . '"' : ''); ?>>
+                    </div>
+                </article>
 
-						<label class="radio cursor-pointer" title="Viúvo">
-							<input type="radio" name="estado_civil" value="4" data-toggle="radio">Viúvo
-						</label>
-					</div>
-				</article>
-			</fieldset>
+                    <?php
+                        break;
+                    }
+                } ?>
 
+            </fieldset>
+        </section>
+        <?php } ?>
+
+        <section class="container vertical">
 			<article class="row mbm">
 				<div class="col-md-5 centered text-right">
 					<input type="reset" class="btn btn-default" value="Limpar" title="Limpar">
 					<input type="submit" class="btn btn-success" value="Enviar" title="Enviar">
 				</div>
 			</article>
-		</form>
-	</section>
+        </section>
+	</form>
+
+<?php } ?>

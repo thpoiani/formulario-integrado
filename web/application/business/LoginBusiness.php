@@ -44,9 +44,9 @@ class LoginBusiness extends Business {
             session_start();
 
             // armazena variáveis em sessão
+            $_SESSION['id'] = $aluno->getId();
             $_SESSION['prontuario'] = $aluno->getProntuario();
             $_SESSION['nome'] = $aluno->getNome();
-
         } else {
             // retira as variáveis da sessão
             $_SESSION = array();

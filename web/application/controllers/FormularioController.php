@@ -18,9 +18,9 @@ class FormularioController extends Controller {
 
         // Formulario retorna à view
         $this->formulario = $this->business->obterFormularioCompleto($_GET['id']);
+    }
 
-        // print_r(utf8_encode($this->formulario->getTitulo()));die();
-        print_r($this->formulario);die();
+    public function salvar() {
 
     }
 
