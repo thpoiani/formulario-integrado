@@ -38,7 +38,7 @@ class LoginBusiness extends Business {
      * @return void
      */
     public function session(Aluno $aluno = null) {
-        // se não existe sessão
+        // se não existe sessão correta
         if (!isset($_SESSION['prontuario'])) {
             // inicia sessão
             session_start();

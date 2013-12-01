@@ -1,16 +1,58 @@
 <?php
 require_once('Business.php');
+require_once('CategoriaBusiness.php');
 require_once(APPLICATION . '/config/IfspDatabase.php');
 require_once(APPLICATION . '/models/Formulario.php');
+require_once(APPLICATION . '/models/Categoria.php');
 
 class FormularioBusiness extends Business {
 
     /**
-     * Método para adicionar formulário ao banco
-     * @param Model $model Formulario
+     * Método para retornar formulário completo, contendo categorias e campos, pelo id
+     * @param  int $id
+     * @return Formulario formulario
      */
-    public function add(Model $model) {
+    public function obterFormularioCompleto($id) {
+        parent::$database = IfspDatabase::getInstance();
+        parent::$database->connect();
 
+        $formulario = new Formulario();
+
+        $query = "SELECT fc.formularioId, fc.categoriaId, fc.ordem "
+               . "FROM formulario_categoria fc INNER JOIN formulario f ON fc.formularioId = f.id AND f.status = 1 AND f.aberto = 1 "
+               . "INNER JOIN categoria c ON fc.categoriaId = c.id AND c.status = 1 "
+               . "WHERE fc.formularioId = " . $id;
+
+        parent::$database->query($query);
+
+        // armazena resultados da query
+        $resultados = array();
+        while ($resultado = parent::$database->result()) {
+            $resultados[] = $resultado;
+        }
+
+        // se existirem resultados
+        if (count($resultados) > 0) {
+            $categoriaBusiness = new CategoriaBusiness();
+            $categorias = array();
+
+            // recupera formulario
+            $formulario = $this->find($id);
+
+            // recupera categorias desse formulario
+            foreach ($resultados as $resultado){
+                $categoria = new Categoria();
+                $categoria = $categoriaBusiness->obterCategoriaCompleta($resultado['categoriaId']);
+
+                // adiciona a categoria a uma lista
+                array_push($categorias, $categoria);
+            }
+
+            $formulario->setCategorias($categorias);
+        }
+
+
+        return $formulario;
     }
 
     /**
@@ -25,7 +67,7 @@ class FormularioBusiness extends Business {
         $formulario = new Formulario();
 
         $query = "SELECT f.id, f.titulo, f.aberto, f.status, f.data "
-                ." FROM formulario f WHERE id = " . $id;
+               . "FROM formulario f WHERE f.aberto = 1 AND f.status = 1 AND f.id = " . $id;
 
         parent::$database->query($query);
 
@@ -36,8 +78,20 @@ class FormularioBusiness extends Business {
         return $formulario;
     }
 
-    public function update(Model $model) {
+    /**
+     * Método para adicionar formulário ao banco
+     * @param Model $model Formulario
+     */
+    public function add(Model $model) {
+        throw new Exception("Método não implementado - Interface");
+    }
 
+    /**
+     * Método para atualizar formulário no banco
+     * @param Model $model Formulario
+     */
+    public function update(Model $model) {
+        throw new Exception("Método não implementado - Interface");
     }
 
     public function __destruct() {

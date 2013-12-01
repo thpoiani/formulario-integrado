@@ -17,7 +17,11 @@ class FormularioController extends Controller {
         $this->setLayout(LAYOUT . '/layout.php');
 
         // Formulario retorna à view
-        $this->formulario = $this->business->find($_GET['id']);
+        $this->formulario = $this->business->obterFormularioCompleto($_GET['id']);
+
+        // print_r(utf8_encode($this->formulario->getTitulo()));die();
+
+
     }
 
     /**
