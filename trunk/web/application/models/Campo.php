@@ -12,6 +12,8 @@ class Campo extends Model {
     private $data;
     private $categoriaId;
     private $tipoId;
+    private $tipo;
+    private $grupos = array();
 
     public function getId() {
         return $this->id;
@@ -83,6 +85,22 @@ class Campo extends Model {
 
     public function setTipoId($tipoId) {
         return $this->tipoId = $tipoId;
+    }
+
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function setTipo(Tipo $tipo) {
+        return $this->tipo = $tipo;
+    }
+
+    public function getGrupos() {
+        return $this->grupos;
+    }
+
+    public function setGrupos($grupos) {
+        return $this->grupos = $grupos;
     }
 
 }

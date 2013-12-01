@@ -20,7 +20,7 @@ class FormularioController extends Controller {
         $this->formulario = $this->business->obterFormularioCompleto($_GET['id']);
 
         // print_r(utf8_encode($this->formulario->getTitulo()));die();
-
+        print_r($this->formulario);die();
 
     }
 
