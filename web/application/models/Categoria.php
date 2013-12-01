@@ -9,7 +9,6 @@ class Categoria extends Model {
     private $status;
     private $data;
     private $ordem;
-    private $formularios = array();
     private $campos = array();
 
     public function getId() {
@@ -58,14 +57,6 @@ class Categoria extends Model {
 
     public function setOrdem($ordem) {
         $this->ordem = $ordem;
-    }
-
-    public function getFormularios() {
-        return $this->formularios;
-    }
-
-    public function setFormularios($formularios) {
-        $this->formularios = $formularios;
     }
 
     public function getCampos() {

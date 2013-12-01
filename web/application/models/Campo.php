@@ -10,6 +10,8 @@ class Campo extends Model {
     private $status;
     private $ordem;
     private $data;
+    private $categoriaId;
+    private $tipoId;
 
     public function getId() {
         return $this->id;
@@ -35,6 +37,14 @@ class Campo extends Model {
         $this->maxlength = $maxlength;
     }
 
+    public function getRegex() {
+        return $this->regex;
+    }
+
+    public function setRegex($regex) {
+        return $this->regex = $regex;
+    }
+
     public function isStatus() {
         return $this->status;
     }
@@ -57,6 +67,22 @@ class Campo extends Model {
 
     public function setData($data) {
         $this->data = $data;
+    }
+
+    public function getCategoriaId() {
+        return $this->categoriaId;
+    }
+
+    public function setCategoriaId($categoriaId) {
+        return $this->categoriaId = $categoriaId;
+    }
+
+    public function getTipoId() {
+        return $this->tipoId;
+    }
+
+    public function setTipoId($tipoId) {
+        return $this->tipoId = $tipoId;
     }
 
 }
