@@ -8,37 +8,17 @@
 
 <section class="container vertical">
     <div class="row">
-        <div class="col-md-3" name = "turquoise">
-            <a title="Formulário 1" href="/formulario/index/?id=1">
-                <div class="tooltip-inner tile turquoise">
-                    <span class="font">Formulário 1</span>
+        <?php
+            foreach ($this->formularios as $key => $formulario) { ?>
+                <div class="col-md-3">
+                    <a title="<?php echo $formulario->getTitulo(); ?>" href="/formulario/index/?id=<?php echo $formulario->getId(); ?>">
+                        <div class="tooltip-inner tile <?php echo $formulario->getTitulo(); ?>">
+                            <span class="font"><?php echo $this->color[$key]; ?></span>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-
-        <div class="col-md-3" name = "asbestos">
-            <a title="Formulário 2" href="/formulario/index/?id=1">
-                <div class="tooltip-inner tile asbestos">
-                    <span class="font">Formulário 2</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-3" name = "peterriver">
-            <a title="Formulário 3" href="/formulario/index/?id=1">
-                <div class="tooltip-inner tile peterriver">
-                    <span class="font">Formulário 3</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-3" name = "alizarin">
-            <a title="Formulário 4" href="/formulario/index/?id=1">
-                <div class="tooltip-inner tile alizarin">
-                    <span class="font">Formulário 4</span>
-                </div>
-            </a>
-        </div>
-
+        <?php } ?>               
     </div>
 </section>
+
+
