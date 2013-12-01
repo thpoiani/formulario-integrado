@@ -91,8 +91,8 @@ a:hover {
 }
 
 .tile .font {
-	font-size: 24px;
-	line-height: 48px;
+	font-size: 18px;
+	line-height: 32px;
 }
 
 .turquoise {
@@ -125,6 +125,22 @@ a:hover {
 
 .peterriver:hover {
     background: #2980b9;
+}
+
+.amethyst {
+    background: #9b59b6;
+}
+
+.amethyst:hover {
+    background: #8e44ad;
+}
+
+.carrot {
+    background: #e67e22;
+}
+
+.carrot:hover {
+    background: #d35400;
 }
 
 .no-padding {
