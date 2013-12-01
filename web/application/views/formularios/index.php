@@ -13,7 +13,7 @@
                 <div class="col-md-3">
                     <a title="<?php echo $formulario->getTitulo(); ?>" href="/formulario/index/?id=<?php echo $formulario->getId(); ?>">
                         <div class="tooltip-inner tile <?php echo $this->color[$key]; ?>">
-                            <span style="font-size: 14pt;"><?php echo $formulario->getTitulo(); ?></span>
+                            <span class="font"><?php echo $formulario->getTitulo(); ?></span>
                         </div>
                     </a>
                 </div>

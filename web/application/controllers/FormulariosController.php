@@ -24,7 +24,7 @@ class FormulariosController extends Controller{
 	}
 
 	private function coresSortidas() {
-		$color = array("turquoise", "asbestos", "alizarin", "peterriver");
+		$color = array("turquoise", "asbestos", "alizarin", "peterriver", "carrot", "amethyst");
         shuffle($color);
 
         return $color;
