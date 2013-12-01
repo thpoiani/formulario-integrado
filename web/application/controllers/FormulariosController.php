@@ -5,7 +5,7 @@ require_once(APPLICATION . '/business/FormularioBusiness.php');
 class FormulariosController extends Controller{
 
     private $business;
-    private $color;
+    public $color;
 
     public function __construct() {
         if (!parent::isSession()) header("Location: /");
