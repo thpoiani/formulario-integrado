@@ -78,6 +78,31 @@ class FormularioBusiness extends Business {
     }
 
     /**
+     * Método para retornar formulários ativos
+     * @return Formulario formulario
+     */
+    public function show() {
+        parent::$database = IfspDatabase::getInstance();
+        parent::$database->connect();
+
+        $formularios = array();
+
+        $query = "SELECT f.id, f.titulo, f.aberto, f.status, f.data "
+               . "FROM formulario f WHERE f.aberto = 1 AND f.status = 1";
+
+        parent::$database->query($query);
+
+        while ($resultado = parent::$database->result()) {
+            $formulario = new Formulario();
+            $this->assembly($formulario, $resultado);
+
+            array_push($formularios, $formulario);
+        }
+
+        return $formularios;
+    }
+
+    /**
      * Método para adicionar formulário ao banco
      * @param Model $model Formulario
      */

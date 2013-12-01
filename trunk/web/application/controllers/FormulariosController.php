@@ -5,27 +5,29 @@ require_once(APPLICATION . '/business/FormularioBusiness.php');
 class FormulariosController extends Controller{
 
     private $business;
-    private $formsList;
     private $color;
 
     public function __construct() {
         if (!parent::isSession()) header("Location: /");
-
-       // $this->business = new FormulariosBusiness();
+        $this->business = new FormularioBusiness();
     }
 
-    public function populateForms(){
-    	$this->formsList = $this->business->getFormsList();
-    	
-    }
+    // public function populateForms(){
+    //     $this->formsList = $this->business->getFormsList();
+    // }
 
 	public function index() {
-		$this->setLayout(LAYOUT . '/layout.php');
+        $this->setLayout(LAYOUT . '/layout.php');
+
+        $this->formularios = $this->business->show();
+        $this->color = $this->coresSortidas();
 	}
 
 	private function coresSortidas() {
 		$color = array("turquoise", "asbestos", "alizarin", "peterriver");
-        return shuffle($color);            
+        shuffle($color);
+
+        return $color;
 	}
 }
 
