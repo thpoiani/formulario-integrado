@@ -8,9 +8,7 @@ class Grupo extends Model {
     private $data;
     private $ordem;
     private $status;
-
     private $campoId;
-    private $campo;
 
     public function getId() {
         return $this->id;
@@ -50,14 +48,6 @@ class Grupo extends Model {
 
     public function setStatus($status) {
         $this->status = $status;
-    }
-
-    public function getCampo() {
-        return $this->campo;
-    }
-
-    public function setCampo($campo) {
-        $this->campo = $campo;
     }
 
     public function getCampoId() {

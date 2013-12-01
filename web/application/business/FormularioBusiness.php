@@ -51,7 +51,6 @@ class FormularioBusiness extends Business {
             $formulario->setCategorias($categorias);
         }
 
-
         return $formulario;
     }
 

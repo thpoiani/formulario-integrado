@@ -45,11 +45,11 @@ class GrupoBusiness extends Business {
         throw new Exception("Método não implementado - Interface");
     }
 
-    public function __destruct() {
-        if (isset(parent::$database) && parent::$database->getConnection()) {
-            parent::$database->close();
-        }
-    }
+    // public function __destruct() {
+    //     if (isset(parent::$database) && parent::$database->getConnection()) {
+    //         parent::$database->close();
+    //     }
+    // }
 
     /**
      * Método para popular um Grupo
@@ -57,8 +57,6 @@ class GrupoBusiness extends Business {
      * @param  row $resultado
      */
     private function assembly(Grupo $grupo, $resultado) {
-        $query = "SELECT g.id, g.titulo, g.data, g.ordem, g.status, g.campoId "
-
         $grupo->setId($resultado['id']);
         $grupo->setTitulo($resultado['titulo']);
         $grupo->setData($resultado['data']);

@@ -38,7 +38,7 @@ class CategoriaBusiness extends Business {
             // recupera campos dessa categoria
             foreach ($resultados as $resultado) {
                 $campo = new Campo();
-                $campo = $campoBusiness->find($resultado['id']);
+                $campo = $campoBusiness->obterCampoCompleto($resultado['id']);
 
                 // adiciona a categoria a uma lista
                 array_push($campos, $campo);
