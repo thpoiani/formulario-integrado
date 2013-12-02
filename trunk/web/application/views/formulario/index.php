@@ -10,6 +10,8 @@
     </section>
 
     <form method="POST" action="/formulario/salvar">
+        <input type="hidden" id="formulario" name="formulario" value="<?php echo $this->formulario->getId(); ?>">
+
         <?php foreach ($this->formulario->getCategorias() as $categoria) { ?>
 
         <section class="container vertical">
