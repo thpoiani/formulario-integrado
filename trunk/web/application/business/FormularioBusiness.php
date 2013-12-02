@@ -12,6 +12,7 @@ class FormularioBusiness extends Business {
      * @param  int $id
      * @return Formulario formulario
      */
+
     public function obterFormularioCompleto($id) {
         parent::$database = IfspDatabase::getInstance();
         parent::$database->connect();
@@ -101,6 +102,7 @@ class FormularioBusiness extends Business {
 
         return $formularios;
     }
+
 
     /**
      * Método para adicionar formulário ao banco
