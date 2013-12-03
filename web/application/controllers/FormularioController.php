@@ -115,11 +115,11 @@ class FormularioController extends Controller {
     }
 
     private function uploadFile(){
-        if($_POST['5']){
+       // if($_POST['5']){
             $file = $_FILES['5'];
 
             $file_extension = strtolower(end(explode('.', $file['name'])));
-            $newFileName = 'ALUNO_teste.';
+            $newFileName = '/ALUNO_teste.';
             $upload = move_uploaded_file($file['tmp_name'], UPLOAD . $newFileName . $file_extension);
 
             if($upload){
@@ -127,7 +127,7 @@ class FormularioController extends Controller {
             }else{
 
             }
-        }
+      //  }
     }   
 
     /**
