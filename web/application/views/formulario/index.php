@@ -28,7 +28,7 @@
                         <?php foreach($campo->getGrupos() as $grupo) { ?>
 
                         <label class="checkbox cursor-pointer" title="<?php echo utf8_encode($grupo->getTitulo()) ?>">
-                            <input type="checkbox" name="<?php echo $grupo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="checkbox"><?php echo utf8_encode($grupo->getTitulo()) ?>
+                            <input type="checkbox" name="<?php echo $campo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="checkbox"><?php echo utf8_encode($grupo->getTitulo()) ?>
 
                         </label>
                         <?php } ?>
@@ -48,7 +48,7 @@
                         <?php foreach($campo->getGrupos() as $key => $grupo) { ?>
 
                         <label class="radio cursor-pointer" title="<?php echo utf8_encode($grupo->getTitulo()) ?>">
-                            <input type="radio" name="<?php echo $grupo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="radio"<?php echo $key == 0 ? " checked" : "" ?>><?php echo utf8_encode($grupo->getTitulo()) ?>
+                            <input type="radio" name="<?php echo $campo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="radio"<?php echo $key == 0 ? " checked" : "" ?>><?php echo utf8_encode($grupo->getTitulo()) ?>
 
                         </label>
                         <?php } ?>
