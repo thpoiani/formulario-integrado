@@ -6,6 +6,7 @@ class Aluno extends Model {
     private $id;
     private $prontuario;
     private $nome;
+    private $email;
     private $respostas;
 
     public function getId() {
@@ -30,6 +31,14 @@ class Aluno extends Model {
 
     public function setNome($nome) {
         $this->nome = $nome;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        return $this->email = $email;
     }
 
     public function getRespostas() {
