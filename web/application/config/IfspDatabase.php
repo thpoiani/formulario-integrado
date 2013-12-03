@@ -35,11 +35,11 @@ class IfspDatabase {
     }
 
     public function getInterativoCredentials(){
-        self::$host = "localhost";
+        self::$host = "poiani.cxdsxdlfvih4.us-west-2.rds.amazonaws.com";
         self::$port = "3306";
         self::$database = "interativo";
-        self::$username = "root";
-        self::$passwd = "henrique";
+        self::$username = "interativo";
+        self::$passwd = "interativo";
     }
 
     /**
