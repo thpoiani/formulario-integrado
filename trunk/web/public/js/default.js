@@ -3,6 +3,7 @@
  */
 $(function() {
     validate();
+    $('.date').datepicker();
     errorMessage();
 });
 
