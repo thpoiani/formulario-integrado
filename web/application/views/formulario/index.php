@@ -83,7 +83,7 @@
                     </div>
                 </article>
 
-                    <?
+                    <?php
                         break;
 
                         default:
