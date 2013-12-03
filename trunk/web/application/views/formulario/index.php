@@ -28,7 +28,7 @@
                         <?php foreach($campo->getGrupos() as $grupo) { ?>
 
                         <label class="checkbox cursor-pointer" title="<?php echo utf8_encode($grupo->getTitulo()) ?>">
-                            <input type="checkbox" name="<?php echo $campo->getId() ?>" 
+                            <input type="checkbox" name="<?php echo $campo->getId() ?>"
                             value="<?php echo $grupo->getId() ?>" data-toggle="checkbox"><?php echo utf8_encode($grupo->getTitulo()) ?>
 
                         </label>
@@ -71,6 +71,19 @@
                 </article>
 
                     <?php
+                        break;
+
+                        case 'Upload':
+                    ?>
+
+                <article class="row mbm">
+                    <div class="col-md-5 centered">
+                        <label for="<?php echo $campo->getId(); ?>" title="<?php echo utf8_encode($campo->getTitulo()); ?>"><?php echo utf8_encode($campo->getTitulo()); ?></label>
+                        <input type="file" class="form-control" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>" placeholder="<?php echo utf8_encode($campo->getTitulo()); ?>"<?php echo ($campo->getMaxlength() > 0 ? ' maxlength="' . $campo->getMaxlength() . '"' : ''); ?><?php echo (strlen($campo->getRegex()) > 0 ? ' pattern="' . utf8_encode($campo->getRegex()) . '"' : ''); ?>>
+                    </div>
+                </article>
+
+                    <?
                         break;
 
                         default:

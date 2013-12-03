@@ -47,6 +47,7 @@ class LoginBusiness extends Business {
             $_SESSION['id'] = $aluno->getId();
             $_SESSION['prontuario'] = $aluno->getProntuario();
             $_SESSION['nome'] = $aluno->getNome();
+            $_SESSION['email'] = $aluno->getEmail();
         } else {
             // retira as variáveis da sessão
             $_SESSION = array();
@@ -80,6 +81,7 @@ class LoginBusiness extends Business {
         $aluno->setId($resultado['id']);
         $aluno->setProntuario($resultado['prontuario']);
         $aluno->setNome($resultado['nome']);
+        $aluno->setEmail($resultado['email']);
         return $aluno;
     }
 }

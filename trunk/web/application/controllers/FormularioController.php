@@ -43,6 +43,8 @@ class FormularioController extends Controller {
 
             try {
                 $respostaBusiness->salvar($respostas);
+                $this->getMailConfig();
+
                 header("Location: /formularios");
             } catch (Exception $e) {
                 header("Location: /formularios/index/?id=" . $_POST['formulario']);
@@ -67,31 +69,47 @@ class FormularioController extends Controller {
     * E-mail por SMTP autenticado
     */
     private function getMailConfig(){
-        $mail = new PHPMailer();
+        $this->mail = new PHPMailer();
         //envio por SMTP
-        $mail->IsSMTP();
+        $this->mail->IsSMTP();
         //autenticado
-        $mail->SMTPAuth = true;
-        //Alterando porta por conta de Span
-        $mail->port =587;
-        $mail->Host = '';
-        $mail->Username = '';
-        $mail->Password = '';
-        $mail->SetFrom('', 'IFSP');
+        $this->mail->SMTPAuth = true;
+        $this->mail->SMTPSecure = 'tls';
+
+        $this->mail->Port = 587;
+        $this->mail->Host = 'smtp.gmail.com';
+        $this->mail->Username = 'thpoiani@gmail.com';
+        $this->mail->Password = 'SENHA';
+        $this->mail->setFrom('formulariointegrado@ifsp.edu.br', 'IFSP');
+
+        $this->sendEmailToUser($_SESSION['email'], true);
+        $this->sendEmailToUser("EMAIL SAMIRA", false);
     }
     /**
     * Metodo que enviara
     * E-mail ao usuario logado
     */
-    private function sendEmailToUser($UserEmail, $UserName){
-        $mail->AddAdress($UserEmail, $UserName);
-        $mail->Subject = 'Confirmação de envio de formulario';
-        $mail->MsgHTML('Mensagem');
+    private function sendEmailToUser($UserEmail, $isAluno) {
+        if ($isAluno) {
+            $this->mail->addAddress($UserEmail);
+            $this->mail->Subject = utf8_decode('Confirmação de envio de Formulário - IFSP São Carlos');
+            $this->mail->Body = "Mensagem";
 
-        if($mail->Send()){
-            //alert ou popup
-        }else{
-            //alert ou popup
+            if ($this->mail->send()) {
+                print_r('enviou');die();
+            } else {
+                print_r('nao enviou');die();
+            }
+        } else {
+            $this->mail->addAddress($UserEmail);
+            $this->mail->Subject = utf8_decode('Formulário respondido.');
+            $this->mail->Body = "Mensagem";
+
+            if ($this->mail->send()) {
+                print_r('enviou');die();
+            } else {
+                print_r('nao enviou');die();
+            }
         }
     }
 
