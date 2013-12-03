@@ -28,11 +28,25 @@
                         <?php foreach($campo->getGrupos() as $grupo) { ?>
 
                         <label class="checkbox cursor-pointer" title="<?php echo utf8_encode($grupo->getTitulo()) ?>">
-                            <input type="checkbox" name="<?php echo $campo->getId() ?>" value="<?php echo $grupo->getId() ?>" data-toggle="checkbox"><?php echo utf8_encode($grupo->getTitulo()) ?>
+                            <input type="checkbox" name="<?php echo $campo->getId() ?>" 
+                            value="<?php echo $grupo->getId() ?>" data-toggle="checkbox"><?php echo utf8_encode($grupo->getTitulo()) ?>
 
                         </label>
                         <?php } ?>
 
+                    </div>
+                </article>
+
+                    <?php
+                        break;
+
+                        case 'Date':
+                    ?>
+
+                <article class="row mbm">
+                    <div class="col-md-5 centered">
+                        <label for="<?php echo $campo->getId(); ?>" title="<?php echo utf8_encode($campo->getTitulo()); ?>"><?php echo utf8_encode($campo->getTitulo()); ?></label>
+                        <input type="date" class="date" date-format="dd/mm/yyyy" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>">
                     </div>
                 </article>
 
