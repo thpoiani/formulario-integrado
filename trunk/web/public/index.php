@@ -5,6 +5,7 @@
  */
 define('APPLICATION', realpath(dirname(__FILE__) . '/../application'));
 define('LAYOUT', realpath(APPLICATION . '/layout'));
+define('UPLOAD', realpath(dirname(__FILE__) . '/../public/upload/'));
 
 /**
  * Recebimento dos parâmetros

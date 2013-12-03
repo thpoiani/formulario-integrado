@@ -9,7 +9,7 @@
         </article>
     </section>
 
-    <form method="POST" action="/formulario/salvar">
+    <form method="POST" action="/formulario/salvar" enctype="multipart/form-data">
         <input type="hidden" id="formulario" name="formulario" value="<?php echo $this->formulario->getId(); ?>">
 
         <?php foreach ($this->formulario->getCategorias() as $categoria) { ?>
