@@ -107,19 +107,19 @@ class FormularioController extends Controller {
             $this->mail->Body = "Mensagem";
 
             if ($this->mail->send()) {
-                print_r('enviou');die();
+                
             } else {
-                print_r('nao enviou');die();
+                
             }
         }
     }
 
     private function uploadFile(){
-       // if($_POST['5']){
+       // if(isset($_POST['5'])){
             $file = $_FILES['5'];
 
             $file_extension = strtolower(end(explode('.', $file['name'])));
-            $newFileName = '/ALUNO_teste.';
+            $newFileName = '/'.$_GET['id'].'_'.$_SESSION['id'].'.';
             $upload = move_uploaded_file($file['tmp_name'], UPLOAD . $newFileName . $file_extension);
 
             if($upload){
@@ -127,7 +127,7 @@ class FormularioController extends Controller {
             }else{
 
             }
-      //  }
+        //}
     }   
 
     /**
