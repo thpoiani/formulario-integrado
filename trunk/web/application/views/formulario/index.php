@@ -40,13 +40,13 @@
                     <?php
                         break;
 
-                        case 'Date':
+                        case 'Data':
                     ?>
 
                 <article class="row mbm">
                     <div class="col-md-5 centered">
                         <label for="<?php echo $campo->getId(); ?>" title="<?php echo utf8_encode($campo->getTitulo()); ?>"><?php echo utf8_encode($campo->getTitulo()); ?></label>
-                        <input type="date" class="date" date-format="dd/mm/yyyy" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>">
+                        <input type="date" data-date-format="dd/mm/yyyy" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>">
                     </div>
                 </article>
 
