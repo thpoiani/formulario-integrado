@@ -4,6 +4,7 @@ require_once(APPLICATION . '/models/Model.php');
 class Resposta extends Model {
 
     private $alunoId;
+    private $formularioId;
     private $campoId;
     private $resposta;
     private $data;
@@ -14,6 +15,14 @@ class Resposta extends Model {
 
     public function setAlunoId($alunoId) {
         return $this->alunoId = $alunoId;
+    }
+
+    public function getFormularioId() {
+        return $this->formularioId;
+    }
+
+    public function setFormularioId($formularioId) {
+        return $this->formularioId = $formularioId;
     }
 
     public function getCampoId() {

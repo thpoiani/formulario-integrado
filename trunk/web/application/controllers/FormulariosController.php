@@ -12,10 +12,6 @@ class FormulariosController extends Controller{
         $this->business = new FormularioBusiness();
     }
 
-    // public function populateForms(){
-    //     $this->formsList = $this->business->getFormsList();
-    // }
-
 	public function index() {
         $this->setLayout(LAYOUT . '/layout.php');
 
