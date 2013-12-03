@@ -62,6 +62,8 @@
 
 <script src="/js/flatui-checkbox.js"></script>
 <script src="/js/flatui-radio.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/default.js"></script>
+
 </body>
 </html>
