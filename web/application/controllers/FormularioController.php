@@ -42,10 +42,10 @@ class FormularioController extends Controller {
             }
 
             try {
-                $respostaBusiness->salvar($respostas);
-                //$this->getMailConfig();
                 $this->uploadFile();
-
+                $respostaBusiness->salvar($respostas);
+                $this->getMailConfig();
+                
                 header("Location: /formularios");
             } catch (Exception $e) {
                 header("Location: /formularios/index/?id=" . $_POST['formulario']);
@@ -115,7 +115,7 @@ class FormularioController extends Controller {
     }
 
     private function uploadFile(){
-       // if(isset($_POST['5'])){
+        if(isset($_FILES['5'])){
             $file = $_FILES['5'];
 
             $file_extension = strtolower(end(explode('.', $file['name'])));
@@ -127,7 +127,7 @@ class FormularioController extends Controller {
             }else{
 
             }
-        //}
+       }
     }   
 
     /**
