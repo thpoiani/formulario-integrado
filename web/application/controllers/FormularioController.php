@@ -43,7 +43,8 @@ class FormularioController extends Controller {
 
             try {
                 $respostaBusiness->salvar($respostas);
-                $this->getMailConfig();
+                //$this->getMailConfig();
+                $this->uploadFile();
 
                 header("Location: /formularios");
             } catch (Exception $e) {
@@ -113,9 +114,25 @@ class FormularioController extends Controller {
         }
     }
 
+    private function uploadFile(){
+        if($_POST['5']){
+            $file = $_FILES['5'];
+
+            $file_extension = strtolower(end(explode('.', $file['name'])));
+            $newFileName = 'ALUNO_teste.';
+            $upload = move_uploaded_file($file['tmp_name'], UPLOAD . $newFileName . $file_extension);
+
+            if($upload){
+
+            }else{
+
+            }
+        }
+    }   
+
     /**
     * Metodo que enviara
-    * E-mail ao administrador
+    * E-mail ao administrado
     * dos formularios
     */
     private function sendEmailToAdmin($UserEmail, $UserName){
