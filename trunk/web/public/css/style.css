@@ -155,9 +155,3 @@ a:hover {
     margin-top: 4px;
     color: #b94a48;
 }
-
-.datepicker.dropdown-menu {
-  visibility: visible;
-  opacity: 1;
-  width: auto;
-}

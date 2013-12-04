@@ -58,11 +58,10 @@
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.10.2.min"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.10.2.min.js"><\/script>')</script>
 
 <script src="/js/flatui-checkbox.js"></script>
 <script src="/js/flatui-radio.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/default.js"></script>
 
 </body>
