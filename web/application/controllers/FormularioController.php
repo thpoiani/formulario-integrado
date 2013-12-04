@@ -32,6 +32,7 @@ class FormularioController extends Controller {
         if ($_POST) {
             $respostaBusiness = new RespostaBusiness();
             $formularioId = $_POST['formulario'];
+            $formulario = $this->business->find($formularioId);
 
             // remove elemento refere ao formulário, para ficar apenas com as respostas
             unset($_POST['formulario']);
@@ -49,7 +50,21 @@ class FormularioController extends Controller {
             }
             try {
                 $respostaBusiness->salvar($respostas);
-                $this->getMailConfig($formularioId);
+
+                $this->sendEmail(array(
+                    'email' => $_SESSION['email'],
+                    'formulario' => $formulario->getTitulo(),
+                    'usuario' =>  $_SESSION['nome'],
+                    'isAluno' => true
+                ));
+
+                $this->sendEmail(array(
+                    'email' => 'formulario.interativo.ifsp@gmail.com',
+                    'formulario' => $formulario->getTitulo(),
+                    'usuario' =>  $_SESSION['nome'],
+                    'prontuario' =>  $_SESSION['prontuario'],
+                    'isAluno' => false
+                ));
 
                 header("Location: /formularios");
             } catch (Exception $e) {
@@ -74,9 +89,7 @@ class FormularioController extends Controller {
     * Metodo que seta configurações para o envio de
     * E-mail por SMTP autenticado
     */
-    private function getMailConfig($formularioId) {
-        $formulario = $this->business->find($formularioId);
-
+    private function sendEmail($dados) {
         $this->mail = new PHPMailer();
         $this->mail->IsSMTP();
         $this->mail->SMTPAuth = true;
@@ -84,32 +97,11 @@ class FormularioController extends Controller {
 
         $this->mail->Port = 587;
         $this->mail->Host = 'smtp.gmail.com';
-        $this->mail->Username = 'thpoiani@gmail.com';
-        $this->mail->Password = 'SENHA';
-        $this->mail->setFrom('formulariointegrado@ifsp.edu.br', 'IFSP');
+        $this->mail->Username = 'formulario.interativo.ifsp@gmail.com';
+        $this->mail->Password = 'ads640ifsp';
+        $this->mail->setFrom('formulario.interativo.ifsp@gmail.com', 'IFSP');
 
 
-        $this->sendEmail(array(
-            'email' => $_SESSION['email'],
-            'formulario' => $formulario->getTitulo(),
-            'usuario' =>  $_SESSION['nome'],
-            'isAluno' => true
-        ));
-
-        $this->sendEmail(array(
-            'email' => 'thpoiani@gmail.com',
-            'formulario' => $formulario->getTitulo(),
-            'usuario' =>  $_SESSION['nome'],
-            'prontuario' =>  $_SESSION['prontuario'],
-            'isAluno' => false
-        ));
-    }
-
-    /**
-    * Metodo que enviara
-    * E-mail ao usuario logado
-    */
-    private function sendEmail($dados) {
         if ($dados['isAluno']) {
             $body = file_get_contents(APPLICATION . '/config/PHPMailer/emailaluno.php');
             $body = str_replace('$usuario', utf8_encode($dados['usuario']), $body);
