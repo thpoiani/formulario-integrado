@@ -119,11 +119,9 @@ class FormularioController extends Controller {
             $file = $_FILES['5'];
 
             $fileName = explode('.', $file['name']);
-            $extension = strtolower(end($fileName));
+            $newFileName = $_SESSION['id'] . '_' . 5 . '.' . strtolower(end($fileName));
 
-            $newFileName = $_SESSION['id'] . '_' . 5;
-
-            $upload = move_uploaded_file($file['tmp_name'], UPLOAD . DIRECTORY_SEPARATOR . $newFileName . '.' . $extension);
+            $upload = move_uploaded_file($file['tmp_name'], UPLOAD . DIRECTORY_SEPARATOR . $newFileName);
 
             return $newFileName;
        }
