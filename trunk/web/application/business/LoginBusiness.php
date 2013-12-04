@@ -13,7 +13,7 @@ class LoginBusiness extends Business {
 
         $aluno = new Aluno();
 
-        parent::$database->query("SELECT * FROM pm_pessoas WHERE prontuario = '" . $login->getUsername() . "' AND senha = '" . $login->getPasswd()  . "'");
+        parent::$database->query("SELECT id, prontuario, nome, email FROM pm_pessoas WHERE prontuario = '" . $login->getUsername() . "' AND senha = '" . $login->getPasswd()  . "'");
 
 		if ($resultado = parent::$database->result()) {
             return $this->assembly($aluno, $resultado);
@@ -27,7 +27,7 @@ class LoginBusiness extends Business {
         parent::$database->getInterativoCredentials();
         parent::$database->connect();
 
-        $query = "INSERT INTO aluno (prontuario, nome) VALUES ('" . $aluno->getProntuario() . "','" . $aluno->getNome() . "')";
+        $query = "INSERT INTO aluno (id, prontuario, nome, email) VALUES (" . $aluno->getId() . ", '" . $aluno->getProntuario() . "','" . $aluno->getNome() . "', '" . $aluno->getEmail() . "')";
 
         return parent::$database->query($query);
     }
