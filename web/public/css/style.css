@@ -76,6 +76,11 @@ a:hover {
 	text-align: left;
 }
 
+.tile-form {
+    width: 25%;
+    display: inline-block;
+}
+
 .tile, .tile-error {
     margin: 0 auto 10px;
     width: 300px;

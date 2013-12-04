@@ -30,7 +30,7 @@
         <div class="col-xs-3">
             <?php if (isset($this->login) && $this->login) { ?>
 
-            <p class="navbar-text align-left"><?php echo $this->helperShowDate(); ?> <a href="#" class="navbar-link" title="<?php echo $_SESSION['nome']; ?>"><?php echo $_SESSION['nome']; ?></a></p>
+            <p class="navbar-text align-left"><?php echo $this->helperShowDate(); ?> <a href="http://www.ifspsaocarlos.edu.br/moodle/user/view.php?id=<?php echo $_SESSION['id']; ?>" target="_blank" class="navbar-link" title="<?php echo $_SESSION['nome']; ?>"><?php echo $_SESSION['nome']; ?></a></p>
             <?php } ?>
         </div>
 

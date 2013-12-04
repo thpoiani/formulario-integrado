@@ -108,6 +108,8 @@
         <section class="container vertical">
 			<article class="row mbm">
 				<div class="col-md-5 centered text-right">
+                    <a href="/formularios" class="btn btn-default pull-left" title="Cancelar">Cancelar</a>
+
 					<input type="reset" class="btn btn-default" value="Limpar" title="Limpar">
 					<input type="submit" class="btn btn-success" value="Enviar" title="Enviar">
 				</div>
