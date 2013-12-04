@@ -40,15 +40,15 @@ class FormularioController extends Controller {
                 if ($_FILES[$key]) {
                     $value = $this->uploadFile($key);
                 }
+
                 $resposta = new Resposta();
                 $this->assemblyRequest($resposta, $formularioId, $key, $value);
                 array_push($respostas, $resposta);
             }
 
             try {
-                
                 $respostaBusiness->salvar($respostas);
-                $this->getMailConfig();
+                $this->getMailConfig($formularioId);
 
                 header("Location: /formularios");
             } catch (Exception $e) {
@@ -73,7 +73,9 @@ class FormularioController extends Controller {
     * Metodo que seta configurações para o envio de
     * E-mail por SMTP autenticado
     */
-    private function getMailConfig(){
+    private function getMailConfig($formularioId) {
+        $formulario = $this->business->find($formularioId);
+
         $this->mail = new PHPMailer();
         //envio por SMTP
         $this->mail->IsSMTP();
@@ -87,39 +89,47 @@ class FormularioController extends Controller {
         $this->mail->Password = 'SENHA';
         $this->mail->setFrom('formulariointegrado@ifsp.edu.br', 'IFSP');
 
-        $this->sendEmailToUser($_SESSION['email'], true);
-        $this->sendEmailToUser("EMAIL SAMIRA", false);
+
+        $this->sendEmail(array(
+            'email' => $_SESSION['email'],
+            'formulario' => $formulario->getTitulo(),
+            'usuario' =>  $_SESSION['nome'],
+            'isAluno' => true
+        ));
+
+        $this->sendEmail(array(
+            'email' => 'thpoiani@gmail.com',
+            'formulario' => $formulario->getTitulo(),
+            'usuario' =>  $_SESSION['nome'],
+            'isAluno' => false
+        ));
     }
+
     /**
     * Metodo que enviara
     * E-mail ao usuario logado
     */
-    private function sendEmailToUser($UserEmail, $isAluno) {
-        if ($isAluno) {
-            $this->mail->addAddress($UserEmail);
+    private function sendEmail($dados) {
+        if ($dados['isAluno']) {
+            $body = file_get_contents(APPLICATION . '/config/PHPMailer/emailaluno.php');
+            $body = str_replace('$usuario', utf8_decode($dados['usuario']), $body);
+            $body = str_replace('$formulario', utf8_decode($dados['formulario']), $body);
             $this->mail->Subject = utf8_decode('Confirmação de envio de Formulário - IFSP São Carlos');
-            $this->mail->Body = "Mensagem";
-
-            if ($this->mail->send()) {
-                print_r('enviou');die();
-            } else {
-                print_r('nao enviou');die();
-            }
         } else {
-            $this->mail->addAddress($UserEmail);
-            $this->mail->Subject = utf8_decode('Formulário respondido.');
-            $this->mail->Body = "Mensagem";
-
-            if ($this->mail->send()) {
-
-            } else {
-
-            }
+            $body = file_get_contents(APPLICATION . '/config/PHPMailer/emailsamira.php');
+            $body = str_replace('$usuario', utf8_decode($dados['usuario']), $body);
+            $body = str_replace('$formulario', utf8_decode($dados['formulario']), $body);
+            $this->mail->Subject = utf8_decode('Formulário respondido  - IFSP São Carlos');
         }
+
+        $this->mail->isHTML(true);
+        $this->mail->addAddress($dados['email']);
+        $this->mail->Body = utf8_decode($body);
+
+        return $this->mail->send();
     }
 
     private function uploadFile($key){
-
          if ($_FILES[$key]) {
             $file = $_FILES[$key];
 
