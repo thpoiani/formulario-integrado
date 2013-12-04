@@ -36,16 +36,15 @@ class FormularioController extends Controller {
 
             $respostas = array();
 
-            foreach ($_POST as $key => $value) {
-                if ($_FILES[$key]) {
-                    $value = $this->uploadFile($key);
-                }
+            foreach ($_FILES as $key => $value) {
+                $_POST[$key] = $this->uploadFile($formularioId, $key);
+            }
 
+            foreach ($_POST as $key => $value) {
                 $resposta = new Resposta();
                 $this->assemblyRequest($resposta, $formularioId, $key, $value);
                 array_push($respostas, $resposta);
             }
-
             try {
                 $respostaBusiness->salvar($respostas);
                 $this->getMailConfig($formularioId);
@@ -129,12 +128,12 @@ class FormularioController extends Controller {
         return $this->mail->send();
     }
 
-    private function uploadFile($key){
+    private function uploadFile($formularioId, $key){
          if ($_FILES[$key]) {
             $file = $_FILES[$key];
 
             $fileName = explode('.', $file['name']);
-            $newFileName = $_SESSION['id'] . '_' . 5 . '.' . strtolower(end($fileName));
+            $newFileName = $_SESSION['id'] . '_' . $formularioId . '_' .$key . '.' . strtolower(end($fileName));
 
             $upload = move_uploaded_file($file['tmp_name'], UPLOAD . DIRECTORY_SEPARATOR . $newFileName);
 
