@@ -16,7 +16,7 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
         ArrayList<Resposta> resposta = new ArrayList<>();
         this.rs = null;
         
-        this.sql = "SELECT * FROM resposta;";
+        this.sql = "SELECT alunoId, formularioId, campoId, resposta, data FROM resposta GROUP BY alunoId, formularioId;";
         
         this.ps = connection.prepareStatement(this.sql);
         this.rs = this.ps.executeQuery();
@@ -34,13 +34,14 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
     public void add(Resposta resposta) throws SQLException{
         super.openConnection();
         
-        this.sql = "INSERT INTO resposta (alunoId, campoId, resposta, data) values (?, ?, ?, ?);";
+        this.sql = "INSERT INTO resposta (alunoId, formularioId, campoId, resposta, data) values (?, ?, ?, ?, ?);";
         this.ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         this.ps.setInt(1, resposta.getAlunoId());
-        this.ps.setInt(2, resposta.getCampoId());
-        this.ps.setString(3, resposta.getResposta());
-        this.ps.setString(4, super.getCurrentDate(resposta.getData()));
+        this.ps.setInt(2, resposta.getFormularioId());
+        this.ps.setInt(3, resposta.getCampoId());
+        this.ps.setString(4, resposta.getResposta());
+        this.ps.setString(5, super.getCurrentDate(resposta.getData()));
         
         this.ps.executeUpdate();
         
@@ -72,9 +73,10 @@ public class RespostaBusiness extends Business<Resposta> implements IRespostaBus
     private Resposta assembly(ResultSet rs) throws SQLException {
         Resposta resposta = new Resposta();
         resposta.setAlunoId(rs.getInt(1));
-        resposta.setCampoId(rs.getInt(2));
-        resposta.setResposta(rs.getString(3));
-        resposta.setData(super.setCurrentDate(rs.getString(4)));
+        resposta.setFormularioId(rs.getInt(2));
+        resposta.setCampoId(rs.getInt(3));
+        resposta.setResposta(rs.getString(4));
+        resposta.setData(super.setCurrentDate(rs.getString(5)));
         
         return resposta;
     }

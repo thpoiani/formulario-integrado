@@ -5,6 +5,7 @@ import java.util.Date;
 public class Resposta extends Model {
     
     private int alunoId;
+    private int formularioId;
     private int campoId;
     private String resposta;
     private Date data;
@@ -23,6 +24,14 @@ public class Resposta extends Model {
         this.alunoId = alunoId;
     }
 
+    public int getFormularioId() {
+        return formularioId;
+    }
+
+    public void setFormularioId(int formularioId) {
+        this.formularioId = formularioId;
+    }
+    
     /**
      * @return the campoId
      */
