@@ -141,7 +141,7 @@ public class FormulariosController extends AbstractController {
         if (formularioIsSelected()) {
             Desktop.getDesktop().browse(
                     new URI(
-                    "http://formulario-integrado.com/formulario/"
+                    "http://integrado-thpoiani.rhcloud.com/formulario/index/?id="
                     + tabela.getSelectionModel().getSelectedItem().getId()));
         }
     }

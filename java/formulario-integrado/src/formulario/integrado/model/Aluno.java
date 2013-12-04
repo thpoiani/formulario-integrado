@@ -6,6 +6,7 @@ public class Aluno extends Model {
     private int id;
     private String prontuario;
     private String nome;
+    private String email;
     
     private ArrayList<Resposta> respostas;
 
@@ -49,6 +50,14 @@ public class Aluno extends Model {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
