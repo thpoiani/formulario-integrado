@@ -45,7 +45,7 @@ class FormularioController extends Controller {
                 $this->uploadFile();
                 $respostaBusiness->salvar($respostas);
                 $this->getMailConfig();
-                
+
                 header("Location: /formularios");
             } catch (Exception $e) {
                 header("Location: /formularios/index/?id=" . $_POST['formulario']);
@@ -107,44 +107,26 @@ class FormularioController extends Controller {
             $this->mail->Body = "Mensagem";
 
             if ($this->mail->send()) {
-                
+
             } else {
-                
+
             }
         }
     }
 
     private function uploadFile(){
-        if(isset($_FILES['5'])){
+        if ($_FILES['5']) {
             $file = $_FILES['5'];
 
-            $file_extension = strtolower(end(explode('.', $file['name'])));
-            $newFileName = '/'.$_GET['id'].'_'.$_SESSION['id'].'.';
-            $upload = move_uploaded_file($file['tmp_name'], UPLOAD . $newFileName . $file_extension);
+            $fileName = explode('.', $file['name']);
+            $extension = strtolower(end($fileName));
 
-            if($upload){
+            $newFileName = $_SESSION['id'] . '_' . 5;
 
-            }else{
+            $upload = move_uploaded_file($file['tmp_name'], UPLOAD . DIRECTORY_SEPARATOR . $newFileName . '.' . $extension);
 
-            }
+            return $newFileName;
        }
-    }   
-
-    /**
-    * Metodo que enviara
-    * E-mail ao administrado
-    * dos formularios
-    */
-    private function sendEmailToAdmin($UserEmail, $UserName){
-        $mail->AddAdress($UserEmail, 'Samira Pizza');
-        $mail->Subject = 'Confirmação de envio de formulario';
-        $mail->MsgHTML('Envio de' .$Username.'com o email'.$UserEmail);
-
-        if($mail->Send()){
-            //alert ou popup
-        }else{
-            //alert ou popup
-        }
     }
 
     /**
