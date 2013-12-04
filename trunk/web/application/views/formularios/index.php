@@ -10,11 +10,11 @@
 </section>
 
 <section class="container vertical">
-    <div class="row">
+    <div class="row align-center">
         <?php
             foreach ($this->formularios as $key => $formulario) {
                 $key = $key % count($this->color); ?>
-                <div class="col-md-3">
+                <div class="tile-form">
                     <a title="<?php echo utf8_encode($formulario->getTitulo()); ?>" href="/formulario/index/?id=<?php echo $formulario->getId(); ?>">
                         <div class="tooltip-inner tile <?php echo $this->color[$key]; ?>">
                             <span class="font"><?php echo utf8_encode($formulario->getTitulo()); ?></span>
