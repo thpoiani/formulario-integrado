@@ -4,6 +4,7 @@ require_once(APPLICATION . '/business/FormularioBusiness.php');
 require_once(APPLICATION . '/business/RespostaBusiness.php');
 require_once(APPLICATION . '/config/PHPMailer/class.phpmailer.php');
 require_once(APPLICATION . '/models/Resposta.php');
+require_once(APPLICATION . '/models/Categoria.php');
 
 class FormularioController extends Controller {
 
@@ -36,13 +37,16 @@ class FormularioController extends Controller {
             $respostas = array();
 
             foreach ($_POST as $key => $value) {
+                if ($_FILES[$key]) {
+                    $value = $this->uploadFile($key);
+                }
                 $resposta = new Resposta();
                 $this->assemblyRequest($resposta, $formularioId, $key, $value);
                 array_push($respostas, $resposta);
             }
 
             try {
-                $this->uploadFile();
+                
                 $respostaBusiness->salvar($respostas);
                 $this->getMailConfig();
 
@@ -114,9 +118,10 @@ class FormularioController extends Controller {
         }
     }
 
-    private function uploadFile(){
-        if ($_FILES['5']) {
-            $file = $_FILES['5'];
+    private function uploadFile($key){
+
+         if ($_FILES[$key]) {
+            $file = $_FILES[$key];
 
             $fileName = explode('.', $file['name']);
             $newFileName = $_SESSION['id'] . '_' . 5 . '.' . strtolower(end($fileName));
@@ -126,6 +131,7 @@ class FormularioController extends Controller {
             return $newFileName;
        }
     }
+
 
     /**
      * Método para verificar se existe parametro id
