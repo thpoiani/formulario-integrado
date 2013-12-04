@@ -51,7 +51,7 @@ class FormularioController extends Controller {
 
                 header("Location: /formularios");
             } catch (Exception $e) {
-                header("Location: /formularios/index/?id=" . $_POST['formulario']);
+                header("Location: /formularios/index/?id=" . $formularioId);
             }
         } else {
             header("Location: /formularios");
@@ -76,9 +76,7 @@ class FormularioController extends Controller {
         $formulario = $this->business->find($formularioId);
 
         $this->mail = new PHPMailer();
-        //envio por SMTP
         $this->mail->IsSMTP();
-        //autenticado
         $this->mail->SMTPAuth = true;
         $this->mail->SMTPSecure = 'tls';
 
@@ -100,6 +98,7 @@ class FormularioController extends Controller {
             'email' => 'thpoiani@gmail.com',
             'formulario' => $formulario->getTitulo(),
             'usuario' =>  $_SESSION['nome'],
+            'prontuario' =>  $_SESSION['prontuario'],
             'isAluno' => false
         ));
     }
@@ -111,14 +110,15 @@ class FormularioController extends Controller {
     private function sendEmail($dados) {
         if ($dados['isAluno']) {
             $body = file_get_contents(APPLICATION . '/config/PHPMailer/emailaluno.php');
-            $body = str_replace('$usuario', utf8_decode($dados['usuario']), $body);
-            $body = str_replace('$formulario', utf8_decode($dados['formulario']), $body);
+            $body = str_replace('$usuario', utf8_encode($dados['usuario']), $body);
+            $body = str_replace('$formulario', utf8_encode($dados['formulario']), $body);
             $this->mail->Subject = utf8_decode('Confirmação de envio de Formulário - IFSP São Carlos');
         } else {
             $body = file_get_contents(APPLICATION . '/config/PHPMailer/emailsamira.php');
-            $body = str_replace('$usuario', utf8_decode($dados['usuario']), $body);
-            $body = str_replace('$formulario', utf8_decode($dados['formulario']), $body);
-            $this->mail->Subject = utf8_decode('Formulário respondido  - IFSP São Carlos');
+            $body = str_replace('$aluno', utf8_encode($dados['usuario']), $body);
+            $body = str_replace('$prontuario', utf8_encode($dados['prontuario']), $body);
+            $body = str_replace('$formulario', utf8_encode($dados['formulario']), $body);
+            $this->mail->Subject = utf8_decode('Formulário respondido - IFSP São Carlos');
         }
 
         $this->mail->isHTML(true);
