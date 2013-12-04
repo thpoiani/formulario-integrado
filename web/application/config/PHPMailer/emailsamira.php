@@ -43,7 +43,7 @@
                 <tr>
                     <td>
                         <h3 style="font-weight:500; font-size: 27px;">Olá, Samira</h3>
-                        <p style=" margin-bottom: 10px; font-size:17px;">O aluno $aluno submeteu o formulário $formulario.</p>
+                        <p style=" margin-bottom: 10px; font-size:17px;">O aluno $aluno, prontuário nº $prontuario, submeteu o formulário $formulario.</p>
                         <p style="margin-bottom: 10px; font-size:14px;">Para verificar suas respostas, acesse a aplicação administrativa de Formulário Integrado.</p>
                 </tr>
             </table>
