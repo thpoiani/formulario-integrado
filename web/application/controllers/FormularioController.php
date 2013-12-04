@@ -24,6 +24,8 @@ class FormularioController extends Controller {
 
         // Formulario retorna à view
         $this->formulario = $this->business->obterFormularioCompleto($_GET['id']);
+
+        if ($this->formulario->getId() == null) header("Location: /formularios");
     }
 
     public function salvar() {
