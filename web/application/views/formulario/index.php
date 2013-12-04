@@ -46,7 +46,7 @@
                 <article class="row mbm">
                     <div class="col-md-5 centered">
                         <label for="<?php echo $campo->getId(); ?>" title="<?php echo utf8_encode($campo->getTitulo()); ?>"><?php echo utf8_encode($campo->getTitulo()); ?></label>
-                        <input type="text" class="date form-control" data-date-format="dd/mm/yyyy" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>">
+                        <input type="date" class="form-control" name="<?php echo $campo->getId(); ?>" id="<?php echo $campo->getId(); ?>">
                     </div>
                 </article>
 
